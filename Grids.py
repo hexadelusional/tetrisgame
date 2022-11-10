@@ -42,9 +42,7 @@ while current_grid != "diamond" and current_grid != "triangle" and current_grid 
 
 #function read_grid that returns a valid grid read from the contents of the file specified by path
 def read_grid(path):
-    with open(path+".txt","r") as p:
-        for line in p:
-            print(line.strip())
+    p = open(path+".txt","r")
 read_grid(current_grid)
 
 #function save_grid(path, grid)that save a grid in a file specified by path.
@@ -56,3 +54,12 @@ def save_grid(path, grid):
             P.write(line)
         P.close()
 save_grid( "game_grid.txt" , current_grid)
+
+#displays the status of the grid in ascii symbols (pour l'instant c'est que des 1 et des 0)
+def print_grid(grid):
+    with open(grid + ".txt", "r") as p:
+        for line in p:
+            print(line.strip())
+print_grid(current_grid)
+
+
