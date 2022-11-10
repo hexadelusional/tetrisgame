@@ -1,16 +1,27 @@
 def grid():
-    answers = ["Circle","Triangle","Diamond"]
+    answers = ["Circle", "Triangle", "Diamond"]
     format = int(input("What type of board do you want to play on ?"))
-    file = open((format+".txt"), "r")
+    file = open((format + ".txt"), "r")
 
-    
-    
-    
-    
-    
-    
 
-#Diamond grid
+# DIAMOND GRID
+
+# creation + filling up the Diamond txt doc
+D = open("diamondgrid.txt", "w")
+
+def grid_diamond():
+    length = 12
+    for i in range(length):
+        D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
+    for i in range(length - 2, -1, -1):
+        D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
+    D.close()
+    # reading the lines of the D txt for retranscription in ascii code
+    with open("diamondgrid.txt") as d:
+        for line in d:
+            print(line.strip())
+grid_diamond()
+
 """ 
 def grid_diamond():
     length = 12
@@ -25,40 +36,21 @@ def grid_diamond():
 print(grid_diamond())
 """
 
-#creation of the D txt doc
-D = open("diamondgrid.txt","w")
+#TRIANGLE GRID
 
-def grid_diamond():
+#creation + filling up the triangle txt doc
+T = open("trianglegrid.txt","w")
+
+def grid_triangle():
     length = 12
     for i in range(length):
-        D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
-    for i in range(length - 2, -1, -1):
-        D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
-    D.close()
-grid_diamond()
-
-#reading the lines of the D txt
-D = open("diamondgrid.txt","r")
-line = D.readline()
-print(line)
-for elt in line:
-    if elt=="1":
-        print("a",end=" ")
-    if elt=="0":
-        print("b", end=" ")
-line = D.readline()
-'''  
-D = open("diamondgrid.txt","r")
-lines = D.readlines()
-D.close()
-for line in lines:
-    for elt in line:
-        if elt == "0":
-            print(" ", end=" ")
-        if elt == "1":
-            print(chr(2), end=" ")
-    print("\n")
-'''
+        T.write("0  " * (length - i)+ "1  " * (2 * i + 1)+"0  " * (length - i)+"\n")
+    T.close()
+    # reading the lines of the T txt for retranscription in ascii code
+    with open("trianglegrid.txt") as t:
+        for line in t:
+            print(line.strip())
+grid_triangle()
 
 """ 
 def grid_triangle():
@@ -75,12 +67,4 @@ print(grid_triangle())
 
 
 
-
-
-
-#Circle
-
-
-
-
-
+# CIRCLE GRID
