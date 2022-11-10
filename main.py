@@ -1,22 +1,11 @@
 #with tkinter
 
-
-
-
-#Grid
-grid = open("diamond.txt", "r")
-lines = grid.readlines()
-for line in lines:
-    print(lines)
-    lines= grid.readlines()
-grid.close()
-
 #Creation of all the blocks
 #Espace de width à droite
 #Espace de length en haut
 
 #the blocks in common
-common_blocks = [[] for i in range(20)]
+common_blocks = [[] for i in range(21)]
 common_blocks[1] = [[0,0,0,0],[0,0,0,0],[1,0,0,0],[1,1,0,0]]
 common_blocks[2] = [[0,0,0,0],[0,0,0,0],[0,1,0,0],[1,1,0,0]]
 common_blocks[3] = [[0,0,0,0],[0,0,0,0],[1,0,0,0],[1,1,1,0]]
@@ -39,7 +28,7 @@ common_blocks[19]= [[0,0,0,0],[0,0,0,0],[0,0,0,0],[1,0,0,0]]
 common_blocks[20]= [[0,0,0,0],[0,0,0,0],[0,0,0,0],[1,1,1,1]]
 
 #the circle blocks
-circle_list = [[] for i in range(12)]
+circle_list = [[] for i in range(13)]
 circle_list[1] = [[0,0,0,0,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0]]
 circle_list[2] = [[0,0,0,0,0],[0,1,1,0,0],[1,1,1,1,0],[1,1,1,1,0],[0,1,1,0,0]]
 circle_list[3] = [[0,0,0,0,0],[1,0,0,1,0],[1,0,0,1,0],[1,0,0,1,0],[1,1,1,1,0]]
@@ -54,7 +43,7 @@ circle_list[11]= [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1]]
 circle_list[12]= [[0,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,1,0],[1,1,1,1,0]]
 
 #the diamond blocks
-diamond_list = [[] for i in range(14)]
+diamond_list = [[] for i in range(15)]
 diamond_list[1] = [[0,0,0,0,0],[0,0,1,1,0],[0,1,1,0,0],[1,1,0,0,0],[1,0,0,0,0]]
 diamond_list[2] = [[0,0,0,0,0],[1,1,0,0,0],[0,1,1,0,0],[0,0,1,1,0],[0,0,0,1,0]]
 diamond_list[3] = [[0,0,0,0,0],[1,1,1,1,0],[0,1,1,0,0],[0,1,1,0,0],[0,1,1,0,0]]
@@ -71,7 +60,7 @@ diamond_list[13]= [[0,0,0,0,0],[1,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0]]
 diamond_list[14]= [[0,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,1,0,0,0]]
 
 #the triangle blocks
-triangle_list = [[] for i in range(11)]
+triangle_list = [[] for i in range(12)]
 triangle_list[1] = [[1,0,0],[1,1,1],[0,0,1]]
 triangle_list[2] = [[1,1,0],[0,1,0],[0,1,1]]
 triangle_list[3] = [[0,0,1],[1,1,1],[1,0,0]]
@@ -101,4 +90,3 @@ blocs_list = [diamond_list, circle_list, triangle_list]
 
 # function valid_position(grid, block, i, j) which checks wheter the block block can be placed on the slot grid[i][j] in such a way that the lower left box of the block bloc is
 # positioned on grid[i][j]
-
