@@ -1,4 +1,5 @@
-# DIAMOND GRID
+
+################# DIAMOND GRID ################
 
 # creation + filling up the Diamond txt doc
 D = open("diamond.txt", "w")
@@ -10,12 +11,14 @@ def grid_diamond():
     for i in range(length - 2, -1, -1):
         D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
     D.close()
+
+
 grid_diamond()
 
 
-#TRIANGLE GRID
+################ TRIANGLE GRID ################
 
-#creation + filling up the triangle txt doc
+# creation + filling up the triangle txt doc
 T = open("triangle.txt","w")
 
 def grid_triangle():
@@ -23,29 +26,35 @@ def grid_triangle():
     for i in range(length):
         T.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
     T.close()
+
+
 grid_triangle()
 
 
 
 
-# CIRCLE GRID
-#creation + filling up the triangle txt doc
+################# CIRCLE GRID ################
+# creation + filling up the triangle txt doc
 
 
 
 
 
+# interaction with the user
 current_grid = input("What board do you want to play on ? [Circle] [Triangle] [Diamond] ")
 while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
     current_grid = input("Error, this board does not exist. You must write the name (in lowercase letters) of one of the boards proposed: [Circle] [Triangle] [Diamond] ")
 
 
-#function read_grid that returns a valid grid read from the contents of the file specified by path
+# function read_grid that returns a valid grid read from the contents of the file specified by path
 def read_grid(path):
-    p = open(path+".txt","r")
+    p = open(path+".txt", "r")
+
+
 read_grid(current_grid)
 
-#function save_grid(path, grid)that save a grid in a file specified by path.
+
+# function save_grid(path, grid)that save a grid in a file specified by path
 def save_grid(path, grid):
     with open(grid+".txt","r") as G, open(path,"w") as P:
         lines = G.readlines()
@@ -53,13 +62,16 @@ def save_grid(path, grid):
         for line in lines:
             P.write(line)
         P.close()
-save_grid( "game_grid.txt" , current_grid)
 
 
+save_grid("game_grid.txt", current_grid)
 
+
+# building the grid the user will see
 print("  " + " a " + " b " + " c " + " d " + " e " + " f " + " g " + " h " + " i " + " j " + " k " + " l " + " m " + " n " + " o " + " p " + " q " + " r " + " s " + " t " + " u " + " v " + " w " + " x " + " y ")
 print(chr(9556) + chr(9552)*77 + chr(9559))
-#displays the status of the grid in ascii symbols
+
+# function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
     with open(grid + ".txt", "r") as p:
         for line in p:
@@ -71,6 +83,9 @@ def print_grid(grid):
                     print(chr(10240), end="  ")
                 elif elt == '1':
                     print(chr(9642), end="  ")
-            print(chr(9553),"\n".strip())
+            print(chr(9553), "\n".strip())
+
+
 print_grid(current_grid)
-print(chr(9562)+ chr(9552)*77  + chr(9565))
+
+print(chr(9562) + chr(9552) * 77 + chr(9565))
