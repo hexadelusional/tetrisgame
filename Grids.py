@@ -37,7 +37,7 @@ grid_triangle()
 
 current_grid = input("What board do you want to play on ? [Circle] [Triangle] [Diamond] ")
 while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
-    current_grid = input("Error, this board does not exist. You must write the name in lowercase letters of one of the boards proposed: [Circle] [Triangle] [Diamond] ")
+    current_grid = input("Error, this board does not exist. You must write the name (in lowercase letters) of one of the boards proposed: [Circle] [Triangle] [Diamond] ")
 
 
 #function read_grid that returns a valid grid read from the contents of the file specified by path
@@ -55,11 +55,18 @@ def save_grid(path, grid):
         P.close()
 save_grid( "game_grid.txt" , current_grid)
 
-#displays the status of the grid in ascii symbols (pour l'instant c'est que des 1 et des 0)
+
+
+#displays the status of the grid in ascii symbols
 def print_grid(grid):
     with open(grid + ".txt", "r") as p:
         for line in p:
-            print(line.strip())
+            line = line.strip()
+            columns = line.split()
+            for elt in columns:
+                if elt=="0":
+                    print(chr(10240), end="  ")
+                elif elt=='1':
+                    print(chr(9642), end="  ")
+            print("\n".strip())
 print_grid(current_grid)
-
-
