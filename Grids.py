@@ -68,16 +68,19 @@ save_grid("game_grid.txt", current_grid)
 
 
 # building the grid the user will see
-print("  " + " a " + " b " + " c " + " d " + " e " + " f " + " g " + " h " + " i " + " j " + " k " + " l " + " m " + " n " + " o " + " p " + " q " + " r " + " s " + " t " + " u " + " v " + " w " + " x " + " y ")
-print(chr(9556) + chr(9552)*77 + chr(9559))
+print("   " + " a " + " b " + " c " + " d " + " e " + " f " + " g " + " h " + " i " + " j " + " k " + " l " + " m " + " n " + " o " + " p " + " q " + " r " + " s " + " t " + " u " + " v " + " w " + " x " + " y ")
+print(" " + chr(9556) + chr(9552)*77 + chr(9559))
 
 # function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
     with open(grid + ".txt", "r") as p:
+        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        i=0
         for line in p:
             line = line.strip()
             columns = line.split()
-            print(chr(9553), end="  ")
+            print(alphabet[i]+chr(9553), end="  ")
+            i+=1
             for elt in columns:
                 if elt == "0":
                     print(chr(10240), end="  ")
@@ -88,4 +91,4 @@ def print_grid(grid):
 
 print_grid(current_grid)
 
-print(chr(9562) + chr(9552) * 77 + chr(9565))
+print(" " + chr(9562) + chr(9552) * 77 + chr(9565))
