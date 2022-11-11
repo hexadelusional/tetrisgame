@@ -1,8 +1,11 @@
+################################################################ GRIDS ################################################################
+from Blocs import*
 
 ################# DIAMOND GRID ################
 
 # creation + filling up the Diamond txt doc
 D = open("diamond.txt", "w")
+
 
 def grid_diamond():
     length = 12
@@ -15,11 +18,12 @@ def grid_diamond():
 
 grid_diamond()
 
-
 ################ TRIANGLE GRID ################
 
 # creation + filling up the Triangle txt doc
-T = open("triangle.txt","w")
+
+T = open("triangle.txt", "w")
+
 
 def grid_triangle():
     length = 12
@@ -30,14 +34,8 @@ def grid_triangle():
 
 grid_triangle()
 
-
-
-
 ################# CIRCLE GRID ################
 # creation + filling up the Circle txt doc
-
-
-
 
 
 # interaction with the user
@@ -48,7 +46,7 @@ while current_grid != "diamond" and current_grid != "triangle" and current_grid 
 
 # function read_grid that returns a valid grid read from the contents of the file specified by path
 def read_grid(path):
-    p = open(path+".txt", "r")
+    p = open(path + ".txt", "r")
 
 
 read_grid(current_grid)
@@ -56,7 +54,7 @@ read_grid(current_grid)
 
 # function save_grid(path, grid)that save a grid in a file specified by path
 def save_grid(path, grid):
-    with open(grid+".txt","r") as G, open(path,"w") as P:
+    with open(grid + ".txt", "r") as G, open(path, "w") as P:
         lines = G.readlines()
         G.close()
         for line in lines:
@@ -66,21 +64,22 @@ def save_grid(path, grid):
 
 save_grid("game_grid.txt", current_grid)
 
-
 # building the grid the user will see
-print("   " + " a " + " b " + " c " + " d " + " e " + " f " + " g " + " h " + " i " + " j " + " k " + " l " + " m " + " n " + " o " + " p " + " q " + " r " + " s " + " t " + " u " + " v " + " w " + " x " + " y ")
-print(" " + chr(9556) + chr(9552)*77 + chr(9559))
+print(
+    "   " + " a " + " b " + " c " + " d " + " e " + " f " + " g " + " h " + " i " + " j " + " k " + " l " + " m " + " n " + " o " + " p " + " q " + " r " + " s " + " t " + " u " + " v " + " w " + " x " + " y ")
+print(" " + chr(9556) + chr(9552) * 77 + chr(9559))
+
 
 # function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
     with open(grid + ".txt", "r") as p:
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        i=0
+        i = 0
         for line in p:
             line = line.strip()
             columns = line.split()
-            print(alphabet[i]+chr(9553), end="  ")
-            i+=1
+            print(alphabet[i] + chr(9553), end="  ")
+            i += 1
             for elt in columns:
                 if elt == "0":
                     print(chr(10240), end="  ")
@@ -92,3 +91,5 @@ def print_grid(grid):
 print_grid(current_grid)
 
 print(" " + chr(9562) + chr(9552) * 77 + chr(9565))
+
+
