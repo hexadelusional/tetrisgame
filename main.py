@@ -1,7 +1,7 @@
 
 #with tkinter
 
-
+"main ne sert à rien pour l'instant, il contient juste le code en entier"
 ################################################################ GRIDS ################################################################
 
 
