@@ -57,16 +57,20 @@ save_grid( "game_grid.txt" , current_grid)
 
 
 
+print("  " + " a " + " b " + " c " + " d " + " e " + " f " + " g " + " h " + " i " + " j " + " k " + " l " + " m " + " n " + " o " + " p " + " q " + " r " + " s " + " t " + " u " + " v " + " w " + " x " + " y ")
+print(chr(9556) + chr(9552)*77 + chr(9559))
 #displays the status of the grid in ascii symbols
 def print_grid(grid):
     with open(grid + ".txt", "r") as p:
         for line in p:
             line = line.strip()
             columns = line.split()
+            print(chr(9553), end="  ")
             for elt in columns:
-                if elt=="0":
+                if elt == "0":
                     print(chr(10240), end="  ")
-                elif elt=='1':
+                elif elt == '1':
                     print(chr(9642), end="  ")
-            print("\n".strip())
+            print(chr(9553),"\n".strip())
 print_grid(current_grid)
+print(chr(9562)+ chr(9552)*77  + chr(9565))
