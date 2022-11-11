@@ -18,7 +18,7 @@ grid_diamond()
 
 ################ TRIANGLE GRID ################
 
-# creation + filling up the triangle txt doc
+# creation + filling up the Triangle txt doc
 T = open("triangle.txt","w")
 
 def grid_triangle():
@@ -34,7 +34,7 @@ grid_triangle()
 
 
 ################# CIRCLE GRID ################
-# creation + filling up the triangle txt doc
+# creation + filling up the Circle txt doc
 
 
 
