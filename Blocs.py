@@ -4,7 +4,8 @@ import random
 #Espace de width à droite
 #Espace de length en haut
 
-#the blocks in common
+################ COMMON BLOCS ################
+
 common_blocs = [[] for i in range(20)]
 common_blocs[0] = [[0,0,0,0],[0,0,0,0],[1,0,0,0],[1,1,0,0]]
 common_blocs[1] = [[0,0,0,0],[0,0,0,0],[0,1,0,0],[1,1,0,0]]
@@ -27,7 +28,8 @@ common_blocs[17]= [[0,0,0,0],[0,1,0,0],[1,1,0,0],[1,0,0,0]]
 common_blocs[18]= [[0,0,0,0],[0,0,0,0],[0,0,0,0],[1,0,0,0]]
 common_blocs[19]= [[0,0,0,0],[0,0,0,0],[0,0,0,0],[1,1,1,1]]
 
-#the circle blocks
+################ CIRCLE BLOCS ################
+
 circle_list = [[] for i in range(12)]
 circle_list[0] = [[0,0,0,0,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0]]
 circle_list[1] = [[0,0,0,0,0],[0,1,1,0,0],[1,1,1,1,0],[1,1,1,1,0],[0,1,1,0,0]]
@@ -42,7 +44,8 @@ circle_list[9]= [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1],[1,0,0,0,1]]
 circle_list[10]= [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1]]
 circle_list[11]= [[0,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,1,0],[1,1,1,1,0]]
 
-#the diamond blocks
+################ DIAMOND BLOCS ################
+
 diamond_list = [[] for i in range(14)]
 diamond_list[0] = [[0,0,0,0,0],[0,0,1,1,0],[0,1,1,0,0],[1,1,0,0,0],[1,0,0,0,0]]
 diamond_list[1] = [[0,0,0,0,0],[1,1,0,0,0],[0,1,1,0,0],[0,0,1,1,0],[0,0,0,1,0]]
@@ -59,7 +62,8 @@ diamond_list[11]= [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,0],[0,0,0,1,0]]
 diamond_list[12]= [[0,0,0,0,0],[1,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0]]
 diamond_list[13]= [[0,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,1,0,0,0]]
 
-#the triangle blocks
+################ TRIANGLE BLOCS ################
+
 triangle_list = [[] for i in range(11)]
 triangle_list[0] = [[1,0,0],[1,1,1],[0,0,1]]
 triangle_list[1] = [[1,1,0],[0,1,0],[0,1,1]]
@@ -75,8 +79,12 @@ triangle_list[10]= [[0,0,0],[0,0,0],[1,1,0]]
 
 blocs_list = [diamond_list, triangle_list, circle_list]
 
-#function print_blocs(grid) which takes as parameters the shape of the chosen tray, and which displays the list of all the blocks associated with it.
+
+
+# function print_blocs(grid) which takes as parameters the shape of the chosen tray, and which displays the list of all the blocks associated with it
+
 def print_blocs(grid):
+
     if grid == "triangle.txt":
         for i in range(len(blocs_list[1])):
             for j in range(len(blocs_list[1][0])):
@@ -97,6 +105,7 @@ def print_blocs(grid):
             print(common_blocs[i][j])
         print("_")
 
+
 current_blocs = print_blocs("triangle.txt")
 
 
@@ -105,5 +114,7 @@ def select_bloc():
     # selection of blocs following policy 1
 
 
-    print(random.sample(blocs_list[1],3)) #selection of blocs following policy 2
+
+    # selection of blocs following policy 2
+    print(random.sample(blocs_list[1],3))
 select_bloc()
