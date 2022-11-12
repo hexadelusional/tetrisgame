@@ -1,8 +1,8 @@
-################################################################ BLOCKS ################################################################
-
-
 from Grid import*
 import random
+
+################################################################ BLOCKS ################################################################
+
 
 ################ COMMON BLOCKS ################
 
@@ -141,10 +141,18 @@ current_blocks = print_blocks(current_grid + ".txt")
 
 
 def select_block():
-    question = int(input("policy 1 or policy 2 ? (enter 1 or 2)"))
+    question = int(input("policy 1 or policy 2 ? (enter 1 or 2) "))
     if question == 1:
         # selection of blocs following policy 1 : display at each turn of the game all the available blocks and the user selects one
-        print(blocks_list[current_blocks])
+        for i in range(len(blocks_list[current_blocks])):
+            for j in range(len(blocks_list[current_blocks][0])):
+                for k in range(len(blocks_list[current_blocks][0][j])):
+                    if blocks_list[current_blocks][i][j][k] == 0:
+                        print(chr(10240), end="  ")
+                    elif blocks_list[current_blocks][i][j][k] == 1:
+                        print(chr(9632), end="  ")
+                print("\n".strip())
+            print("_")
 
 
     elif question == 2:
@@ -160,7 +168,6 @@ def select_block():
                         print(chr(9632), end="  ")
                 print("\n".strip())
             print("_")
-
 
 
 select_block()
