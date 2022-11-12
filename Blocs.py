@@ -141,8 +141,11 @@ current_blocks = print_blocks(current_grid + ".txt")
 
 
 def select_block():
-    question = int(input("policy 1 or policy 2 ? (enter 1 or 2) "))
-    if question == 1:
+    question = input("policy 1 or policy 2 ? (enter 1 or 2) ")
+    while question != "1" and question != "2":
+        question = input("policy 1 or policy 2 ? (you have to enter either 1 or 2) ")
+    print("THESE ARE THE AVAILABLE BLOCKS: ")
+    if question == "1":
         # selection of blocs following policy 1 : display at each turn of the game all the available blocks and the user selects one
         for i in range(len(blocks_list[current_blocks])):
             for j in range(len(blocks_list[current_blocks][0])):
@@ -155,7 +158,7 @@ def select_block():
             print("_")
 
 
-    elif question == 2:
+    elif question == "2":
         # selection of blocs following policy 2 : display only 3 randomly selected blocks
         the_random_three = random.sample(blocks_list[current_blocks], 3)
         print("RANDOM BLOC PIC: ")
