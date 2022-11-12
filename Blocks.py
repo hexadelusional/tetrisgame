@@ -135,17 +135,18 @@ def print_blocks(grid):
             print("_")
     return A
 
+current_blocks = print_blocks((current_grid + ".txt"))
 
-current_blocks = print_blocks(current_grid + ".txt")
 
 def select_block():
     question = input("policy 1 or policy 2 ? (enter 1 or 2) ")
     while question != "1" and question != "2":
         question = input("policy 1 or policy 2 ? (you have to enter either 1 or 2) ")
     print("THESE ARE THE AVAILABLE BLOCKS: ")
+
     if question == "1":
         # selection of blocs following policy 1 : display at each turn of the game all the available blocks and the user selects one
-        print(print_blocks((current_grid + ".txt")))
+        print_blocks((current_grid + ".txt"))
 
 
     elif question == "2":
