@@ -10,9 +10,9 @@ if __name__ == "__main__":
         ready = input("-> Press [enter] to start playing ! ")
 
     # asking what grid the user wants
-    current_grid = input("What board do you want to play on ? [Circle] [Triangle] [Diamond] ")
+    current_grid = input("What board shape do you want to play on ? [Circle] [Triangle] [Diamond] ")
     while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
-         current_grid = input("Error, this board does not exist. You must write the name (in lowercase letters) of one of the boards proposed: [Circle] [Triangle] [Diamond] ")
+         current_grid = input("Error, this board shape does not exist. You must write the name (in lowercase letters) of one of the boards proposed: [Circle] [Triangle] [Diamond] ")
 
     current_blocks = []
 
