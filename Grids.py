@@ -7,25 +7,23 @@
 # creation + filling up the Diamond txt doc
 
 def grid_diamond():
-    D = open("diamond.txt", "w")
-    length = 12
-    for i in range(length):
-        D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
-    for i in range(length - 2, -1, -1):
-        D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
-    D.close()
+    with open("diamond.txt", "w") as D :
+        length = 12
+        for i in range(length):
+            D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
+        for i in range(length - 2, -1, -1):
+            D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
 
 ################ TRIANGLE GRID ################
 
 # creation + filling up the Triangle txt doc
 
 def grid_triangle():
-    T = open("triangle.txt", "w")
-    length = 12
-    for i in range(length):
-        T.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
-    T.close()
-
+    with open("triangle.txt", "w") as T :
+        length = 12
+        for i in range(length):
+            T.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
+        
 
 ################# CIRCLE GRID ################
 # creation + filling up the Circle txt doc
