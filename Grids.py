@@ -6,7 +6,7 @@
 
 # creation + filling up the Diamond txt doc
 
-def grid_diamond():
+def grid_diamond(size):
     with open("diamond.txt.txt", "w") as D:
         length = 25
         space = 11
@@ -17,24 +17,36 @@ def grid_diamond():
                 D.write("0  " * (i-(length-space)) + "1  " * (length -(i-(length-space))*2) + "0  " * (i-(length-space)) + "\n")
 
 
-
 ################ TRIANGLE GRID ################
 
 # creation + filling up the Triangle txt doc
 
-def grid_triangle():
+def grid_triangle(size):
     with open("triangle.txt", "w") as T:
-        length = 25
-        space = 11
-        for i in range(length):
-            if i <= 12:
-                T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
+        if size == "L":
+            length = 25
+            space = 11
+            for i in range(length):
+                if i <= 12:
+                    T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
+        if size == "M":
+            length = 23
+            space = 10
+            for i in range(length):
+                if i <= 11:
+                    T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
+        if size == "S":
+            length = 21
+            space = 9
+            for i in range(length):
+                if i <= 10:
+                    T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
 
 
 ################# CIRCLE GRID ################
 # creation + filling up the Circle txt doc
 
-def grid_circle():
+def grid_circle(size):
     with open("circle.txt","w") as C :
         length = 25
         space = 5
