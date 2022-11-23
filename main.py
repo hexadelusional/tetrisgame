@@ -1,165 +1,60 @@
-import Functions as f
+from Grid import*
+from Blocks import*
 
-####################Beginner####################
-#Exercise 1
-'''
-if __name__ == '__main__':
-    L = [1,2,3]
-    add_list(L, 4)
-    print(L)
-'''
-#Exercise 2
-#yeah(1,10,2)
 
-#Exercise 3
-'''
-if __name__ == '__main__':
-    val = int(input("Enter an integer: "))
-    if even(val) :
-        print("{} is an even number".format(val))
-    else:
-        print("{} is an odd number".format(val))
-'''
-####################Intermediate####################
+if __name__ == "__main__":
+    print("######################################### WELCOME ######################################### \n")
+    # start of the game
+    ready = input("-> Press [ENTER] to start playing ! ")
+    while ready == " ":
+        ready = input("-> Press [enter] to start playing ! ")
 
-#Exercise 1
-##2)
-'''
-if __name__ == '__main__':
-    a, b, c = int(input()), int(input()), int(input())
-    print(maximum(a, b, c))
-'''
+    # asking what grid the user wants
+    current_grid = input("What board do you want to play on ? [Circle] [Triangle] [Diamond] ")
+    while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
+         current_grid = input("Error, this board does not exist. You must write the name (in lowercase letters) of one of the boards proposed: [Circle] [Triangle] [Diamond] ")
 
-#Exercise 2
-##2)
-'''
-if __name__ == '__main__':
-    a = int(input())
-    print(prime(a))
-'''
+    current_blocks = []
 
-#Exercise 3
-##2)
-'''
-if __name__ == '__main__':
-    l = [i**2 for i in range(8)]
-    print(sum(l))
-'''
+    # reading the grid chosen above
+    grid_circle()
+    grid_diamond()
+    grid_triangle()
+    read_grid(current_grid)
 
-#Exercise 4
-##2)
-'''
-if __name__ == '__main__':
-    l = [i**2 for i in range(8)]
-    print(f.position(l,4))
-'''
+    # saving the grid in a new file called 'game_grid.txt'
+    save_grid("game_grid.txt", current_grid)
 
-#Exercise 5
-##2)
-'''
-if __name__ == '__main__':
-    l = [2,42,97,66,21,21,87,2,42]
-    print(f.unique(l))
-'''
+    # printing the current grid in the console
+    print_grid(current_grid)
 
-#Exercise 6
-##2)
-'''
-if __name__ == '__main__':
-    s = 'traverser'
-    print(f.reverse(s))
-'''
-#Exercise 7
-##2)
-'''
-if __name__ == '__main__':
-    s = 'traverser'
-    print(f.vowels(s))
-'''
+    # printing the blocks that the user can use according to the grid he chose
+    print_blocks((current_grid + ".txt"))
 
-#Exercise 8
-##2)
-'''
-if __name__ == '__main__':
-    f1, f2 = 'wow.txt', 'yep.txt'
-    f.write(f1,f2)
-'''
+    # 'question' asks which policy is to be used
+    question = input("policy 1 or policy 2 ? (enter 1 or 2) ")
+    while question != "1" and question != "2":
+        question = input("policy 1 or policy 2 ? (you have to enter either 1 for policy one, or 2 for policy 2)")
+    print("THESE ARE THE AVAILABLE BLOCKS: ")
 
-#Exercise 9
-##2)
-'''
-if __name__ == '__main__':
-    M = [[31,31,38,1209],
-         [212,9302,310],
-         [301,382,3766,31],
-         [3,378,3939,1000,38]]
-    print(f.double(M))
-'''
+    if question == "1": # selection of blocks following policy 1 (to display at each turn of the game all the available blocks and the user selects one)
+        print_blocks((current_grid + ".txt"))
 
-#Exercise 10
-##2)
-'''
-if __name__ == '__main__':
-    L1 = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    L2 = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
-          'November', 'December']
-    print(f.altern(L1,L2))
-'''
-#Exercise 11
-##2)
-'''
-if __name__ == '__main__':
-    n = int(input("Enter an int))
-    f.draw_dots(n)
-'''
+    elif question == "2": # selection of blocks following policy 2 (to display only 3 randomly selected blocks)
 
-####################Advanced####################
+        # choosing 3 random blocks that correspond  to the chosen grid using the 'index'
+        the_random_three = random.sample(current_blocks, 3)
 
-#Exercise 1
-##4)
-'''
-if __name__ == '__main__':
-    L = f.fill_list(int(input("Enter an int")))
-    f.print_list(L)
-    print('average :', f.average_list(L))
-'''
+        # printing the 3 random blocks
+        print("RANDOM BLOC PIC: ")
+        for i in range(len(the_random_three)):
+            for j in range(len(the_random_three[i])):
+                for k in range(len(the_random_three[i][j])):
+                    if the_random_three[i][j][k] == 0:
+                        print(chr(10240), end="  ")
+                    elif the_random_three[i][j][k] == 1:
+                        print(chr(9632), end="  ")
+                print("\n".strip())
+            print("_")
 
-#Exercise 2
-##2)
-'''
-if __name__ == '__main__':
-    s = "The quick brown fox jumps over the lazy dog"
-    print(s, f.pangram(s))
-    t = "absdefghijklmnopq"
-    print(t, f.pangram(t))
-'''
 
-#Exercise 3
-##2)
-'''
-if __name__ == '__main__':
-    s = 'green-red-yellow-black-white'
-    f.hyphen(s)
-'''
-
-#Exercise 4
-##2)
-'''
-if __name__ == '__main__':
-    print(f.volboite(5.2))
-    print(f.volboite(5.2,3))
-    print(f.volboite(5.2,3,7.4))
-'''
-#Exercise 5
-##4)
-'''
-if __name__ == '__main__':
-    s = input('Enter a string :')
-    print(f.palindrome(s))
-'''
-
-#Exercice 6
-##4)
-if __name__ == '__main__':
-    l = [31,9,31,90,32,890,31,8372,23,3]
-    print(f.sort_list(l))
