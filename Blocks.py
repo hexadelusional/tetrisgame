@@ -1,4 +1,4 @@
-from Grid import*
+from Grids import*
 import random
 
 ################################################################ BLOCKS ################################################################
@@ -84,8 +84,9 @@ blocks_list = [diamond_list, triangle_list, circle_list]
 # function print_blocs(grid) which takes as parameters the shape of the chosen tray, and which displays the list of all the blocks associated with it
 
 def print_blocks(grid):
-    print("COMMON BLOCS:")
+    print("COMMON BLOCKS:")
     for i in range(len(common_blocks)):
+        print("Block : " + str(i))
         for j in range(len(common_blocks[i])):
             for k in range(len(common_blocks[i][j])):
                 if common_blocks[i][j][k] == 0:
@@ -96,8 +97,9 @@ def print_blocks(grid):
         print("_")
 
     if grid == "diamond.txt":
-        print("DIAMOND BLOCS:")
+        print("DIAMOND BLOCKS:")
         for i in range(len(blocks_list[0])):
+            print("Block : " + str(len(common_blocks)+i))
             for j in range(len(blocks_list[0][0])):
                 for k in range(len(blocks_list[0][0][j])):
                     if blocks_list[0][i][j][k] == 0:
@@ -108,8 +110,9 @@ def print_blocks(grid):
             print("_")
 
     elif grid == "triangle.txt":
-        print("TRIANGLE BLOCS:")
+        print("TRIANGLE BLOCKS:")
         for i in range(len(blocks_list[1])):
+            print("Block : " + str(len(common_blocks) + i))
             for j in range(len(blocks_list[1][0])):
                 for k in range(len(blocks_list[1][0][j])):
                     if blocks_list[1][i][j][k] == 0:
@@ -120,8 +123,9 @@ def print_blocks(grid):
             print("_")
 
     elif grid == "circle.txt":
-        print("CIRCLE BLOCS:")
+        print("CIRCLE BLOCKS:")
         for i in range(len(blocks_list[2])):
+            print("Block : " + str(len(common_blocks) + i))
             for j in range(len(blocks_list[2][0])):
                 for k in range(len(blocks_list[2][0][j])):
                     if blocks_list[2][i][j][k] == 0:
@@ -130,5 +134,3 @@ def print_blocks(grid):
                         print(chr(9632), end="  ")
                 print("\n".strip())
             print("_")
-
-
