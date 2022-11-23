@@ -9,17 +9,23 @@ if __name__ == "__main__":
     while ready == " ":
         ready = input("-> Press [enter] to start playing ! ")
 
-    # asking what grid the user wants
+    # asking what board shape the user wants
     current_grid = input("What board shape do you want to play on ? [Circle] [Triangle] [Diamond] ")
     while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
-         current_grid = input("Error, this board shape does not exist. You must write the name (in lowercase letters) of one of the boards proposed: [Circle] [Triangle] [Diamond] ")
+         current_grid = input("Error, this board shape does not exist. You must write the name (in lowercase letters) of one of the board shapes proposed; [Circle] [Triangle] [Diamond]: ")
 
     current_blocks = []
 
-    # reading the grid chosen above
-    grid_circle()
-    grid_diamond()
-    grid_triangle()
+    # asking what board shape the user wants
+    current_size = input("What board size do you want to play on ? [S] [M] [L] ")
+    while current_size != "S" and current_size != "M" and current_size != "L":
+         current_size = input("Error, this board size does not exist. You must write the uppercase letter of the board sizes proposed; [S] for small, [M] for medium, [L] for large: ")
+
+    grid_circle(current_size)
+    grid_diamond(current_size)
+    grid_triangle(current_size)
+
+    # reading the grid chosen above according to its size 'current_size'
     read_grid(current_grid)
 
     # saving the grid in a new file called 'game_grid.txt'
