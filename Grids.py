@@ -7,23 +7,29 @@
 # creation + filling up the Diamond txt doc
 
 def grid_diamond():
-    with open("diamond.txt", "w") as D :
-        length = 12
-        for i in range(length):
-            D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
-        for i in range(length - 2, -1, -1):
-            D.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
+    with open("diamond.txt.txt", "w") as D:
+        length = 25
+        space = 11
+        for i in range(length+2):
+            if i <= 12:
+                D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
+            elif i > 14:
+                D.write("0  " * (i-(length-space)) + "1  " * (length -(i-(length-space))*2) + "0  " * (i-(length-space)) + "\n")
+
+
 
 ################ TRIANGLE GRID ################
 
 # creation + filling up the Triangle txt doc
 
 def grid_triangle():
-    with open("triangle.txt", "w") as T :
-        length = 12
+    with open("triangle.txt", "w") as T:
+        length = 25
+        space = 11
         for i in range(length):
-            T.write("0  " * (length - i) + "1  " * (2 * i + 1) + "0  " * (length - i) + "\n")
-        
+            if i <= 12:
+                T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
+
 
 ################# CIRCLE GRID ################
 # creation + filling up the Circle txt doc
@@ -56,28 +62,34 @@ def save_grid(path, grid):
         P.close()
 
 
-# building the grid the user will see
-
-
-
+# creating a matrix to store the grid in
+M = []
 # function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
-    print("   " + " a " + " b " + " c " + " d " + " e " + " f " + " g " + " h " + " i " + " j " + " k " + " l " + " m " + " n " + " o " + " p " + " q " + " r " + " s " + " t " + " u " + " v " + " w " + " x " + " y ")
-    print(" " + chr(9556) + chr(9552) * 77 + chr(9559))
-    with open(grid + ".txt", "r") as p:
-        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        i = 0
-        for line in p:
+    with open(grid + ".txt", "r") as G:
+        # creating two strings minu and maju: the coordinates the user will enter to place the blocks
+        minu = " abcdefghijklmnopqrstuvwxy"
+        maju = "ABCDEFGHIJKLMNOPQRSTUVWXY"
+        # going through each element of each line of the file and appending it to a big matrix M: our grid
+        for line in G:
+            l = []
             line = line.strip()
             columns = line.split()
-            print(alphabet[i] + chr(9553), end="  ")
-            i += 1
             for elt in columns:
-                if elt == "0":
+                l.append(elt)
+            M.append(l)
+        # writing the lowercase coordinates on the top of the grid & the ascii symbols
+        for i in range(len(columns)+1):
+            print(" " + minu[i] + " ", end="")
+        print("\n " + chr(9556) + "  " + (chr(9552)+"  ") * (len(columns))+chr(9559))
+        # replacing every 0 of our list with a blank ascii code symbol and every 1 with a little cube
+        for i in range(len(M)):
+            print(maju[i] + chr(9553), end="  ")
+            for j in range(len(M[i])):
+                if M[i][j] == "0":
                     print(chr(10240), end="  ")
-                elif elt == '1':
+                elif M[i][j] == '1':
                     print(chr(9642), end="  ")
-            print(chr(9553), "\n".strip())
-    print(" " + chr(9562) + chr(9552) * 77 + chr(9565))
-
+            print(chr(9553),"\n".strip())
+    print(" " + chr(9562) + "  " + (chr(9552) + "  ") * (len(columns)) + chr(9565))
 
