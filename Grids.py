@@ -1,3 +1,4 @@
+
 ################################################################ GRIDS ################################################################
 
 
@@ -37,6 +38,18 @@ grid_triangle()
 ################# CIRCLE GRID ################
 # creation + filling up the Circle txt doc
 
+def grid_circle():
+    with open("circle.txt","w") as C :
+        length = 25
+        space = 5
+        for i in range(1,length+1):
+            if i<=5 :
+                C.write("0  "*(space-i+1) + "1  " *(length-(space-i+1)*2) + "0  " * (space - i+1) + "\n")
+            elif i >= 21 :
+                C.write("0  " * (i-(length-space)) + "1  " * (length -(i-(length-space))*2) + "0  " * (i-(length-space)) + "\n")
+            else :
+                C.write("1  " * (length) + "\n")
+grid_circle()
 
 # interaction with the user
 current_grid = input("What board do you want to play on ? [Circle] [Triangle] [Diamond] ")
@@ -93,3 +106,14 @@ print_grid(current_grid)
 print(" " + chr(9562) + chr(9552) * 77 + chr(9565))
 
 
+"""
+def valid_position(grid, block, i, j):
+    for i in range(len(current_grid)):
+        print("1")
+print(valid_position(current_grid, ))
+
+#def emplace_position(grid, block, i, j):
+    #if valid_position(grid, block, i, j)== True:
+
+
+"""
