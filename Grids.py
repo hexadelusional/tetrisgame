@@ -71,19 +71,47 @@ def grid_triangle(size):
 
 
 ################# CIRCLE GRID ################
-# creation + filling up the Circle txt doc
-
+# creation + filling up the Circle txt doc according to the size chosen by the user
 def grid_circle(size):
-    with open("circle.txt","w") as C :
-        length = 25
-        space = 5
-        for i in range(1,length+1):
-            if i<=5 :
-                C.write("0  "*(space-i+1) + "1  " *(length-(space-i+1)*2) + "0  " * (space - i+1) + "\n")
-            elif i >= 21 :
-                C.write("0  " * (i-(length-space)) + "1  " * (length -(i-(length-space))*2) + "0  " * (i-(length-space)) + "\n")
-            else :
-                C.write("1  " * (length) + "\n")
+    if size == "L":
+        with open("circle.txt", "w") as C:
+            length = 25
+            space = 5
+            for i in range(1, length + 1):
+                if i <= 5:
+                    C.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (
+                                space - i + 1) + "\n")
+                elif i >= 21:
+                    C.write("0  " * (i - (length - space)) + "1  " * (length - (i - (length - space)) * 2) + "0  " * (
+                                i - (length - space)) + "\n")
+                else:
+                    C.write("1  " * (length) + "\n")
+    if size == "M":
+        with open("circle.txt", "w") as C:
+            length = 23
+            space = 5
+            for i in range(1, length + 1):
+                if i <= 5:
+                    C.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (
+                            space - i + 1) + "\n")
+                elif i >= 19:
+                    C.write("0  " * (i - (length - space)) + "1  " * (length - (i - (length - space)) * 2) + "0  " * (
+                            i - (length - space)) + "\n")
+                else:
+                    C.write("1  " * (length) + "\n")
+    if size == "S":
+        with open("circle.txt", "w") as C:
+            length = 21
+            space = 5
+            for i in range(1, length + 1):
+                if i <= 5:
+                    C.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (
+                            space - i + 1) + "\n")
+                elif i >= 17:
+                    C.write("0  " * (i - (length - space)) + "1  " * (length - (i - (length - space)) * 2) + "0  " * (
+                            i - (length - space)) + "\n")
+                else:
+                    C.write("1  " * (length) + "\n")
 
 
 # function read_grid that returns a valid grid read from the contents of the file specified by path
