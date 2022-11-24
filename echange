@@ -3,4 +3,4 @@ def select_blocks():
         chosen_block = int(input("Enter the next block to place on the grid: "))
         while chosen_block < 0 or chosen_block > len(current_blocks):
             chosen_block = int(input("Enter the next block to place on the grid (you have to enter the number next to the block you want) : "))
-    return chosen_block
+    return current_blocks[chosen_block]
