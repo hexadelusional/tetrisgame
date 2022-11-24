@@ -4,22 +4,49 @@
 
 ################# DIAMOND GRID ################
 
-# creation + filling up the Diamond txt doc
-
+# creation + filling up the Diamond txt according to the size chosen by the user
 def grid_diamond(size):
-    with open("diamond.txt.txt", "w") as D:
-        length = 25
-        space = 11
-        for i in range(length+2):
-            if i <= 12:
-                D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
-            elif i > 14:
-                D.write("0  " * (i-(length-space)) + "1  " * (length -(i-(length-space))*2) + "0  " * (i-(length-space)) + "\n")
+    if size == "L":
+        with open("diamond.txt", "w") as D:
+            length = 25
+            space = 11
+            j = 25
+            for i in range(length):
+                j = j - 1
+                if i <= 12:
+                    D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (
+                                space - i + 1) + "\n")
+                if i > 12:
+                    D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " * (
+                                space - j + 1) + "\n")
+    if size == "M":
+        with open("diamond.txt", "w") as D:
+            length = 23
+            space = 10
+            j = 23
+            for i in range(length):
+                j = j - 1
+                if i <= 11:
+                    D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
+                if i > 11:
+                    D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " * (space - j + 1) + "\n")
+    if size == "S":
+        with open("diamond.txt", "w") as D:
+            length = 21
+            space = 9
+            j = 21
+            for i in range(length):
+                j = j - 1
+                if i <= 10:
+                    D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (space - i + 1) + "\n")
+                if i > 10:
+                    D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " * (space - j + 1) + "\n")
+
 
 
 ################ TRIANGLE GRID ################
 
-# creation + filling up the Triangle txt doc
+# creation + filling up the Triangle txt doc according to the size chosen by the user
 
 def grid_triangle(size):
     with open("triangle.txt", "w") as T:
