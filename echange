@@ -1,30 +1,4 @@
-####Valid function
-def valid_position(grid,block,i,j):
-    grid_row = (ord(i)-65)
-    size_block = len(block)
-    if (grid_row - size_block) < 0 or (grid_col + size_block) :
-        return False
-    else :
-        block_row = (len(block)-1)
-        res = True
-        while res and block_row >= 0 and grid_row >= 0 :
-            block_col, grid_col = 0, (ord(j)-97)
-            while res and block_col < size_block :
-                if (block[block_row][block_row] == 1 and grid[grid_row][block_row] == 0) or (
-                        block[block_row][block_row] == 1 and grid[grid_row][block_row] == 2):
-                    res = False
-                else :
-                    block_col += 1
-                    grid_col +=1
-            block_row -= 1
-            grid_row -= 1
-
-        return res
-        
-        
-        
-   ####print blocks    
-        def print_blocks(grid):
+def print_blocks(grid):
     if grid == 'circle.txt' :
         current_blocks = common_blocks + circle_list
     elif grid == 'diamond.txt' :
@@ -33,52 +7,24 @@ def valid_position(grid,block,i,j):
         current_blocks = common_blocks + triangle_list
     print("ALL BLOCKS :\n")
     length = len(current_blocks)
-    l = [str(n) for n in range(length)]
-    for i in range(0,len(common_blocks),5):
-        for n in l[i:i+5] :
-            print('| {:^10} |'.format("Block "+ n),end= "")
-        for row in range(len(common_blocks[i])):
-            s = ""
-            for block_i in range(i,i+5):
-                sublist = [10240 if n == 0 else 9632 for n in common_blocks[block_i][row]]
-                for elt in sublist :
-                    s += '| {:^10} |'.format(chr(elt))
-            print(s, end ="\n".strip())
+    for block in range(0,len(current_blocks),5):
+        #Printing the line with name of blocks
+        for n in range(block, block+5) :
+            print('| {:^10} |'.format("Block "+ str(n)),end= "")
+        print("\n".strip())
+        #up to here => no problem
+        max_rows = max(len(current_blocks[0]),len(current_blocks[-1]))
+        for row in range(max_rows):
+            for block_i in range(block,block+5):
+                if row < len(current_blocks[block_i]) :
+                    substring = ""
+                    for elt in current_blocks[block_i][row]:
+                        if elt == 0 :
+                            substring += chr(10240) + " "
+                        else :
+                            substring += chr(9632) + " "
+                    print('| {:^10} |'.format(substring),end="")
+                else :
+                    print('| {:^10} |'.format(" "),end="")
             print("\n".strip())
-        print('_' * 100)
-        
-###morceaux de printblocks utilisables 
-
-'''                
-                for k in range(len(common_blocks[index][j])) :
-                    if common_blocks[index][j][k] == 0:
-                        print(chr(10240), end="  ")
-                    elif common_blocks[index][j][k] == 1:
-                        print(chr(9632), end="  ")
-                print(" ||  ", end = " ")
-                index += 1
-            print("\n".strip())
-            j += 1
-        print('_'*100)
-'''
-
-
-
-'''        
-    for i in range(len(common_blocks),len(current_blocks),5):
-        j = 0
-        print("Blocks  "+str(i) + "  ||  Blocks  "+str(i+1) + "  ||  Blocks  "+str(i+2) + "  ||  Blocks  "+str(i+3) + "  ||  Blocks  "+str(i+4))
-        while (j < len(current_blocks[i])) :
-            index = i
-            while (index < len(current_blocks)) and (index < (i+5)):
-                for k in range(len(current_blocs[index][j])) :
-                    if current_blocks[index][j][k] == 0:
-                        print(chr(10240), end="  ")
-                    elif current_blocks[index][j][k] == 1:
-                        print(chr(9632), end="  ")
-                print(" ||  ", end = " ")
-                index += 1
-            print("\n".strip())
-            j += 1
-        print('_' * 100)
-'''
+        print('_' * 70)
