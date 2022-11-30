@@ -84,53 +84,49 @@ blocks_list = [diamond_list, triangle_list, circle_list]
 # function print_blocs(grid) which takes as parameters the shape of the chosen tray, and which displays the list of all the blocks associated with it
 
 def print_blocks(grid):
-    print("COMMON BLOCKS:")
-    for i in range(len(common_blocks)):
-        print("Block : " + str(i))
-        for j in range(len(common_blocks[i])):
-            for k in range(len(common_blocks[i][j])):
-                if common_blocks[i][j][k] == 0:
-                    print(chr(10240), end="  ")
-                elif common_blocks[i][j][k] == 1:
-                    print(chr(9632), end="  ")
+    if grid == 'circle.txt' :
+        current_blocks = common_blocks + circle_list
+    elif grid == 'diamond.txt' :
+        current_blocks = common_blocks + diamond_list
+    else :
+        current_blocks = common_blocks + triangle_list
+    print("ALL BLOCKS :\n")
+    if len(current_blocks) % 5 == 0 :
+        length = len(current_blocks)
+    else :
+        length = len(current_blocks) - (len(current_blocks)%5 + 1)
+    for block in range(0,length,5):
+        #Printing the line with name of blocks
+        for n in range(block, block+5) :
+            print('| {:^10} |'.format("Block "+ str(n)),end= "")
+        print("\n".strip())
+        max_rows = max(len(current_blocks[0]),len(current_blocks[-1]))
+        for row in range(max_rows):
+            for block_i in range(block,block+5):
+                if row < len(current_blocks[block_i]) :
+                    substring = ""
+                    for elt in current_blocks[block_i][row]:
+                        if elt == 0 :
+                            substring += chr(10240) + " "
+                        else :
+                            substring += chr(9632) + " "
+                    print('| {:^10} |'.format(substring),end="")
+                else :
+                    print('| {:^10} |'.format(" "),end="")
             print("\n".strip())
-        print("_")
-
-    if grid == "diamond.txt":
-        print("DIAMOND BLOCKS:")
-        for i in range(len(blocks_list[0])):
-            print("Block : " + str(len(common_blocks)+i))
-            for j in range(len(blocks_list[0][0])):
-                for k in range(len(blocks_list[0][0][j])):
-                    if blocks_list[0][i][j][k] == 0:
-                        print(chr(10240), end="  ")
-                    elif blocks_list[0][i][j][k] == 1:
-                        print(chr(9632), end="  ")
-                print("\n".strip())
-            print("_")
-
-    elif grid == "triangle.txt":
-        print("TRIANGLE BLOCKS:")
-        for i in range(len(blocks_list[1])):
-            print("Block : " + str(len(common_blocks) + i))
-            for j in range(len(blocks_list[1][0])):
-                for k in range(len(blocks_list[1][0][j])):
-                    if blocks_list[1][i][j][k] == 0:
-                        print(chr(10240), end="  ")
-                    elif blocks_list[1][i][j][k] == 1:
-                        print(chr(9632), end="  ")
-                print("\n".strip())
-            print("_")
-
-    elif grid == "circle.txt":
-        print("CIRCLE BLOCKS:")
-        for i in range(len(blocks_list[2])):
-            print("Block : " + str(len(common_blocks) + i))
-            for j in range(len(blocks_list[2][0])):
-                for k in range(len(blocks_list[2][0][j])):
-                    if blocks_list[2][i][j][k] == 0:
-                        print(chr(10240), end="  ")
-                    elif blocks_list[2][i][j][k] == 1:
-                        print(chr(9632), end="  ")
-                print("\n".strip())
-            print("_")
+        print('_' * 70)
+    if length != len(current_blocks) :
+        for block in range(length+1,len(current_blocks)):
+            print('| {:^10} |'.format("Block " + str(block)), end="")
+        print("\n".strip())
+        for row in range(len(current_blocks[-1])):
+            for block in range(length + 1, len(current_blocks)):
+                substring = ""
+                for elt in current_blocks[block][row]:
+                    if elt == 0 :
+                        substring += chr(10240) + " "
+                    else :
+                        substring += chr(9632) + " "
+                print('| {:^10} |'.format(substring),end="")
+            print("\n".strip())
+        print('_' * 70)
