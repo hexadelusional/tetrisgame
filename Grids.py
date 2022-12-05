@@ -1,7 +1,6 @@
 
 ################################################################ GRIDS ################################################################
 
-
 ################# DIAMOND GRID ################
 
 # creation + filling up the Diamond txt according to the size chosen by the user
@@ -71,7 +70,7 @@ def grid_triangle(size):
 
 
 ################# CIRCLE GRID ################
-# creation + filling up the Circle txt doc according to the size chosen by the user
+# creation + filling up the Circle txt doc
 def grid_circle(size):
     if size == "L":
         with open("circle.txt", "w") as C:
@@ -116,7 +115,7 @@ def grid_circle(size):
 
 # function read_grid that returns a valid grid read from the contents of the file specified by path
 def read_grid(path):
-    p = open(path + ".txt", "r")
+    open(path + ".txt", "r")
 
 
 # function save_grid(path, grid)that save a grid in a file specified by path
@@ -129,10 +128,9 @@ def save_grid(path, grid):
         P.close()
 
 
-# creating a matrix to store the grid in
-M = []
 # function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
+    M = []
     with open(grid + ".txt", "r") as G:
         # creating two strings minu and maju: the coordinates the user will enter to place the blocks
         minu = " abcdefghijklmnopqrstuvwxy"
@@ -159,4 +157,22 @@ def print_grid(grid):
                     print(chr(9642), end="  ")
             print(chr(9553),"\n".strip())
     print(" " + chr(9562) + "  " + (chr(9552) + "  ") * (len(columns)) + chr(9565))
+    return M
+
+
+def row_state(grid, i):
+    row_is_full = True
+    for x in grid[i-1]:
+        if x == '1':
+            row_is_full = False
+    return row_is_full
+
+def col_state(grid, j):
+    col_is_full = True
+    for row in range(len(grid)):
+        if grid[row][j-1] == '1':
+            col_is_full = False
+    return col_is_full
+
+
 
