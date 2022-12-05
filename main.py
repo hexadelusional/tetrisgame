@@ -31,7 +31,7 @@ if __name__ == "__main__":
     save_grid("game_grid.txt", current_grid)
 
     # printing the current grid in the console
-    print_grid(current_grid)
+    M = print_grid(current_grid)
 
     if current_grid == 'circle.txt' :
         current_blocks = common_blocks + circle_list
@@ -39,6 +39,7 @@ if __name__ == "__main__":
         current_blocks = common_blocks + diamond_list
     else :
         current_blocks = common_blocks + triangle_list
+
     # printing the blocks that the user can use according to the grid he chose
     print_blocks(current_blocks)
 
@@ -88,3 +89,9 @@ if __name__ == "__main__":
     while y < chr(65) or y > (chr(65 + length - 1)) or len(y) != 1:
         y = str(input(
             "Enter the y coordinates (you must enter the letter (in uppercase) corresponding to the row you want): "))
+
+
+    print(row_state(M,1))
+    print(col_state(M, 1))
+
+    print(M)
