@@ -167,7 +167,7 @@ def coordinates(grid, length) :
     while y < chr(65) or y > (chr(65 + length - 1)) or len(y) != 1:
         y = str(input(
             "This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
-    return x,y
+    return (ord(x) - 97), (ord(y) - 65))
 
 ##### Validating a block :
 def valid_position(grid,block,i,j):
