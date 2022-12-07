@@ -1,49 +1,27 @@
-def print_blocks(current_blocks):
-    #block = list of all the blocks to print
-    #cpt = index of the last block to print CURRENTLY
-    blocks = current_blocks
-    cpt = 0
-    print("ALL BLOCKS :\n")
-    while blocks != []:
-        #length = number of blocks to print in this round
-        length = 0
-        #if there are less than 5 blocks in blocks :
-            #row_blocks becomes blocks and we empty blocks to get out of while loop
-            #so length = number of remaining blocks in blocks
-        if len(blocks) < 5 :
-            row_blocks = blocks
-            blocks = []
-            length = len(row_blocks)
-        #if there are at least 5 blocks in blocks :
-            #row_blocks just take the first 5 blocks in blocks
-            #and we remove those 5 blocks from blocks
-            #length = 5
-        else :
-            row_blocks = blocks[0:5]
-            blocks = blocks[5:]
-            length = 5
-        #we add this length to cpt to know at which total index we are
-        cpt += length
-        #then we print the names "block n" from cpt - length to cpt
-        for block in range(cpt - length, cpt):
-            print('| {:^10} |'.format("Block "+ str(block)),end= "")
-        print("\n".strip())
-        #max_ rows = number rows of the biggest block (because size_common < size_circle for ex)
-        max_rows = max(len(row_blocks[0]),len(row_blocks[-1]))
-        #we need the row of all the blocks, row by row (row1 of all the blocks then row2 ...)
-        #if row exists in the block then we print | ... |
-        #if row doesn't exist we print void between the | |
-        for row in range(max_rows) :
-            for block in range(len(row_blocks)):
-                if row < len(row_blocks[block]) :
-                    substring = ""
-                    for elt in row_blocks[block][row]:
-                        if elt == 0:
-                            substring += chr(10240) + " "
-                        else:
-                            substring += chr(9632) + " "
-                    print('| {:^10} |'.format(substring), end="")
-                else:
-                    print('| {:^10} |'.format(" "), end="")
-            print("\n".strip())
-        print('_' * 70)
+# checking if the coordinates entered are admissible according to the size of the grid
+
+    if current_size == "L":
+        length = 25
+    elif current_size == "M":
+        length = 23
+    else:
+        length = 21
+
+    # asking for the x coordinates
+    x = str(input("Enter the x coordinates: "))
+    while x < chr(97) or x > (chr(97 + length - 1)) or len(x) != 1:
+        x = str(input("This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
+
+    # particular case for the triangle which has a y-axis that is the half of x-axis
+    if current_grid == "triangle":
+        length = (length + 1) // 2
+    # asking for the y coordinates
+    y = str(input("Enter the y coordinates: "))
+    while y < chr(65) or y > (chr(65 + length - 1)) or len(y) != 1:
+        y = str(input("This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
+
+
+    print(row_state(M, 1))
+    print(col_state(M, 1))
+
+    print(M)
