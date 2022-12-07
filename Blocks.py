@@ -81,56 +81,73 @@ blocks_list = [diamond_list, triangle_list, circle_list]
 
 # function print_blocs(grid) which takes as parameters the shape of the chosen tray, and which displays the list of all the blocks associated with it
 
-def print_blocks(blocks):
-    print("ALL BLOCKS :\n")
-    if len(blocks) % 5 == 0 :
-        length = len(blocks)
-    else :
-        length = len(blocks) - (len(blocks) % 5 + 1)
-    for block in range(0,length,5):
-        #Printing the line with name of blocks
-        for n in range(block, block+5) :
-            print('| {:^10} |'.format("Block "+ str(n)),end= "")
+def print_blocks(current_blocks):
+    #block = list of all the blocks to print
+    #cpt = index of the last block to print CURRENTLY
+    blocks = current_blocks
+    cpt = 0
+    print("Available blocks :\n")
+    while blocks != []:
+        #length = number of blocks to print in this round
+        length = 0
+        #if there are less than 5 blocks in blocks :
+            #row_blocks becomes blocks and we empty blocks to get out of while loop
+            #so length = number of remaining blocks in blocks
+        if len(blocks) < 5 :
+            row_blocks = blocks
+            blocks = []
+            length = len(row_blocks)
+        #if there are at least 5 blocks in blocks :
+            #row_blocks just take the first 5 blocks in blocks
+            #and we remove those 5 blocks from blocks
+            #length = 5
+        else :
+            row_blocks = blocks[0:5]
+            blocks = blocks[5:]
+            length = 5
+        #we add this length to cpt to know at which total index we are
+        cpt += length
+        #then we print the names "block n" from cpt - length to cpt
+        for block in range(cpt - length, cpt):
+            print('| {:^10} |'.format("Block "+ str(block)),end= "")
         print("\n".strip())
-        max_rows = max(len(blocks[0]), len(blocks[-1]))
-        for row in range(max_rows):
-            for block_i in range(block,block+5):
-                if row < len(blocks[block_i]) :
+        #max_ rows = number rows of the biggest block (because size_common < size_circle for ex)
+        max_rows = max(len(row_blocks[0]),len(row_blocks[-1]))
+        #we need the row of all the blocks, row by row (row1 of all the blocks then row2 ...)
+        #if row exists in the block then we print | ... |
+        #if row doesn't exist we print void between the | |
+        for row in range(max_rows) :
+            for block in range(len(row_blocks)):
+                if row < len(row_blocks[block]) :
                     substring = ""
-                    for elt in blocks[block_i][row]:
-                        if elt == 0 :
+                    for elt in row_blocks[block][row]:
+                        if elt == 0:
                             substring += chr(10240) + " "
-                        else :
+                        else:
                             substring += chr(9632) + " "
-                    print('| {:^10} |'.format(substring),end="")
-                else :
-                    print('| {:^10} |'.format(" "),end="")
-            print("\n".strip())
-        print('_' * 70)
-    if length != len(blocks) :
-        for block in range(length+1, len(blocks)):
-            print('| {:^10} |'.format("Block " + str(block)), end="")
-        print("\n".strip())
-        for row in range(len(blocks[-1])):
-            for block in range(length + 1, len(blocks)):
-                substring = ""
-                for elt in blocks[block][row]:
-                    if elt == 0 :
-                        substring += chr(10240) + " "
-                    else :
-                        substring += chr(9632) + " "
-                print('| {:^10} |'.format(substring),end="")
+                    print('| {:^10} |'.format(substring), end="")
+                else:
+                    print('| {:^10} |'.format(" "), end="")
             print("\n".strip())
         print('_' * 70)
 
 
-
-def select_blocks():
-    for i in range(len(current_blocks)):
+#Depending in the policy => print the blocks affiliated and
+def select_blocks(current_blocks, question):
+    if question == 1 :
+        print_blocks(current_blocks)
         chosen_block = int(input("Enter the next block to place on the grid: "))
-        while chosen_block < 0 or chosen_block > len(current_blocks):
+        while not 0 <= chosen_block < len(current_blocks):
+            chosen_block = int(input(
+                "Enter the next block to place on the grid (you have to enter the number next to the block you want) : "))
+        return current_blocks[chosen_block]
+    else :
+        the_random_three = sample(current_blocks, 3)
+        print_blocks(the_random_three)
+        chosen_block = int(input("Enter the next block to place on the grid: "))
+        while not 0 <= chosen_block <= 2 :
             chosen_block = int(input("Enter the next block to place on the grid (you have to enter the number next to the block you want) : "))
-    return current_blocks[chosen_block]
+        return the_random_three[chosen_block]
 
 
 
