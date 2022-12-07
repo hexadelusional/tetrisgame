@@ -1,6 +1,5 @@
 from Grid import*
 from Blocks import*
-import random
 
 if __name__ == "__main__":
     print("######################################### WELCOME ######################################### \n")
@@ -40,17 +39,14 @@ if __name__ == "__main__":
     else :
         current_blocks = common_blocks + triangle_list
 
-    # printing the blocks that the user can use according to the grid he chose
-    print_blocks(current_blocks)
-
     # asking which policy the user wants
     question = input("policy 1 or policy 2 ? (enter 1 or 2) ")
     while question != "1" and question != "2":
         question = input("policy 1 or policy 2 ? (you have to enter either 1 for policy one, or 2 for policy 2)")
-    print_blocks(current_blocks)
 
 
     # size
+    length = 0
     if current_size == "L":
         length = 25
     elif current_size == "M":
@@ -58,20 +54,21 @@ if __name__ == "__main__":
     else:
         length = 21
 
-#Start of while loop (while the player wants to play // while rep == "Y")
-        #We select block
-        #Ask for coordinates
-        #Verify the position => ask for coordinates again if False
-        #print & save grid
-        #print the current score
-        #ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)   
-        
+# Start of while loop (while the player wants to play // while rep == "Y")
+        # We select block
+        # Ask for coordinates
+        # Verify the position => ask for coordinates again if False
+        # print & save grid
+        # print the current score
+        # ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)
+
     answer = "Y"
     while answer == "Y":
         #####Select the block
         chosen_block = select_blocks(current_blocks, question)
 
         ##### Where to put the block
+
          #### Asking coordinates
         x, y = coordinates(current_grid, length)
         while not valid_position(M, chosen_block, x, y):
@@ -82,9 +79,9 @@ if __name__ == "__main__":
 
 
         #asking the player if they want to pursue the game
-        answer = input("DO YOU WISH TO CONTINUE ? Y or N : ")
+        answer = input("DO YOU WISH TO CONTINUE ? Y or N")
         while answer != "Y" or answer != "N" :
-            answer = input("DO YOU WISH TO CONTINUE ? Please type 'Y' or 'N' : ")
+            answer = input("DO YOU WISH TO CONTINUE ? Please type 'Y' or 'N'.")
 
         print(row_state(M, 1))
         print(col_state(M, 1))
