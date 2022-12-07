@@ -47,32 +47,10 @@ if __name__ == "__main__":
     question = input("policy 1 or policy 2 ? (enter 1 or 2) ")
     while question != "1" and question != "2":
         question = input("policy 1 or policy 2 ? (you have to enter either 1 for policy one, or 2 for policy 2)")
-    print("THESE ARE THE AVAILABLE BLOCKS: ")
+    print_blocks(current_blocks)
 
 
-
-    if question == "1": # selection of blocks following policy 1 (to display at each turn of the game all the available blocks and the user selects one)
-        print_blocks((current_grid + ".txt"))
-
-    elif question == "2": # selection of blocks following policy 2 (to display only 3 randomly selected blocks)
-
-        # choosing 3 random blocks that correspond  to the chosen grid using the 'index'
-        the_random_three = random.sample(blocks, 3)
-
-        # printing the 3 random blocks
-        print("RANDOM BLOC PIC: ")
-        for i in range(len(the_random_three)):
-            for j in range(len(the_random_three[i])):
-                for k in range(len(the_random_three[i][j])):
-                    if the_random_three[i][j][k] == 0:
-                        print(chr(10240), end="  ")
-                    elif the_random_three[i][j][k] == 1:
-                        print(chr(9632), end="  ")
-                print("\n".strip())
-            print("_")
-
-
-    # checking if the coordinates entered are admissible according to the size of the grid
+    # size
     if current_size == "L":
         length = 25
     elif current_size == "M":
@@ -88,18 +66,27 @@ if __name__ == "__main__":
         #print the current score
         #ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)   
         
-    x = str(input("Enter the x coordinates: "))
-    while x < chr(97) or x > (chr(97 + length - 1)) or len(x) != 1:
-        x = str(input(
-            "Enter the x coordinates (you must enter the letter (in lowercase) corresponding to the column you want): "))
+    answer = "Y"
+    while answer == "Y":
+        #####Select the block
+        chosen_block = select_blocks(current_blocks, question)
 
-    y = str(input("Enter the y coordinates: "))
-    while y < chr(65) or y > (chr(65 + length - 1)) or len(y) != 1:
-        y = str(input(
-            "Enter the y coordinates (you must enter the letter (in uppercase) corresponding to the row you want): "))
+        ##### Where to put the block
+         #### Asking coordinates
+        x, y = coordinates(current_grid, length)
+        while not valid_position(current_grid, chosen_block, x, y):
+            print("Please insert correct coordinates !")
+            # asking for the x coordinates
+            x, y = coordinates(current_grid, length)
 
 
-    print(row_state(M,1))
-    print(col_state(M, 1))
 
-    print(M)
+        #asking the player if they want to pursue the game
+        answer = input("DO YOU WISH TO CONTINUE ? Y or N")
+        while answer != "Y" or answer != "N" :
+            answer = input("DO YOU WISH TO CONTINUE ? Please type 'Y' or 'N'.")
+
+        print(row_state(M, 1))
+        print(col_state(M, 1))
+
+        print(M)
