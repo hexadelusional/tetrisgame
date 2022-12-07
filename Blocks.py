@@ -1,4 +1,5 @@
-from main import*
+from random import *
+from main import *
 ################################################################ BLOCKS ################################################################
 
 
@@ -75,11 +76,7 @@ triangle_list[8] = [[0,0,0],[1,0,0],[1,0,0]]
 triangle_list[9] = [[0,1,0],[1,1,1],[0,1,0]]
 triangle_list[10] = [[0,0,0],[0,0,0],[1,1,0]]
 
-blocks_list = [diamond_list, triangle_list, circle_list]
-
-
-
-# function print_blocs(grid) which takes as parameters the shape of the chosen tray, and which displays the list of all the blocks associated with it
+# function print_blocs(grid) which takes a matrix of blocks, and prints them
 
 def print_blocks(current_blocks):
     #block = list of all the blocks to print
@@ -134,7 +131,7 @@ def print_blocks(current_blocks):
 
 #Depending in the policy => print the blocks affiliated and
 def select_blocks(current_blocks, question):
-    if question == 1 :
+    if question == '1' :
         print_blocks(current_blocks)
         chosen_block = int(input("Enter the next block to place on the grid: "))
         while not 0 <= chosen_block < len(current_blocks):
@@ -148,7 +145,6 @@ def select_blocks(current_blocks, question):
         while not 0 <= chosen_block <= 2 :
             chosen_block = int(input("Enter the next block to place on the grid (you have to enter the number next to the block you want) : "))
         return the_random_three[chosen_block]
-
 
 ##### Ask for coordinates :
 def coordinates(grid, length) :
@@ -167,9 +163,9 @@ def coordinates(grid, length) :
     while y < chr(65) or y > (chr(65 + length - 1)) or len(y) != 1:
         y = str(input(
             "This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
-    return (ord(x) - 97), (ord(y) - 65))
+    return (ord(x) - 97),(ord(y) - 65)
 
-##### Validating a block :
+##### Validating a block (TO CORRECT) :
 def valid_position(grid,block,i,j):
     # Check until which block row to check valid position:
     block_row = (len(block)-1)
@@ -179,14 +175,14 @@ def valid_position(grid,block,i,j):
         block_row -= 1
     # Declare all the necessary variables
     size_block = len(block)
-    grid_row = (ord(i)-97)
+    grid_row = i
     res = True
     # Starting verification
     while res and block_row >= 0 :
         if block_row >= 1 and grid_row == 0 :
             return not res
         else :
-            block_col, grid_col = 0, (ord(j)-65)
+            block_col, grid_col = 0, j
             while res and block_col < size_block :
                 if block_col < size_block - 1 and grid_col == len(grid[grid_row]) :
                     res = False
