@@ -159,7 +159,7 @@ def print_grid(grid):
     print(" " + chr(9562) + "  " + (chr(9552) + "  ") * (len(columns)) + chr(9565))
     return M
 
-
+# function row_state that verifies if line i in grid is full
 def row_state(grid, i):
     row_is_full = True
     for x in grid[i-1]:
@@ -167,6 +167,7 @@ def row_state(grid, i):
             row_is_full = False
     return row_is_full
 
+# function col_state that verifies if column j in grid is full
 def col_state(grid, j):
     col_is_full = True
     for row in range(len(grid)):
@@ -174,5 +175,26 @@ def col_state(grid, j):
             col_is_full = False
     return col_is_full
 
-
+#function row_clear(grid, i) that cancels the row i in a grid grid by shifting all lines
+#from the top of a unit down. Be careful because depending on the shape of the board, some boxes
+#from the previous line may no longer be present in the board.
+def row_clear(grid, i):
+    line = i-1
+    # replacing the full line of 2s by 1s
+    for j in range(len(grid[line])):
+        if grid[line][j] == '2':
+            grid[line][j] = '1'
+    # shift of the 1s and 2s
+    for L in range(line, -1, -1):
+        for elt in range(len(grid[L])):
+            if grid[L-1][elt] == '2':
+                grid[L][elt] = '2'
+                grid[L-1][elt] = '1'
+            elif grid[L-1][elt] != '0':
+                grid[L][elt] = '1'
+    # special case for the first line seen as it has nothing to shift from
+    for elt in range(len(grid[0])):
+        if grid[0][elt] == '2':
+            grid[0][elt] = '1'
+    return grid
 
