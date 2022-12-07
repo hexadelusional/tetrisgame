@@ -80,6 +80,14 @@ if __name__ == "__main__":
     else:
         length = 21
 
+#Start of while loop (while the player wants to play // while rep == "Y")
+        #We select block
+        #Ask for coordinates
+        #Verify the position => ask for coordinates again if False
+        #print & save grid
+        #print the current score
+        #ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)   
+        
     x = str(input("Enter the x coordinates: "))
     while x < chr(97) or x > (chr(97 + length - 1)) or len(x) != 1:
         x = str(input(
