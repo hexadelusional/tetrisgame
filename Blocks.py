@@ -150,46 +150,51 @@ def select_blocks(current_blocks, question):
         return the_random_three[chosen_block]
 
 
+##### Ask for coordinates :
+def coordinates(grid, length) :
+    # asking for the x coordinates
+    x = str(input("Enter the x coordinate: "))
+    while x < chr(97) or x > (chr(97 + length - 1)) or len(x) != 1:
+        x = str(input(
+            "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
 
-"""
-Matrix = []
-def valid_position(grid, row, col):
-    x = 0
-    z = 0
-    maju = "ABCDEFGHIJKLMNOPQRSTUVWXY"
-    minu = "abcdefghijklmnopqrstuvwxy"
-    for i in range(25):
-        if row == maju[i]:
-            x = i
-        if col == minu[i]:
-            y = i
+    # particular case for the triangle => y-axis = half of x-axis
+    if grid == "triangle":
+        length = (length + 1) // 2
 
-    # filling a matrix with the elements of the grid file
-    with open(grid + ".txt", "r") as G:
-        for line in G:
-            l = []
-            line = line.strip()
-            columns = line.split()
-            for elt in columns:
-                l.append(elt)
-            Matrix.append(l)
+    # asking for the y coordinates
+    y = str(input("Enter the y coordinate: "))
+    while y < chr(65) or y > (chr(65 + length - 1)) or len(y) != 1:
+        y = str(input(
+            "This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
+    return x,y
 
-    # going through the matrix to check if the block is positionable
-    possible = True
-    while possible == True:
-        for i in range(len(select_blocks())-1):
-            for j in range(len(select_blocks()[i])):
-                if Matrix[x][y]==0:
-                    if select_blocks()[-1][0] == 1:
-                        print("Error, you made a mistake ! ")
-                        possible = False
-                    if select_blocks()[]
-                if Matrix[x][y]==1:
-                    if select_blocks()[-1][0] == 1:
-                    if select_blocks()[i][0] == 1 and Matrix[x][y-1]
-            if select_blocks()[i][0] ==
-
-print(valid_position(current_grid, "A", "b"))
-
-
-"""
+##### Validating a block :
+def valid_position(grid,block,i,j):
+    # Check until which block row to check valid position:
+    block_row = (len(block)-1)
+    row = 0
+    while (1 not in block[row]) and row < len(block):
+        row += 1
+        block_row -= 1
+    # Declare all the necessary variables
+    size_block = len(block)
+    grid_row = (ord(i)-97)
+    res = True
+    # Starting verification
+    while res and block_row >= 0 :
+        if block_row >= 1 and grid_row == 0 :
+            return not res
+        else :
+            block_col, grid_col = 0, (ord(j)-65)
+            while res and block_col < size_block :
+                if block_col < size_block - 1 and grid_col == len(grid[grid_row]) :
+                    res = False
+                elif (grid[grid_row][grid_col] == 0 and block[block_row][block_col] == 1 ) or (grid[grid_row][grid_col] == 2 and block[block_row][block_col] == 1) :
+                    res = False
+                else :
+                    block_col += 1
+                    grid_col += 1
+        block_row -= 1
+        grid_row -= 1
+    return res
