@@ -90,7 +90,7 @@ def print_blocks(current_blocks):
         #if there are less than 5 blocks in blocks :
             #row_blocks becomes blocks and we empty blocks to get out of while loop
             #so length = number of remaining blocks in blocks
-        if len(blocks) < 5 :
+        if len(blocks) < 8 :
             row_blocks = blocks
             blocks = []
             length = len(row_blocks)
@@ -99,9 +99,9 @@ def print_blocks(current_blocks):
             #and we remove those 5 blocks from blocks
             #length = 5
         else :
-            row_blocks = blocks[0:5]
-            blocks = blocks[5:]
-            length = 5
+            row_blocks = blocks[0:8]
+            blocks = blocks[8:]
+            length = 8
         #we add this length to cpt to know at which total index we are
         cpt += length
         #then we print the names "block n" from cpt - length to cpt
@@ -126,7 +126,7 @@ def print_blocks(current_blocks):
                 else:
                     print('| {:^10} |'.format(" "), end="")
             print("\n".strip())
-        print('_' * 70)
+        print('_' * 112)
 
 
 #Depending in the policy => print the blocks affiliated and
@@ -167,30 +167,18 @@ def coordinates(grid, length) :
 
 ##### Validating a block (TO CORRECT) :
 def valid_position(grid,block,i,j):
-    # Check until which block row to check valid position:
-    block_row = (len(block)-1)
-    row = 0
-    while (1 not in block[row]) and row < len(block):
-        row += 1
-        block_row -= 1
-    # Declare all the necessary variables
-    size_block = len(block)
+    # Declaring all variables
     grid_row = i
-    res = True
-    # Starting verification
-    while res and block_row >= 0 :
-        if block_row >= 1 and grid_row == 0 :
-            return not res
-        else :
-            block_col, grid_col = 0, j
-            while res and block_col < size_block :
-                if block_col < size_block - 1 and grid_col == len(grid[grid_row]) :
-                    res = False
-                elif (grid[grid_row][grid_col] == 0 and block[block_row][block_col] == 1 ) or (grid[grid_row][grid_col] == 2 and block[block_row][block_col] == 1) :
-                    res = False
-                else :
-                    block_col += 1
-                    grid_col += 1
-        block_row -= 1
+    for block_row in range(len(block)-1, -1, -1) :
+        if (1 in block[block_row]) and (grid_row < 0) :
+            return False
+        grid_col = j
+        for block_col in range(len(block)) :
+            if (block[block_row][block_col] == 1) and ((grid_col >= len(grid[0])) or (grid[grid_row][grid_col] == 0) or (grid[grid_row][grid_col] == 2)) :
+                return False
+            else :
+                grid_col += 1
         grid_row -= 1
-    return res
+    return True
+
+
