@@ -74,7 +74,7 @@ if __name__ == "__main__":
         ##### Where to put the block
          #### Asking coordinates
         x, y = coordinates(current_grid, length)
-        while not valid_position(current_grid, chosen_block, x, y):
+        while not valid_position(M, chosen_block, x, y):
             print("Please insert correct coordinates !")
             # asking for the x coordinates
             x, y = coordinates(current_grid, length)
@@ -82,9 +82,9 @@ if __name__ == "__main__":
 
 
         #asking the player if they want to pursue the game
-        answer = input("DO YOU WISH TO CONTINUE ? Y or N")
+        answer = input("DO YOU WISH TO CONTINUE ? Y or N : ")
         while answer != "Y" or answer != "N" :
-            answer = input("DO YOU WISH TO CONTINUE ? Please type 'Y' or 'N'.")
+            answer = input("DO YOU WISH TO CONTINUE ? Please type 'Y' or 'N' : ")
 
         print(row_state(M, 1))
         print(col_state(M, 1))
