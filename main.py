@@ -80,10 +80,11 @@ if __name__ == "__main__":
 
         #asking the player if they want to pursue the game
         answer = input("DO YOU WISH TO CONTINUE ? Y or N")
-        while answer != "Y" or answer != "N" :
+        while answer != "Y" and answer != "N" :
             answer = input("DO YOU WISH TO CONTINUE ? Please type 'Y' or 'N'.")
 
-        print(row_state(M, 1))
-        print(col_state(M, 1))
+        print(row_state(M, x))
+        print(col_state(M, y))
+        print(row_clear(M, x))
 
         print(M)
