@@ -79,6 +79,12 @@ if __name__ == "__main__":
             print("Please insert correct coordinates !")
             # asking for the x coordinates
             x, y = coordinates(current_grid, length)
+            
+         ###Placing the block and printing its state
+        emplace_block(current_grid,chosen_block,x,y)
+        M = read_grid(current_grid)
+        print(M)
+        print_grid(M)
 
         # checking if the rows and columns are full
         if row_state(M, x):
