@@ -155,8 +155,11 @@ def print_grid(grid):
                     print(chr(10240), end="  ")
                 elif M[i][j] == '1':
                     print(chr(9642), end="  ")
-            print(chr(9553),"\n".strip())
+            print(chr(9553)+ maju[i]+"\n".strip())
     print(" " + chr(9562) + "  " + (chr(9552) + "  ") * (len(columns)) + chr(9565))
+    for i in range(len(columns)+1):
+        print(" " + minu[i] + "", end=" ")
+    print("\n")
     return M
 
 # function row_state that verifies if line i in grid is full
@@ -175,9 +178,7 @@ def col_state(grid, j):
             col_is_full = False
     return col_is_full
 
-#function row_clear(grid, i) that cancels the row i in a grid grid by shifting all lines
-#from the top of a unit down. Be careful because depending on the shape of the board, some boxes
-#from the previous line may no longer be present in the board.
+#function row_clear(grid, i) that cancels the row i in a grid grid by shifting all lines from the top of a unit to the bottom
 def row_clear(grid, i):
     line = i-1
     # replacing the full line of 2s by 1s
@@ -196,18 +197,12 @@ def row_clear(grid, i):
     for elt in range(len(grid[0])):
         if grid[0][elt] == '2':
             grid[0][elt] = '1'
-    return grid
+    return grid, i-1
 
-##### keeping score
-def update_score(grid,mode,line) :
-    #make col_clear / row_clear return the line that was cancelled and saved in a variable line
-    s = 0
-    if mode == "row" :
-        for elt in grid[line] :
-            if elt == 1 or elt == 2 :
-                s += 1
-    else :
-        for row in grid :
-            if row[line] == 1 or row[line] == 2 :
-                s += 1
-    return s
+
+
+# function col_clear that cancels the column j in a grid
+def col_clear(grid, j):
+    for row in range(len(grid)):
+        grid[row][j-1] = '0'
+    return grid, j-1
