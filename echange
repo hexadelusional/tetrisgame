@@ -1,3 +1,4 @@
+
 # function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
     M = []
@@ -15,7 +16,7 @@ def print_grid(grid):
             M.append(l)
         # writing the lowercase coordinates on the top of the grid & the ascii symbols
         for i in range(len(columns)+1):
-            print(" " + minu[i] + "", end=" ")
+            print(" " + minu[i] + " ", end="")
         print("\n " + chr(9556) + "  " + (chr(9552)+"  ") * (len(columns))+chr(9559))
         # replacing every 0 of our list with a blank ascii code symbol and every 1 with a little cube
         for i in range(len(M)):
@@ -27,7 +28,7 @@ def print_grid(grid):
                     print(chr(9642), end="  ")
             print(chr(9553)+ maju[i]+"\n".strip())
     print(" " + chr(9562) + "  " + (chr(9552) + "  ") * (len(columns)) + chr(9565))
-    for letter in minu:
-        print(" " + letter + "", end=" ")
+    for i in range(len(columns)+1):
+        print(" " + minu[i] + "", end=" ")
     print("\n")
     return M
