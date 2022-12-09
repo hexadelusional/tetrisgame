@@ -40,9 +40,9 @@ if __name__ == "__main__":
         current_blocks = common_blocks + triangle_list
 
     # asking which policy the user wants
-    question = input("policy 1 or policy 2 ? (enter 1 or 2) ")
+    question = input("Policy 1 (choose from all blocks) or Policy 2 (choose from 3 random blocks) ?  ")
     while question != "1" and question != "2":
-        question = input("policy 1 or policy 2 ? (you have to enter either 1 for policy one, or 2 for policy 2)")
+        question = input("Policy 1 or Policy 2 ? [1 for All | 2 for 3 random]")
 
 
     # size
@@ -54,6 +54,8 @@ if __name__ == "__main__":
     else:
         length = 21
 
+
+
 # Start of while loop (while the player wants to play // while rep == "Y")
         # We select block
         # Ask for coordinates
@@ -61,7 +63,6 @@ if __name__ == "__main__":
         # print & save grid
         # print the current score
         # ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)
-
     answer = "Y"
     while answer == "Y":
         #####Select the block
@@ -70,21 +71,24 @@ if __name__ == "__main__":
         ##### Where to put the block
 
          #### Asking coordinates
+        print_grid((current_grid))
+        print_blocks([chosen_block])
         x, y = coordinates(current_grid, length)
         while not valid_position(M, chosen_block, x, y):
             print("Please insert correct coordinates !")
             # asking for the x coordinates
             x, y = coordinates(current_grid, length)
 
+        M = print_grid(current_grid)
+
 
 
         #asking the player if they want to pursue the game
-        answer = input("DO YOU WISH TO CONTINUE ? Y or N")
+        answer = input("DO YOU WISH TO CONTINUE ? Y or N : ")
         while answer != "Y" and answer != "N" :
-            answer = input("DO YOU WISH TO CONTINUE ? Please type 'Y' or 'N'.")
+            answer = input("DO YOU WISH TO CONTINUE ? [Please type 'Y' or 'N'] : ")
 
-        print(row_state(M, x))
-        print(col_state(M, y))
-        print(row_clear(M, x))
+        print(row_state(M, 1))
+        print(col_state(M, 1))
 
         print(M)
