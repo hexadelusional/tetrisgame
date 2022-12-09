@@ -143,7 +143,7 @@ def print_grid(grid):
     minu = " abcdefghijklmnopqrstuvwxy"
     maju = "ABCDEFGHIJKLMNOPQRSTUVWXY"
     # writing the lowercase coordinates on the top of the grid & the ascii symbols
-    for i in range(len(grid)+1):
+    for i in range(len(grid[0])+1):
         print(" " + minu[i] + " ", end="")
     print("\n " + chr(9556) + "  " + (chr(9552)+"  ") * (len(grid[0]))+chr(9559))
     # replacing every 0 of our list with a blank ascii code symbol and every 1 with a little cube
