@@ -66,12 +66,13 @@ if __name__ == "__main__":
     answer = "Y"
     while answer == "Y":
         #####Select the block
+        print("AVAILABLE BLOCKS :\n")
         chosen_block = select_blocks(current_blocks, question)
 
         ##### Where to put the block
 
          #### Asking coordinates
-        print_grid((current_grid))
+        M = print_grid((current_grid))
         print_blocks([chosen_block])
         x, y = coordinates(current_grid, length)
         while not valid_position(M, chosen_block, x, y):
@@ -79,6 +80,11 @@ if __name__ == "__main__":
             # asking for the x coordinates
             x, y = coordinates(current_grid, length)
 
+        # checking if the rows and columns are full
+        if row_state(M, x):
+            row_clear(M, x)
+        elif col_state(M, y):
+            col_clear(M, y)
         M = print_grid(current_grid)
 
 
