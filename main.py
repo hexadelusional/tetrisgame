@@ -24,13 +24,13 @@ if __name__ == "__main__":
     grid_triangle(current_size)
 
     # reading the grid chosen above according to its size 'current_size'
-    read_grid(current_grid)
+    M = read_grid(current_grid)
 
     # saving the grid in a new file called 'game_grid.txt'
     save_grid("game_grid.txt", current_grid)
 
     # printing the current grid in the console
-    M = print_grid(current_grid)
+    print_grid(M)
 
     if current_grid == 'circle.txt' :
         current_blocks = common_blocks + circle_list
@@ -85,7 +85,7 @@ if __name__ == "__main__":
             row_clear(M, x)
         elif col_state(M, y):
             col_clear(M, y)
-        M = print_grid(current_grid)
+        print_grid(current_grid)
 
 
 
