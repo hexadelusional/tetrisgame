@@ -133,26 +133,27 @@ def print_blocks(current_blocks):
 def select_blocks(current_blocks, question):
     if question == '1' :
         print_blocks(current_blocks)
-        chosen_block = int(input("Enter the next block to place on the grid: "))
-        while not 0 <= chosen_block < len(current_blocks):
-            chosen_block = int(input(
-                "Enter the next block to place on the grid (you have to enter the number next to the block you want) : "))
-        return current_blocks[chosen_block]
+        chosen_block = input("Enter the next block to place on the grid: ")
+        while not ('0' <= chosen_block <= str(len(current_blocks) - 1)):
+            chosen_block = input(
+                "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
+        return current_blocks[int(chosen_block)]
     else :
         the_random_three = sample(current_blocks, 3)
         print_blocks(the_random_three)
-        chosen_block = int(input("Enter the next block to place on the grid: "))
-        while not 0 <= chosen_block <= 2 :
-            chosen_block = int(input("Enter the next block to place on the grid (you have to enter the number next to the block you want) : "))
-        return the_random_three[chosen_block]
+        chosen_block = input("Enter the next block to place on the grid: ")
+        while not ('0' <= chosen_block <= '2'):
+            chosen_block = input(
+                "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
+        return the_random_three[int(chosen_block)]
 
 ##### Ask for coordinates :
 def coordinates(grid, length) :
     # asking for the x coordinates
     x = str(input("Enter the x coordinate: "))
-    while x < chr(97) or x > (chr(97 + length - 1)) or len(x) != 1:
+    while x < chr(65) or x > (chr(65 + length - 1)) or len(x) != 1:
         x = str(input(
-            "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
+            "This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
 
     # particular case for the triangle => y-axis = half of x-axis
     if grid == "triangle":
@@ -160,25 +161,29 @@ def coordinates(grid, length) :
 
     # asking for the y coordinates
     y = str(input("Enter the y coordinate: "))
-    while y < chr(65) or y > (chr(65 + length - 1)) or len(y) != 1:
+    while y < chr(97) or y > (chr(97 + length - 1)) or len(y) != 1:
         y = str(input(
-            "This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
-    return (ord(x) - 97),(ord(y) - 65)
+            "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
+    return (ord(x) - 65),(ord(y) - 97)
 
 ##### Validating a block (TO CORRECT) :
 def valid_position(grid,block,i,j):
     # Declaring all variables
+    print(grid)
     grid_row = i
     for block_row in range(len(block)-1, -1, -1) :
         if (1 in block[block_row]) and (grid_row < 0) :
             return False
         grid_col = j
         for block_col in range(len(block)) :
-            if (block[block_row][block_col] == 1) and ((grid_col >= len(grid[0])) or (grid[grid_row][grid_col] == 0) or (grid[grid_row][grid_col] == 2)) :
-                return False
+            if block[block_row][block_col] == 1:
+                if grid_col >= len(grid[grid_row]):
+                    return False
+                elif (grid[grid_row][grid_col] == 0) or (grid[grid_row][grid_col] == 2) :
+                    return False
+                else :
+                    grid_col += 1
             else :
                 grid_col += 1
         grid_row -= 1
     return True
-
-
