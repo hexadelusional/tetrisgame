@@ -83,7 +83,6 @@ def print_blocks(current_blocks):
     #cpt = index of the last block to print CURRENTLY
     blocks = current_blocks
     cpt = 0
-    print("Available blocks :\n")
     while blocks != []:
         #length = number of blocks to print in this round
         length = 0
@@ -166,7 +165,7 @@ def coordinates(grid, length) :
             "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
     return (ord(x) - 65),(ord(y) - 97)
 
-##### Validating a block (TO CORRECT) :
+##### Validating a block :
 def valid_position(grid,block,i,j):
     # Declaring all variables
     print(grid)
@@ -179,7 +178,7 @@ def valid_position(grid,block,i,j):
             if block[block_row][block_col] == 1:
                 if grid_col >= len(grid[grid_row]):
                     return False
-                elif (grid[grid_row][grid_col] == 0) or (grid[grid_row][grid_col] == 2) :
+                elif (grid[grid_row][grid_col] == '0') or (grid[grid_row][grid_col] == '2') :
                     return False
                 else :
                     grid_col += 1
@@ -187,3 +186,33 @@ def valid_position(grid,block,i,j):
                 grid_col += 1
         grid_row -= 1
     return True
+
+#####placing the block in the file
+def emplace_block(grid,block,i,j):
+    #creating a list of lists with elt of each line
+    with open(grid+'.txt','r') as g :
+        line = g.readline()
+        temp_grid = []
+        while line != "" :
+            #line2 takes elt of line without '\n'
+            #we make a list of line2 and append it in list temp_grid
+            line2 = line[:(len(line)-2)]
+            temp_grid.append(line2.split("  "))
+            line = g.readline()
+    print(temp_grid)
+
+    #modifying only rows and columns affected by block
+    block_row = len(block) - 1
+    for grid_row in range(i, i-len(block), -1) :
+        block_col = 0
+        for grid_col in range (j, j +(len(block))):
+            if block[block_row][block_col] == 1:
+                temp_grid[grid_row][grid_col] = '2'
+            block_col += 1
+        block_row -= 1
+    with open(grid+'.txt','w') as g:
+        for line in temp_grid :
+            for character in line :
+                g.write(character+"  ")
+            g.write('\n')
+        return g
