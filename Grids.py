@@ -118,11 +118,11 @@ def read_grid(path):
         M = []
         # going through each element of each line of the file and appending it to a big matrix M: our grid
         for line in G:
-            l = []
+            l = ''
             line = line.strip()
             columns = line.split()
             for elt in columns:
-                l.append(elt)
+                l += elt
             M.append(l)
         return M
 
@@ -154,6 +154,8 @@ def print_grid(grid):
                 print(chr(10240), end="  ")
             elif grid[i][j] == '1':
                 print(chr(9642), end="  ")
+            elif grid[i][j] == '2':
+                print(chr(9632), end="  ")
         print(chr(9553)+ maju[i]+"\n".strip())
     print(" " + chr(9562) + "  " + (chr(9552) + "  ") * (len(grid[0])) + chr(9565))
     for i in range(len(grid[0])+1):
