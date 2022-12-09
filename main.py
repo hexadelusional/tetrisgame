@@ -14,7 +14,7 @@ if __name__ == "__main__":
          current_grid = input("Error, this board shape does not exist. You must write the name (in lowercase letters) of one of the board shapes proposed; [Circle] [Triangle] [Diamond]: ")
 
 
-    # asking what board shape the user wants
+    # asking what board shape the user wants,
     current_size = input("What board size do you want to play on ? [S] [M] [L] ")
     while current_size != "S" and current_size != "M" and current_size != "L":
          current_size = input("Error, this board size does not exist. You must write the uppercase letter of the board sizes proposed; [S] for small, [M] for medium, [L] for large: ")
@@ -33,7 +33,8 @@ if __name__ == "__main__":
     print_grid(M)
 
     if current_grid == 'circle.txt' :
-        current_blocks = common_blocks + circle_list
+        current_blocks = \
+            common_blocks + circle_list
     elif current_grid == 'diamond.txt' :
         current_blocks = common_blocks + diamond_list
     else :
@@ -72,27 +73,25 @@ if __name__ == "__main__":
         ##### Where to put the block
 
          #### Asking coordinates
-        M = print_grid((current_grid))
+        M = read_grid(current_grid)
+        print_grid(M)
         print_blocks([chosen_block])
         x, y = coordinates(current_grid, length)
         while not valid_position(M, chosen_block, x, y):
             print("Please insert correct coordinates !")
             # asking for the x coordinates
             x, y = coordinates(current_grid, length)
-            
-         ###Placing the block and printing its state
+
+        ###Placing the block and printing its state
         emplace_block(current_grid,chosen_block,x,y)
         M = read_grid(current_grid)
         print(M)
         print_grid(M)
-
         # checking if the rows and columns are full
         if row_state(M, x):
             row_clear(M, x)
         elif col_state(M, y):
             col_clear(M, y)
-        print_grid(current_grid)
-
 
 
         #asking the player if they want to pursue the game
