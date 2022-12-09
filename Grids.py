@@ -206,3 +206,17 @@ def col_clear(grid, j):
     for row in range(len(grid)):
         grid[row][j-1] = '0'
     return grid, j-1
+
+##### keeping score
+def update_score(grid,mode,line) :
+    #make col_clear / row_clear return the line that was cancelled and saved in a variable line
+    s = 0
+    if mode == "row" :
+        for elt in grid[line] :
+            if elt == 1 or elt == 2 :
+                s += 1
+    else :
+        for row in grid :
+            if row[line] == 1 or row[line] == 2 :
+                s += 1
+    return s
