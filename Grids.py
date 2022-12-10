@@ -140,15 +140,22 @@ def save_grid(path, grid):
 # function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
     # creating two strings minu and maju: the coordinates the user will enter to place the blocks
-    minu = " abcdefghijklmnopqrstuvwxy"
+    print("\n")
+    minu = "abcdefghijklmnopqrstuvwxy"
     maju = "ABCDEFGHIJKLMNOPQRSTUVWXY"
     # writing the lowercase coordinates on the top of the grid & the ascii symbols
-    for i in range(len(grid[0])+1):
-        print(" " + minu[i] + " ", end="")
-    print("\n " + chr(9556) + "  " + (chr(9552)+"  ") * (len(grid[0]))+chr(9559))
+    line = ""
+    print(format(line, '>37s'), end=" ")
+    for i in range(len(grid[0])):
+        line += " " + minu[i] + " "
+    print(line)
+    line = ""
+    print(format(line, '>36s'), end="")
+    print((chr(9556) + "  " + (chr(9552)+"  ") * (len(grid[0]))+chr(9559)))
     # replacing every 0 of our list with a blank ascii code symbol and every 1 with a little cube
     for i in range(len(grid)):
-        print(maju[i] + chr(9553), end="  ")
+        line = maju[i] + chr(9553)
+        print(format(line, '>37s'), end="  ")
         for j in range(len(grid[i])):
             if grid[i][j] == "0":
                 print(chr(10240), end="  ")
@@ -157,10 +164,14 @@ def print_grid(grid):
             elif grid[i][j] == '2':
                 print(chr(9632), end="  ")
         print(chr(9553)+ maju[i]+"\n".strip())
-    print(" " + chr(9562) + "  " + (chr(9552) + "  ") * (len(grid[0])) + chr(9565))
-    for i in range(len(grid[0])+1):
-        print(" " + minu[i] + "", end=" ")
-    print("\n")
+    line = ""
+    print(format(line, '>36s'), end="")
+    print((chr(9562) + "  " + (chr(9552) + "  ") * (len(grid[0])) + chr(9565)))
+    line = ""
+    print(format(line, '>37s'), end=" ")
+    for i in range(len(grid[0])):
+        line += " " + minu[i] + " "
+    print(line)
     return grid
 
 
