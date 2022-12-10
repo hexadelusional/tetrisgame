@@ -79,10 +79,11 @@ triangle_list[10] = [[0,0,0],[0,0,0],[1,1,0]]
 # function print_blocs(grid) which takes a matrix of blocks, and prints them
 
 def print_blocks(current_blocks):
-    #block = list of all the blocks to print
+    #blocks = list of all the blocks to print
     #cpt = index of the last block to print CURRENTLY
     blocks = current_blocks
     cpt = 0
+    print("\n")
     while blocks != []:
         #length = number of blocks to print in this round
         length = 0
@@ -149,21 +150,22 @@ def select_blocks(current_blocks, question):
 ##### Ask for coordinates :
 def coordinates(grid, length) :
     # asking for the x coordinates
-    x = str(input("Enter the x coordinate: "))
+    x = str(input("Enter the x coordinates: "))
     while x < chr(65) or x > (chr(65 + length - 1)) or len(x) != 1:
-        x = str(input(
-            "This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
+        x = str(input("This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
 
     # particular case for the triangle => y-axis = half of x-axis
     if grid == "triangle":
         length = (length + 1) // 2
 
     # asking for the y coordinates
-    y = str(input("Enter the y coordinate: "))
+    y = str(input("Enter the y coordinates: "))
     while y < chr(97) or y > (chr(97 + length - 1)) or len(y) != 1:
         y = str(input(
-            "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
+        "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
+    # transforming the coordinates from letters to numbers
     return (ord(x) - 65),(ord(y) - 97)
+
 
 ##### Validating a block :
 def valid_position(grid,block,i,j):
