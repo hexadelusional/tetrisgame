@@ -131,7 +131,7 @@ def print_blocks(current_blocks):
 
 #Depending in the policy => print the blocks affiliated and
 def select_blocks(current_blocks, question):
-    if question == '1' :
+    if question == '1':
         print_blocks(current_blocks)
         chosen_block = input("Enter the next block to place on the grid: ")
         while not ('0' <= chosen_block <= str(len(current_blocks) - 1)):
@@ -146,24 +146,24 @@ def select_blocks(current_blocks, question):
             chosen_block = input(
                 "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
         return the_random_three[int(chosen_block)]
-    
-    
+
 ##### Ask for coordinates :
 def coordinates(grid, length):
     # asking for the y coordinates
-    y = str(input("Enter the y coordinates: "))
+    y = str(input("Enter the y coordinates of the column: "))
     while y < chr(97) or y > (chr(97 + length - 1)) or len(y) != 1:
         y = str(input(
-            "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
-    
+            "This column does not exist ! You must enter the letter (in lowercase) of y, corresponding to the column you want: "))
+
     # particular case for the triangle => y-axis = half of x-axis
     if grid == "triangle":
         length = (length + 1) // 2
+
     # asking for the x coordinates
-    x = str(input("Enter the x coordinates: "))
+    x = str(input("Enter the x coordinates of the row: "))
     while x < chr(65) or x > (chr(65 + length - 1)) or len(x) != 1:
-        x = str(input("This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
-    
+        x = str(input("This row does not exist ! You must enter the letter (in uppercase) of x, corresponding to the row you want: "))
+
     # transforming the coordinates from letters to numbers
     return (ord(x) - 65), (ord(y) - 97)
 
@@ -171,7 +171,6 @@ def coordinates(grid, length):
 ##### Validating a block :
 def valid_position(grid,block,i,j):
     # Declaring all variables
-    print(grid)
     grid_row = i
     for block_row in range(len(block)-1, -1, -1) :
         if (1 in block[block_row]) and (grid_row < 0) :
@@ -202,7 +201,6 @@ def emplace_block(grid,block,i,j):
             line2 = line[:(len(line)-2)]
             temp_grid.append(line2.split("  "))
             line = g.readline()
-    print(temp_grid)
 
     #modifying only rows and columns affected by block
     block_row = len(block) - 1
