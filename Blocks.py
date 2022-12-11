@@ -146,25 +146,26 @@ def select_blocks(current_blocks, question):
             chosen_block = input(
                 "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
         return the_random_three[int(chosen_block)]
-
+    
+    
 ##### Ask for coordinates :
-def coordinates(grid, length) :
-    # asking for the x coordinates
-    x = str(input("Enter the x coordinates: "))
-    while x < chr(65) or x > (chr(65 + length - 1)) or len(x) != 1:
-        x = str(input("This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
-
-    # particular case for the triangle => y-axis = half of x-axis
-    if grid == "triangle":
-        length = (length + 1) // 2
-
+def coordinates(grid, length):
     # asking for the y coordinates
     y = str(input("Enter the y coordinates: "))
     while y < chr(97) or y > (chr(97 + length - 1)) or len(y) != 1:
         y = str(input(
-        "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
+            "This column does not exist ! You must enter the letter (in lowercase) corresponding to the column you want: "))
+    
+    # particular case for the triangle => y-axis = half of x-axis
+    if grid == "triangle":
+        length = (length + 1) // 2
+    # asking for the x coordinates
+    x = str(input("Enter the x coordinates: "))
+    while x < chr(65) or x > (chr(65 + length - 1)) or len(x) != 1:
+        x = str(input("This row does not exist ! You must enter the letter (in uppercase) corresponding to the row you want: "))
+    
     # transforming the coordinates from letters to numbers
-    return (ord(x) - 65),(ord(y) - 97)
+    return (ord(x) - 65), (ord(y) - 97)
 
 
 ##### Validating a block :
