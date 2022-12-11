@@ -85,7 +85,7 @@ if __name__ == "__main__":
         mistake = 1
         while not valid_position(M, chosen_block, x, y) and mistake < 3:
             mistake += 1
-            print("\n Please insert correct coordinates !")
+            print("\n Oops, you made a mistake !")
             x, y = coordinates(current_grid, length)
         if mistake == 3:
             print("\n Oops, that was 3 mistakes... YOU LOSE !")
