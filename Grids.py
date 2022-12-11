@@ -118,11 +118,11 @@ def read_grid(path):
         M = []
         # going through each element of each line of the file and appending it to a big matrix M: our grid
         for line in G:
-            l = ''
+            l = []
             line = line.strip()
             columns = line.split()
             for elt in columns:
-                l += elt
+                l.append(elt)
             M.append(l)
         return M
 
@@ -178,7 +178,7 @@ def print_grid(grid):
 # function row_state that verifies if line i in grid is full
 def row_state(grid, i):
     row_is_full = True
-    for x in grid[i-1]:
+    for x in grid[i]:
         if x == '1':
             row_is_full = False
     return row_is_full
@@ -187,32 +187,28 @@ def row_state(grid, i):
 def col_state(grid, j):
     col_is_full = True
     for row in range(len(grid)):
-        if grid[row][j-1] == '1':
+        if grid[row][j] == '1':
             col_is_full = False
     return col_is_full
 
 #function row_clear(grid, i) that cancels the row i in a grid grid by shifting all lines from the top of a unit to the bottom
+
 def row_clear(grid, i):
-    line = i-1
-    # replacing the full line of 2s by 1s
-    for j in range(len(grid[line])):
-        if grid[line][j] == '2':
-            grid[line][j] = '1'
-    # shift of the 1s and 2s
-    for L in range(line, -1, -1):
-        for elt in range(len(grid[L])):
-            if grid[L-1][elt] == '2':
-                grid[L][elt] = '2'
-                grid[L-1][elt] = '1'
-            elif grid[L-1][elt] != '0':
-                grid[L][elt] = '1'
-    # special case for the first line seen as it has nothing to shift from
-    for elt in range(len(grid[0])):
-        if grid[0][elt] == '2':
-            grid[0][elt] = '1'
-    return grid, i-1
-
-
+    # replacing the full line of 2s by 1s (a full line of blocks by empty spaces)
+    for two in range(len(grid[i])):
+        while grid[i][two] == '2':
+            grid[i][two] = '1'
+    # "shift" the 2s go down (the blocks go to the line right underneath them)
+    x = i
+    while x != 0:
+        index = 0
+        while index < len(grid[i]):
+            if grid[x-1][index] == '2':
+                grid[x][index] = '2'
+                grid[x-1][index] = '1'
+            index += 1
+        x -= 1
+    return grid
 
 # function col_clear that cancels the column j in a grid
 def col_clear(grid, j):
