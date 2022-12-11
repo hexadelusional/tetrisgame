@@ -160,7 +160,7 @@ def print_grid(grid):
             if grid[i][j] == "0":
                 print(chr(10240), end="  ")
             elif grid[i][j] == '1':
-                print(chr(9642), end="  ")
+                print(chr(9643), end="  ")
             elif grid[i][j] == '2':
                 print(chr(9632), end="  ")
         print(chr(9553)+ maju[i]+"\n".strip())
