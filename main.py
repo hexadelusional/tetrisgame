@@ -103,7 +103,7 @@ if __name__ == "__main__":
                     score += update_score(M,'row',x)
                     M = row_clear(M, x)
                     print_grid(M)
-                x -= 0
+                x -= 1
 
             if col_state(M, y):
                 score += update_score(M,'line',y)
