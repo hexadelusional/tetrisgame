@@ -129,12 +129,14 @@ def read_grid(path):
 
 # function save_grid(path, grid)that save a grid in a file specified by path
 def save_grid(path, grid):
-    with open(grid + ".txt", "r") as G, open(path, "w") as P:
-        lines = G.readlines()
-        G.close()
-        for line in lines:
-            P.write(line)
-        P.close()
+    with open(path + ".txt", "w") as G:
+        for i in range(len(grid)):
+            string = ''
+            for j in range(len(grid[i])):
+                string += grid[i][j] + ' '
+            string += "\n"
+            G.write(string)
+
 
 
 # function print_grid(grid) which displays the status of the grid in ascii symbols
