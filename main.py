@@ -90,30 +90,28 @@ if __name__ == "__main__":
             x, y = coordinates(current_grid, length)
         if mistake == 3:
             print("\n Oops, that was 3 mistakes... YOU LOSE !")
-            break
-
-        # placing the block chosen by the user onto the grid and displaying it
-        emplace_block(current_grid,chosen_block,x,y)
-        M = read_grid(current_grid)
-        print_grid(M)
-        print("BEFORE")
-        for i in range(len(M)):
-            print(M[i], end=" \n")
-        # checking if the rows and columns are full
-        if row_state(M, x):
-            M = row_clear(M, x)
+            answer = 'N'
+        else :
+            # placing the block chosen by the user onto the grid and displaying it
+            M = emplace_block(M,chosen_block,x,y)
             print_grid(M)
+            print("BEFORE")
+            for i in range(len(M)):
+                print(M[i], end=" \n")
+            # checking if the rows and columns are full
+            if row_state(M, x):
+                M = row_clear(M, x)
+                print_grid(M)
 
-        if col_state(M, y):
-            M = col_clear(M, y)
-            print_grid(M)
-        print("AFTER")
-        for i in range(len(M)):
-            print(M[i], end=" \n")
+            if col_state(M, y):
+                M = col_clear(M, y)
+                print_grid(M)
+            print("AFTER")
+            for i in range(len(M)):
+                print(M[i], end=" \n")
 
-        # asking the player if they want to pursue the game or quit
-        answer = input("\n Do you wish to continue ? Y or N : ")
-        while answer != "Y" and answer != "N":
-            answer = input("\n Do you wish to continue ? [Please type 'Y' or 'N'] : ")
-
-
+            # asking the player if they want to pursue the game or quit
+            answer = input("\n Do you wish to continue ? Y or N : ")
+            while answer != "Y" and answer != "N":
+                answer = input("\n Do you wish to continue ? [Please type 'Y' or 'N'] : ")
+    print("Your score is :")
