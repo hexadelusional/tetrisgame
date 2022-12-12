@@ -98,12 +98,14 @@ if __name__ == "__main__":
             print_grid(M)
 
             # checking if the rows and columns are full
-            while row_state(M, x):
-                score += update_score(M,'row',x)
-                M = row_clear(M, x)
-                print_grid(M)
+            while x >= 0 :
+                while row_state(M, x):
+                    score += update_score(M,'row',x)
+                    M = row_clear(M, x)
+                    print_grid(M)
+                x -= 0
 
-            while col_state(M, y):
+            if col_state(M, y):
                 score += update_score(M,'line',y)
                 M = col_clear(M, y)
                 print_grid(M)
