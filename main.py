@@ -95,14 +95,20 @@ if __name__ == "__main__":
         emplace_block(current_grid,chosen_block,x,y)
         M = read_grid(current_grid)
         print_grid(M)
-
+        print("BEFORE")
+        for i in range(len(M)):
+            print(M[i], end=" \n")
         # checking if the rows and columns are full
         if row_state(M, x):
             M = row_clear(M, x)
             print_grid(M)
 
-        if col_state(M, x):
-            col_clear(M, x)
+        if col_state(M, y):
+            M = col_clear(M, y)
+            print_grid(M)
+        print("AFTER")
+        for i in range(len(M)):
+            print(M[i], end=" \n")
 
         # asking the player if they want to pursue the game or quit
         answer = input("\n Do you wish to continue ? Y or N : ")
