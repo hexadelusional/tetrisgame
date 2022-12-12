@@ -208,8 +208,12 @@ def row_clear(grid, i):
         index = 0
         while index < len(grid[i]):
             if grid[x-1][index] == '2':
-                grid[x][index] = '2'
-                grid[x-1][index] = '1'
+                if x+1 != len(grid[i]):
+                    if grid[x+1][index] == '0':
+                        pass
+                    else:
+                        grid[x][index] = '2'
+                        grid[x - 1][index] = '1'
             index += 1
         x -= 1
     return grid
@@ -230,11 +234,10 @@ def update_score(grid,mode,line) :
     s = 0
     if mode == "row" :
         for elt in grid[line] :
-            if elt == '1' or elt == '2' :
+            if elt == 1 or elt == 2 :
                 s += 1
     else :
         for row in grid :
-            if row[line] == '1' or row[line] == '2' :
+            if row[line] == 1 or row[line] == 2 :
                 s += 1
     return s
-
