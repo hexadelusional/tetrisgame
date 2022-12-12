@@ -230,10 +230,11 @@ def update_score(grid,mode,line) :
     s = 0
     if mode == "row" :
         for elt in grid[line] :
-            if elt == 1 or elt == 2 :
+            if elt == '1' or elt == '2' :
                 s += 1
     else :
         for row in grid :
-            if row[line] == 1 or row[line] == 2 :
+            if row[line] == '1' or row[line] == '2' :
                 s += 1
     return s
+
