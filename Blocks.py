@@ -131,10 +131,10 @@ def print_blocks(current_blocks):
 
 #Depending in the policy => print the blocks affiliated and
 def select_blocks(current_blocks, question):
-    if question == '1':
+    if question == '1' :
         print_blocks(current_blocks)
         chosen_block = input("Enter the next block to place on the grid: ")
-        while not ('0' <= chosen_block <= str(len(current_blocks) - 1)):
+        while (not(1<=len(chosen_block)<=2)) or (not('0'<=chosen_block[0]<='9'and '0'<=chosen_block[-1]<='9' )) or not(0 <= int(chosen_block) <= (len(current_blocks) - 1)):
             chosen_block = input(
                 "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
         return current_blocks[int(chosen_block)]
@@ -142,7 +142,7 @@ def select_blocks(current_blocks, question):
         the_random_three = sample(current_blocks, 3)
         print_blocks(the_random_three)
         chosen_block = input("Enter the next block to place on the grid: ")
-        while not ('0' <= chosen_block <= '2'):
+        while not (0 <= int(chosen_block) <= 2):
             chosen_block = input(
                 "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
         return the_random_three[int(chosen_block)]
