@@ -61,11 +61,13 @@ if __name__ == "__main__":
         # print & save grid
         # print the current score
         # ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)
-    answer = "Y"
+   answer = "Y"
+    score = 0
     while answer == "Y":
         # showing the user the blocks he can use
         print("\n -> The available blocks are:")
         chosen_block = select_blocks(current_blocks, question)
+
 
         # saving the matrix of the grid in the file of the grid
         save_grid(current_grid, M)
@@ -73,7 +75,6 @@ if __name__ == "__main__":
         # reading and displaying the current grid
         M = read_grid(current_grid)
         print_grid(M)
-
 
         # printing the block the user just chosed
         print_blocks([chosen_block])
@@ -95,23 +96,20 @@ if __name__ == "__main__":
             # placing the block chosen by the user onto the grid and displaying it
             M = emplace_block(M,chosen_block,x,y)
             print_grid(M)
-            print("BEFORE")
-            for i in range(len(M)):
-                print(M[i], end=" \n")
+
             # checking if the rows and columns are full
-            if row_state(M, x):
+            while row_state(M, x):
+                score += update_score(M,'row',x)
                 M = row_clear(M, x)
                 print_grid(M)
 
-            if col_state(M, y):
+            while col_state(M, y):
+                score += update_score(M,'line',y)
                 M = col_clear(M, y)
                 print_grid(M)
-            print("AFTER")
-            for i in range(len(M)):
-                print(M[i], end=" \n")
 
             # asking the player if they want to pursue the game or quit
             answer = input("\n Do you wish to continue ? Y or N : ")
             while answer != "Y" and answer != "N":
                 answer = input("\n Do you wish to continue ? [Please type 'Y' or 'N'] : ")
-    print("Your score is :")
+    print("Your score is :", score)
