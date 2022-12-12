@@ -191,17 +191,7 @@ def valid_position(grid,block,i,j):
 
 #####placing the block in the file
 def emplace_block(grid,block,i,j):
-    #creating a list of lists with elt of each line
-    with open(grid+'.txt','r') as g :
-        line = g.readline()
-        temp_grid = []
-        while line != "" :
-            #line2 takes elt of line without '\n'
-            #we make a list of line2 and append it in list temp_grid
-            line2 = line[:(len(line)-2)]
-            temp_grid.append(line2.split("  "))
-            line = g.readline()
-
+    temp_grid = grid
     #modifying only rows and columns affected by block
     block_row = len(block) - 1
     for grid_row in range(i, i-len(block), -1) :
@@ -211,9 +201,4 @@ def emplace_block(grid,block,i,j):
                 temp_grid[grid_row][grid_col] = '2'
             block_col += 1
         block_row -= 1
-    with open(grid+'.txt','w') as g:
-        for line in temp_grid :
-            for character in line :
-                g.write(character+"  ")
-            g.write('\n')
-        return g
+    return temp_grid
