@@ -194,6 +194,8 @@ def col_state(grid, j):
 #function row_clear(grid, i) that cancels the row i in a grid grid by shifting all lines from the top of a unit to the bottom
 
 def row_clear(grid, i):
+
+    # modifying only rows and columns aff
     # replacing the full line of 2s by 1s (a full line of blocks by empty spaces)
     for two in range(len(grid[i])):
         while grid[i][two] == '2':
@@ -213,8 +215,12 @@ def row_clear(grid, i):
 # function col_clear that cancels the column j in a grid
 def col_clear(grid, j):
     for row in range(len(grid)):
-        grid[row][j-1] = '0'
-    return grid, j-1
+        while grid[row][j] == '2':
+            grid[row][j] = '1'
+    for i in range(len(grid)):
+        print(grid[i], end=" \n")
+    return grid
+
 
 ##### keeping score
 def update_score(grid,mode,line) :
