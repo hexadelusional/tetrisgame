@@ -27,9 +27,6 @@ if __name__ == "__main__":
     # reading the grid chosen above according to its size 'current_size'
     M = read_grid(current_grid)
 
-    # saving the grid in a new file called 'game_grid.txt'
-    save_grid("game_grid.txt", current_grid)
-
     # printing the current grid in the console
     print_grid(M)
 
@@ -70,9 +67,13 @@ if __name__ == "__main__":
         print("\n -> The available blocks are:")
         chosen_block = select_blocks(current_blocks, question)
 
+        # saving the matrix of the grid in the file of the grid
+        save_grid(current_grid, M)
+
         # reading and displaying the current grid
         M = read_grid(current_grid)
         print_grid(M)
+
 
         # printing the block the user just chosed
         print_blocks([chosen_block])
@@ -89,30 +90,30 @@ if __name__ == "__main__":
             x, y = coordinates(current_grid, length)
         if mistake == 3:
             print("\n Oops, that was 3 mistakes... YOU LOSE !")
-            answer = 'N'
-        else :
-            # placing the block chosen by the user onto the grid and displaying it
-            M = emplace_block(M,chosen_block,x,y)
+            break
+
+        # placing the block chosen by the user onto the grid and displaying it
+        emplace_block(current_grid,chosen_block,x,y)
+        M = read_grid(current_grid)
+        print_grid(M)
+        print("BEFORE")
+        for i in range(len(M)):
+            print(M[i], end=" \n")
+        # checking if the rows and columns are full
+        if row_state(M, x):
+            M = row_clear(M, x)
             print_grid(M)
-            print("BEFORE")
-            for i in range(len(M)):
-                print(M[i], end=" \n")
-            # checking if the rows and columns are full
-            if row_state(M, x):
-                M = row_clear(M, x)
-                print_grid(M)
 
-            if col_state(M, y):
-                M = col_clear(M, y)
-                print_grid(M)
-            print("AFTER")
-            for i in range(len(M)):
-                print(M[i], end=" \n")
+        if col_state(M, y):
+            M = col_clear(M, y)
+            print_grid(M)
+        print("AFTER")
+        for i in range(len(M)):
+            print(M[i], end=" \n")
 
-            # asking the player if they want to pursue the game or quit
-            answer = input("\n Do you wish to continue ? Y or N : ")
-            while answer != "Y" and answer != "N":
-                answer = input("\n Do you wish to continue ? [Please type 'Y' or 'N'] : ")
-    print("Your score is :")
+        # asking the player if they want to pursue the game or quit
+        answer = input("\n Do you wish to continue ? Y or N : ")
+        while answer != "Y" and answer != "N":
+            answer = input("\n Do you wish to continue ? [Please type 'Y' or 'N'] : ")
 
 
