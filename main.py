@@ -105,10 +105,12 @@ if __name__ == "__main__":
                     print_grid(M)
                 x -= 1
 
-            if col_state(M, y):
-                score += update_score(M,'line',y)
-                M = col_clear(M, y)
-                print_grid(M)
+            while y < len(M) :
+                 while col_state(M, y):
+                    score += update_score(M,'line',y)
+                    M = col_clear(M, y)
+                    print_grid(M)
+                 y += 1
 
             # asking the player if they want to pursue the game or quit
             answer = input("\n Do you wish to continue ? Y or N : ")
