@@ -2,27 +2,53 @@ from Grid import*
 from Blocks import*
 
 if __name__ == "__main__":
+
     # welcoming the user
     print('{:#^150}\n'.format(" WELCOME "))
     print('{: ^150}\n'.format(" Wanna play Tetris ?"))
 
     # start of the game
-    ready = input('{: ^150}'.format(" Press [ENTER] to start playing ;) "))
+    ready = input('{: ^150}'.format(" Press [ENTER] to start a start playing ;)\n \n"))
 
-    # asking what board shape the user wants
-    current_grid = input("\n -> What board shape do you want to play on ? [Circle], [Triangle] or [Diamond] : " )
-    while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
-         current_grid = input("\n -> Error, this board shape does not exist. You must write the name (in lowercase letters) of one of the board shapes proposed; [Circle] [Triangle] [Diamond] : ")
+    # asking the user if he wants to resume a saved game or if he wants to start a brand new game
+    print('{: ^145}\n'.format(" -> Press [R] to resume a previously saved game !"))
+    print('{: ^145}\n'.format(" OR "))
+    option = input('{: ^145}\n'.format(" -> Press [N] to start a new game ! "))
+    while option != "R" and option != "r" and option != "N"and option != "n":
+         option = input("\n -> Error, press letter [R] to resume OR press letter [N] for a new game : ")
 
+    if option == "R" or option == "r":
+        path = input("\n Give the name of the file you want to load : ")
+        while len(path) >= 10:
+            path = input("\n Give the name of the file you want to load, it's the name of the previous grid you played on (without the.txt) : ")
+        length, score, current_grid = reloading_all_data(path)
 
-    # asking what board shape the user wants,
-    current_size = input("\n -> What board size do you want to play on ? [S], [M] or [L] : ")
-    while current_size != "S" and current_size != "M" and current_size != "L":
-         current_size = input("\n -> Error, this board size does not exist. You must write the uppercase letter of the board sizes proposed [S] for small, [M] for medium, [L] for large : ")
+    else:
+        # asking what board shape the user wants
+        current_grid = input("\n -> What board shape do you want to play on ? [Circle], [Triangle] or [Diamond] : ")
+        while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
+            current_grid = input(
+                "\n -> Error, this board shape does not exist. You must write the name (in lowercase letters) of one of the board shapes proposed; [Circle] [Triangle] [Diamond] : ")
 
-    grid_circle(current_size)
-    grid_diamond(current_size)
-    grid_triangle(current_size)
+        # asking what board shape the user wants,
+        current_size = input("\n -> What board size do you want to play on ? [S], [M] or [L] : ")
+        while current_size != "S" and current_size != "M" and current_size != "L":
+            current_size = input(
+                "\n -> Error, this board size does not exist. You must write the uppercase letter of the board sizes proposed [S] for small, [M] for medium, [L] for large : ")
+
+        grid_circle(current_size)
+        grid_diamond(current_size)
+        grid_triangle(current_size)
+
+        # size
+        length = 0
+        if current_size == "L":
+            length = 25
+        elif current_size == "M":
+            length = 23
+        else:
+            length = 21
+
 
     # reading the grid chosen above according to its size 'current_size'
     M = read_grid(current_grid)
@@ -43,15 +69,6 @@ if __name__ == "__main__":
         question = input("\n -> Error, this policy does not exist. You must enter 1 for [Policy 1] or 2 for [Policy 2] : ")
 
 
-    # size
-    length = 0
-    if current_size == "L":
-        length = 25
-    elif current_size == "M":
-        length = 23
-    else:
-        length = 21
-
 
 
 # Start of while loop (while the player wants to play // while rep == "Y")
@@ -61,7 +78,7 @@ if __name__ == "__main__":
         # print & save grid
         # print the current score
         # ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)
-   answer = "Y"
+    answer = "Y"
     score = 0
     while answer == "Y":
         # showing the user the blocks he can use
@@ -75,6 +92,7 @@ if __name__ == "__main__":
         # reading and displaying the current grid
         M = read_grid(current_grid)
         print_grid(M)
+        print('{: ^150}\n'.format(" SCORE = ", score))
 
         # printing the block the user just chosed
         print_blocks([chosen_block])
@@ -115,5 +133,18 @@ if __name__ == "__main__":
             # asking the player if they want to pursue the game or quit
             answer = input("\n Do you wish to continue ? Y or N : ")
             while answer != "Y" and answer != "N":
-                answer = input("\n Do you wish to continue ? [Please type 'Y' or 'N'] : ")
-    print("Your score is :", score)
+                answer = input("\n Do you wish to continue ? Please type 'Y' or 'N' : ")
+
+    # asking the user if he wants to save his game in a file, so that he can pick up from where he left off in the future
+    wanna_save = input("\n Do you want to save your game to resume another time ? Y or N : ")
+    while wanna_save != "Y" and wanna_save!= "N":
+        wanna_save = input("\n Do you want to save your game to resume another time ? Please type 'Y' or 'N' : ")
+
+    if wanna_save == "Y":
+        # saving the current grid in a file named by the user
+        name = input("\n Give the name of the file you want to save your grid in : ")
+        while len(name) >= 10:
+            name = input("\n Give the name of the file you want to save your grid in, the name cannot exceed 10 characters : ")
+        backup_save(name, M, length, score)
+
+    print("\n Your total score was : ", score)
