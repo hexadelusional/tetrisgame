@@ -133,10 +133,10 @@ def save_grid(path, grid):
         for i in range(len(grid)):
             string = ''
             for j in range(len(grid[i])):
-                string += grid[i][j] + ' '
+                string += grid[i][j] + '  '
             string += "\n"
             G.write(string)
-
+    return path
 
 
 # function print_grid(grid) which displays the status of the grid in ascii symbols
@@ -196,7 +196,6 @@ def col_state(grid, j):
 #function row_clear(grid, i) that cancels the row i in a grid grid by shifting all lines from the top of a unit to the bottom
 
 def row_clear(grid, i):
-
     # modifying only rows and columns aff
     # replacing the full line of 2s by 1s (a full line of blocks by empty spaces)
     for two in range(len(grid[i])):
@@ -241,3 +240,37 @@ def update_score(grid,mode,line) :
             if row[line] == 1 or row[line] == 2 :
                 s += 1
     return s
+
+
+# saves all data in a file for later re-use
+def backup_save(path, grid, size, score):
+    with open(path + ".txt", "w") as G:
+        for i in range(len(grid)):
+            string = ''
+            for j in range(len(grid[i])):
+                string += grid[i][j] + '  '
+            string += "\n"
+            G.write(string)
+        G.write(str(size) + str(score))
+    return path
+
+# in the case where the user decided to reload a previous game instead of starting a new one
+# function that reloads all data such as the size of the grid and the score
+def reloading_all_data(path):
+    with open(path + ".txt", "r+") as path, open("game_grid" + ".txt", "w") as current_grid:
+        lines = path.readlines()
+        path.close()
+        for line in lines:
+            pass
+        length = ""
+        score = ""
+        # recuperating the data (written on the last line of the file)
+        for x in range(2):
+            length += line[x]
+        for x in range(1, len(line) - 1):
+            score += line[x]
+        # deleting the data to be able to use the grid to play
+        for line in lines[:len(lines)-1]:
+            current_grid.write(line)
+        current_grid.close()
+    return int(length), int(score), "game_grid"
