@@ -15,7 +15,7 @@ if __name__ == "__main__":
     print('{: ^145}\n'.format(" OR "))
     option = input('{: ^145}\n'.format(chr(8658) + " Press [N] to start a new game ! "))
     while option != "R" and option != "r" and option != "N" and option != "n":
-        option = input('{: ^145}\n'.format(chr(8658) + " Error, press letter [R] to resume OR press letter [N] for a new game : "))
+        option = input('{: ^145}\n'.format(chr(8658) + " Error, press [R] to resume | press [N] for a new game : "))
 
     if option == "R" or option == "r":  # if the user chose to resume a previous game
         new_name = input("\n Give the name of the file you want to load : ")  # ask the name of the file to open
@@ -104,7 +104,6 @@ if __name__ == "__main__":
         # reading and displaying the current grid
         M = read_grid(current_grid)
         print_grid(M)
-        print('{: ^140}\n'.format(" SCORE = " + str(score)))
 
         # printing the block the user just chose
         print_blocks([chosen_block])
@@ -141,6 +140,8 @@ if __name__ == "__main__":
                     M = col_clear(M, y)
                     print_grid(M)
                 y += 1
+            print('{: ^140}\n'.format(" SCORE = " + str(score)))
+
 
             # asking the player if they want to pursue the game or quit
             answer = input(chr(8658) + " Do you wish to continue ? Y or N : \n")
