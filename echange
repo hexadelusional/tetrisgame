@@ -1,6 +1,17 @@
-    if current_grid == 'circle':
-        current_blocks = common_blocks + circle_list
-    elif current_grid == 'diamond':
-        current_blocks = common_blocks + diamond_list
-    else:
-        current_blocks = common_blocks + triangle_list
+#Depending in the policy => print the blocks affiliated and
+def select_blocks(current_blocks, question):
+    if question == '1' :
+        print_blocks(current_blocks)
+        chosen_block = input("\n Enter the next block to place on the grid: ")
+        while (not(1<=len(chosen_block)<=2)) or (not('0'<=chosen_block[0]<='9'and '0'<=chosen_block[-1]<='9' )) or not(0 <= int(chosen_block) <= (len(current_blocks) - 1)):
+            chosen_block = input(
+                "\n Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
+        return current_blocks[int(chosen_block)]
+    else :
+        the_random_three = sample(current_blocks, 3)
+        print_blocks(the_random_three)
+        chosen_block = input("\n Enter the next block to place on the grid: ")
+        while not (0 <= int(chosen_block) <= 2):
+            chosen_block = input(
+                "\n Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
+        return the_random_three[int(chosen_block)]
