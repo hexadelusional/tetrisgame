@@ -41,34 +41,34 @@ if __name__ == "__main__":
             current_size = input(
                 "\n -> Error, this board size does not exist. You must write the uppercase letter of the board sizes proposed [S] for small, [M] for medium, [L] for large : ")
 
+
+    if current_grid == "circle":
         grid_circle(current_size)
+        current_blocks = common_blocks + circle_list
+    elif current_grid == "diamond":
         grid_diamond(current_size)
+        current_blocks = common_blocks + diamond_list
+    else:
         grid_triangle(current_size)
+        current_blocks = common_blocks + triangle_list
 
-        # size
-        length = 0
-        if current_size == "L":
-            length = 25
-        elif current_size == "M":
-            length = 23
-        else:
-            length = 21
+    # initializing the variable length
+    length = 0
+    if current_size == "L":
+        length = 25
+    elif current_size == "M":
+        length = 23
+    else:
+        length = 21
 
-        score = 0
-
+    # initializing the score at 0
+    score = 0
 
     # reading the grid chosen above according to its size 'current_size'
     M = read_grid(current_grid)
 
     # printing the current grid in the console
     print_grid(M)
-
-    if current_grid == 'circle':
-        current_blocks = common_blocks + circle_list
-    elif current_grid == 'diamond':
-        current_blocks = common_blocks + diamond_list
-    else :
-        current_blocks = common_blocks + triangle_list
 
     # asking which policy the user wants
     question = input("\n -> Which do you want ? [Policy 1] (you choose from all the blocks) or [Policy 2] (you choose from 3 random blocks) : ")
