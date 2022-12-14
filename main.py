@@ -34,10 +34,10 @@ if __name__ == "__main__":
     else:
         # asking what board shape the user wants
         current_grid = input("\n -> What board shape do you want to play on ? [Circle], [Triangle] or [Diamond] : ")
-        while current_grid != "diamond" and current_grid != "triangle" and current_grid != "circle":
+        while current_grid != "D" and current_grid != "T" and current_grid != "C":
             current_grid = input(
-                "\n -> Error, this board shape does not exist. You must write the name (in lowercase letters) of one "
-                "of the board shapes proposed; [Circle] [Triangle] [Diamond] : ")
+                "\n -> Error, this board shape does not exist. You must write letter corresponding to one "
+                "of the board shapes proposed 'C' for [Circle]; 'T' for [Triangle]; 'D' for[Diamond] : ")
 
         # asking what board shape the user wants,
         current_size = input("\n -> What board size do you want to play on ? [S], [M] or [L] : ")
@@ -46,24 +46,24 @@ if __name__ == "__main__":
                 "\n -> Error, this board size does not exist. You must write the uppercase letter of the board sizes "
                 "proposed [S] for small, [M] for medium, [L] for large : ")
 
-    if current_grid == "circle":
-        grid_circle(current_size)
-    elif current_grid == "diamond":
-        grid_diamond(current_size)
-    else:
-        grid_triangle(current_size)
+        if current_grid == "C":
+            grid_circle(current_size)
+        elif current_grid == "D":
+            grid_diamond(current_size)
+        else:
+            grid_triangle(current_size)
 
-    # initializing the variable length
-    length = 0
-    if current_size == "L":
-        length = 25
-    elif current_size == "M":
-        length = 23
-    else:
-        length = 21
+        # initializing the variable length
+        length = 0
+        if current_size == "L":
+            length = 25
+        elif current_size == "M":
+            length = 23
+        else:
+            length = 21
 
-    # initializing the score at 0
-    score = 0
+        # initializing the score at 0
+        score = 0
 
     # reading the grid chosen above according to its size 'current_size'
     M = read_grid(current_grid)
@@ -71,9 +71,9 @@ if __name__ == "__main__":
     # printing the current grid in the console
     print_grid(M)
 
-    if current_grid == 'circle':
+    if current_grid == 'C':
         current_blocks = common_blocks + circle_list
-    elif current_grid == 'diamond':
+    elif current_grid == 'D':
         current_blocks = common_blocks + diamond_list
     else:
         current_blocks = common_blocks + triangle_list
@@ -158,6 +158,6 @@ if __name__ == "__main__":
         while len(name) >= 10:
             name = input(
                 "\n -> Give the name of the file you want to save your grid in, it cannot exceed 10 characters : ")
-        backup_save(name, M, length, score)
+        backup_save(name, M, length, current_grid, score)
 
     print("\n -> Your total score was : ", score)
