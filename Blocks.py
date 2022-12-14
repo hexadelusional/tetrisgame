@@ -1,9 +1,9 @@
 from random import *
 from main import *
-################################################################ BLOCKS ################################################################
 
+# BLOCKS
 
-################ COMMON BLOCKS ################
+# COMMON BLOCKS
 
 common_blocks = [[] for i in range(20)]
 common_blocks[0] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0]]
@@ -27,95 +27,98 @@ common_blocks[17] = [[0, 0, 0, 0], [0, 1, 0, 0], [1, 1, 0, 0], [1, 0, 0, 0]]
 common_blocks[18] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0]]
 common_blocks[19] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1]]
 
-################ CIRCLE BLOCKS ################
+# CIRCLE BLOCKS
 
 circle_list = [[] for i in range(12)]
-circle_list[0] = [[0,0,0,0,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0]]
-circle_list[1] = [[0,0,0,0,0],[0,1,1,0,0],[1,1,1,1,0],[1,1,1,1,0],[0,1,1,0,0]]
-circle_list[2] = [[0,0,0,0,0],[1,0,0,1,0],[1,0,0,1,0],[1,0,0,1,0],[1,1,1,1,0]]
-circle_list[3] = [[0,0,0,0,0],[1,1,1,1,0],[0,0,0,1,0],[0,0,0,1,0],[0,0,0,1,0]]
-circle_list[4] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,0],[1,1,1,0,0]]
-circle_list[5] = [[0,0,0,0,0],[1,1,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[1,1,1,0,0]]
-circle_list[6] = [[0,0,0,0,0],[1,1,0,0,0],[1,1,0,0,0],[1,1,0,0,0],[1,1,0,0,0]]
-circle_list[7] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,0],[1,1,1,1,0]]
-circle_list[8] = [[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0]]
-circle_list[9] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1],[1,0,0,0,1]]
-circle_list[10] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1]]
-circle_list[11] = [[0,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,1,0],[1,1,1,1,0]]
+circle_list[0] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0]]
+circle_list[1] = [[0, 0, 0, 0, 0], [0, 1, 1, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [0, 1, 1, 0, 0]]
+circle_list[2] = [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [1, 0, 0, 1, 0], [1, 0, 0, 1, 0], [1, 1, 1, 1, 0]]
+circle_list[3] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 0]]
+circle_list[4] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 0, 0]]
+circle_list[5] = [[0, 0, 0, 0, 0], [1, 1, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [1, 1, 1, 0, 0]]
+circle_list[6] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0]]
+circle_list[7] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0]]
+circle_list[8] = [[1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0]]
+circle_list[9] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1], [1, 0, 0, 0, 1]]
+circle_list[10] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
+circle_list[11] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 1, 0], [1, 1, 1, 1, 0]]
 
-################ DIAMOND BLOCKS ################
+# DIAMOND BLOCKS
 
 diamond_list = [[] for i in range(14)]
-diamond_list[0] = [[0,0,0,0,0],[0,0,1,1,0],[0,1,1,0,0],[1,1,0,0,0],[1,0,0,0,0]]
-diamond_list[1] = [[0,0,0,0,0],[1,1,0,0,0],[0,1,1,0,0],[0,0,1,1,0],[0,0,0,1,0]]
-diamond_list[2] = [[0,0,0,0,0],[1,1,1,1,0],[0,1,1,0,0],[0,1,1,0,0],[0,1,1,0,0]]
-diamond_list[3] = [[0,0,0,0,0],[1,0,0,1,0],[0,1,1,0,0],[0,1,1,0,0],[1,0,0,1,0]]
-diamond_list[4] = [[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1],[0,1,1,1,0],[0,0,1,0,0]]
-diamond_list[5] = [[0,0,0,0,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0],[1,1,1,1,0]]
-diamond_list[6] = [[0,0,0,0,0],[1,0,0,0,0],[1,1,0,0,0],[0,1,1,0,0],[0,0,1,1,0]]
-diamond_list[7] = [[0,0,0,0,0],[0,0,0,1,0],[0,0,1,1,0],[0,1,1,0,0],[1,1,0,0,0]]
-diamond_list[8] = [[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0]]
-diamond_list[9] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,1,1,0],[0,0,0,1,0]]
-diamond_list[10] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1]]
-diamond_list[11] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,0],[0,0,0,1,0]]
-diamond_list[12] = [[0,0,0,0,0],[1,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0]]
-diamond_list[13] = [[0,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,0,0,0,0],[1,1,0,0,0]]
+diamond_list[0] = [[0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0], [1, 0, 0, 0, 0]]
+diamond_list[1] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 1, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 1, 0]]
+diamond_list[2] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0]]
+diamond_list[3] = [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [1, 0, 0, 1, 0]]
+diamond_list[4] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0], [0, 0, 1, 0, 0]]
+diamond_list[5] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0]]
+diamond_list[6] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 1, 0, 0], [0, 0, 1, 1, 0]]
+diamond_list[7] = [[0, 0, 0, 0, 0], [0, 0, 0, 1, 0], [0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0]]
+diamond_list[8] = [[1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0]]
+diamond_list[9] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 1, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0]]
+diamond_list[10] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
+diamond_list[11] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0]]
+diamond_list[12] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 0, 0, 0], [0, 1, 0, 0, 0], [0, 1, 0, 0, 0]]
+diamond_list[13] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 1, 0, 0, 0]]
 
-################ TRIANGLE BLOCKS ################
+# TRIANGLE BLOCKS
 
 triangle_list = [[] for i in range(11)]
-triangle_list[0] = [[1,0,0],[1,1,1],[0,0,1]]
-triangle_list[1] = [[1,1,0],[0,1,0],[0,1,1]]
-triangle_list[2] = [[0,0,1],[1,1,1],[1,0,0]]
-triangle_list[3] = [[0,1,1],[0,1,0],[1,1,0]]
-triangle_list[4] = [[0,0,1],[0,1,0],[1,0,0]]
-triangle_list[5] = [[1,0,0],[0,1,0],[0,0,1]]
-triangle_list[6] = [[1,0,0],[1,0,0],[1,0,0]]
-triangle_list[7] = [[0,0,0],[1,1,1],[1,1,1]]
-triangle_list[8] = [[0,0,0],[1,0,0],[1,0,0]]
-triangle_list[9] = [[0,1,0],[1,1,1],[0,1,0]]
-triangle_list[10] = [[0,0,0],[0,0,0],[1,1,0]]
+triangle_list[0] = [[1, 0, 0], [1, 1, 1], [0, 0, 1]]
+triangle_list[1] = [[1, 1, 0], [0, 1, 0], [0, 1, 1]]
+triangle_list[2] = [[0, 0, 1], [1, 1, 1], [1, 0, 0]]
+triangle_list[3] = [[0, 1, 1], [0, 1, 0], [1, 1, 0]]
+triangle_list[4] = [[0, 0, 1], [0, 1, 0], [1, 0, 0]]
+triangle_list[5] = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+triangle_list[6] = [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
+triangle_list[7] = [[0, 0, 0], [1, 1, 1], [1, 1, 1]]
+triangle_list[8] = [[0, 0, 0], [1, 0, 0], [1, 0, 0]]
+triangle_list[9] = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
+triangle_list[10] = [[0, 0, 0], [0, 0, 0], [1, 1, 0]]
 
-# function print_blocs(grid) which takes a matrix of blocks, and prints them
 
-def print_blocks(current_blocks):
-    #blocks = list of all the blocks to print
-    #cpt = index of the last block to print CURRENTLY
-    blocks = current_blocks
+def print_blocks(list_blocks):
+    """
+    :param list_blocks: list of matrices
+    :return: None
+    :role: printing the blocks in list_blocks
+    """
+    # blocks : list of all the blocks to print
+    # cpt : index of the last block we're currently printing
+    blocks = list_blocks
     cpt = 0
-    print("\n")
-    while blocks != []:
-        #length = number of blocks to print in this round
-        length = 0
-        #if there are less than 5 blocks in blocks :
-            #row_blocks becomes blocks and we empty blocks to get out of while loop
-            #so length = number of remaining blocks in blocks
-        if len(blocks) < 8 :
+    print("\n".strip())
+    while blocks:
+        # if there are less than 8 blocks in blocks :
+        # => row_blocks takes all elements in blocks, and we empty blocks to get out of while loop
+        # => length = number of remaining elements in blocks
+        if len(blocks) < 8:
             row_blocks = blocks
             blocks = []
-            length = len(row_blocks)
-        #if there are at least 5 blocks in blocks :
-            #row_blocks just take the first 5 blocks in blocks
-            #and we remove those 5 blocks from blocks
-            #length = 5
-        else :
+            nb = len(row_blocks)
+        # if there are at least 8 blocks in blocks :
+        # => row_blocks takes the first 8 elements from blocks
+        # => we remove those 8 blocks from blocks
+        # => length = 8
+        else:
             row_blocks = blocks[0:8]
             blocks = blocks[8:]
-            length = 8
-        #we add this length to cpt to know at which total index we are
-        cpt += length
-        #then we print the names "block n" from cpt - length to cpt
-        for block in range(cpt - length, cpt):
-            print('| {:^10} |'.format("Block "+ str(block)),end= "")
+            nb = 8
+        # we add the given length to cpt to know at which index we are in terms of list_blocks
+        cpt += nb
+        # then we print the names "block n" from (cpt - length) to cpt
+        for block in range(cpt - nb, cpt):
+            print('| {:^10} |'.format("Block " + str(block)), end="")
         print("\n".strip())
-        #max_ rows = number rows of the biggest block (because size_common < size_circle for ex)
-        max_rows = max(len(row_blocks[0]),len(row_blocks[-1]))
-        #we need the row of all the blocks, row by row (row1 of all the blocks then row2 ...)
-        #if row exists in the block then we print | ... |
-        #if row doesn't exist we print void between the | |
-        for row in range(max_rows) :
+        # max_ rows : number of rows of the biggest block
+        max_rows = max(len(row_blocks[0]), len(row_blocks[-1]))
+        # we go through row_blocks, row by row (row1 of all blocks, then row2 of all blocks ...)
+        # for each block in row_blocks :
+        # => if row exists in the block then we print | characters |
+        # => if row doesn't exist then we print empty spaces between the | |
+        for row in range(max_rows):
             for block in range(len(row_blocks)):
-                if row < len(row_blocks[block]) :
+                if row < len(row_blocks[block]):
                     substring = ""
                     for elt in row_blocks[block][row]:
                         if elt == 0:
@@ -129,74 +132,131 @@ def print_blocks(current_blocks):
         print('_' * 112)
 
 
-#Depending in the policy => print the blocks affiliated and
-def select_blocks(current_blocks, question):
-    if question == '1' :
-        print_blocks(current_blocks)
-        chosen_block = input("Enter the next block to place on the grid: ")
-        while (not(1<=len(chosen_block)<=2)) or (not('0'<=chosen_block[0]<='9'and '0'<=chosen_block[-1]<='9' )) or not(0 <= int(chosen_block) <= (len(current_blocks) - 1)):
-            chosen_block = input(
-                "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
-        return current_blocks[int(chosen_block)]
-    else :
-        the_random_three = sample(current_blocks, 3)
+def select_blocks(list_blocks, policy):
+    """
+    :param: list_blocks : given list of matrices (blocks)
+    :param: policy: character that is either '1' or '2'
+    :return: the matrix of the selected block
+    """
+    # we copy in blocks the elements in list_blocks
+    blocks = list_blocks
+    # if policy is '1' :
+    # => we print all elements of blocks for the user
+    # => we ask the user for the index of the matrix (chosen_index) in list_blocks that they want to place
+    # => we repeat the previous task as long as chosen_index doesn't exist
+    # => we return the matrix of the selected block
+    if policy == '1':
+        print_blocks(blocks)
+        chosen_index = input("\n Enter the next block to place on the grid: ")
+        while not (not (not (1 <= len(chosen_index) <= 2)) and not (
+                not ('0' <= chosen_index[0] <= '9' and '0' <= chosen_index[-1] <= '9')) and (
+                           0 <= int(chosen_index) <= (len(blocks) - 1))):
+            chosen_index = input(
+                "\n Enter the next block to place on the grid (you have to enter the number of next block) : ")
+        return blocks[int(chosen_index)]
+    # => we randomly choose 3 elements in blocks (put in the_random_three) and print them for the user
+    # => we ask the user for the index of the matrix (chosen_index) in the_random_three that they want to place
+    # => we repeat the previous task as long as chosen_index doesn't exist
+    # => we return the matrix of the selected block
+    else:
+        the_random_three = sample(blocks, 3)
         print_blocks(the_random_three)
-        chosen_block = input("Enter the next block to place on the grid: ")
-        while not (0 <= int(chosen_block) <= 2):
-            chosen_block = input(
-                "Enter the next block to place on the grid (you have to enter the number next to the block you want) : ")
-        return the_random_three[int(chosen_block)]
+        chosen_index = input("\n Enter the next block to place on the grid: ")
+        while not (0 <= int(chosen_index) <= 2):
+            chosen_index = input(
+                "\n Enter the next block to place on the grid (you have to enter the number of next block) : ")
+        return the_random_three[int(chosen_index)]
 
-##### Ask for coordinates :
-def coordinates(grid, length):
+
+def coordinates(grid, size):
+    """
+    :param grid: matrix of lists of characters ('0', '1' or '2')
+    :param size: length of the grid (number of elements in each row)
+    :return:
+            row : integer, index of the row of the position
+            col : integer, index of the column of the position
+    """
     # asking for the y coordinates
-    y = str(input("Enter the y coordinates of the column: "))
-    while y < chr(97) or y > (chr(97 + length - 1)) or len(y) != 1:
-        y = str(input(
-            "This column does not exist ! You must enter the letter (in lowercase) of y, corresponding to the column you want: "))
+    # we ask the user for col (a letter of the alphabet in lowercase)
+    # we repeat the previous task as long as col doesn't exist
+    col = str(input("Enter the y coordinates of the column: "))
+    while col < chr(97) or col > (chr(97 + size - 1)) or len(col) != 1:
+        col = str(input(
+            "This column doesn't exist ! You must enter the letter (in lowercase) of the column you want: "))
 
     # particular case for the triangle => y-axis = half of x-axis
     if grid == "triangle":
-        length = (length + 1) // 2
+        size = (size + 1) // 2
 
     # asking for the x coordinates
-    x = str(input("Enter the x coordinates of the row: "))
-    while x < chr(65) or x > (chr(65 + length - 1)) or len(x) != 1:
-        x = str(input("This row does not exist ! You must enter the letter (in uppercase) of x, corresponding to the row you want: "))
+    # we ask the user for row (a letter of the alphabet in uppercase)
+    # we repeat the previous task as long as row doesn't exist
+    row = str(input("Enter the x coordinates of the row: "))
+    while row < chr(65) or row > (chr(65 + size - 1)) or len(row) != 1:
+        row = str(input(
+            "This row does not exist ! You must enter the letter (in uppercase) of the row you want: "))
 
     # transforming the coordinates from letters to numbers
-    return (ord(x) - 65), (ord(y) - 97)
+    return (ord(row) - 65), (ord(col) - 97)
 
 
-##### Validating a block :
-def valid_position(grid,block,i,j):
-    # Declaring all variables
+def valid_position(grid, block, i, j):
+    """
+    :param grid : matrix of lists of characters ('0', '1' or '2')
+    :param block : matrix of lists of integers (0 or 1)
+    :param i : integer of the index of the row
+    :param j: integer of the index of the column
+    :return: boolean, True if the block can be placed, else False
+    """
+    # copying i in grid_row
     grid_row = i
-    for block_row in range(len(block)-1, -1, -1) :
-        if (1 in block[block_row]) and (grid_row < 0) :
+    # we go through the rows of the block, from bottom to top
+    for block_row in range(len(block) - 1, -1, -1):
+        # => if there is a 1 in the row, but we already exceeded the rows of grid at the top then return False
+        if (1 in block[block_row]) and (grid_row < 0):
             return False
+        # => else :
+        # ==> copying j in grid_col
+        # ==> for each row, we go through the columns from left to right
+        # ==> if block at index [block_row][block_col] is 1, but the block exceeds grid at the right then return False
+        # ==> if block at [block_row][block_col] is 1, but grid at [grid_row][grid_col] is '0' or '2' then return False
+        # ==> then we move to the next column in the grid
         grid_col = j
-        for block_col in range(len(block)) :
+        for block_col in range(len(block)):
             if block[block_row][block_col] == 1:
                 if grid_col >= len(grid[grid_row]):
                     return False
-                elif (grid[grid_row][grid_col] == '0') or (grid[grid_row][grid_col] == '2') :
+                elif (grid[grid_row][grid_col] == '0') or (grid[grid_row][grid_col] == '2'):
                     return False
-                else :
-                    grid_col += 1
-            else :
-                grid_col += 1
+            grid_col += 1
+    # ==> after reaching the last column, we move to row above
         grid_row -= 1
+    # After checking all the columns of all rows, then we return True
     return True
 
-#####placing the block in the file
-def emplace_block(grid,block,i,j):
+
+# placing the block in the file
+def emplace_block(grid, block, i, j):
+    """
+    :param grid : matrix of lists of characters ('0', '1' or '2')
+    :param block : matrix of lists of integers (0 or 1)
+    :param i : integer = index of the row of the position
+    :param j: integer = index of the column of the position
+    :return: temp_grid : modified matrix of lists of characters ('0', '1' or '2')
+    """
+    # copying grid in temp_grid
     temp_grid = grid
-    #modifying only rows and columns affected by block
+    # block_row : index of the last row in the block
     block_row = len(block) - 1
-    for grid_row in range(i, i-len(block), -1) :
+    # we go through the grid from index i to (i-len(block)) || going up
+    # => block_col : index of the first column in the sublist block_row of block
+    for grid_row in range(i, i - len(block), -1):
         block_col = 0
-        for grid_col in range (j, j +(len(block))):
+        # => we go through the grid's sublist from j to (j+len(block)) || left to right
+        # => if block at index [block_row][block_col] is 1, we change the temp_grid at index [grid_row][grid_col] to '2'
+        # => then we move to the next column of the block
+        # => after reaching the last column we move to the row of the block above
+        for grid_col in range(j, j + (len(block))):
             if block[block_row][block_col] == 1:
                 temp_grid[grid_row][grid_col] = '2'
             block_col += 1
