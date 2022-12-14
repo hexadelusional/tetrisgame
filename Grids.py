@@ -233,11 +233,11 @@ def update_score(grid,mode,line) :
     s = 0
     if mode == "row" :
         for elt in grid[line] :
-            if elt == 1 or elt == 2 :
+            if elt == 2 :
                 s += 1
     else :
         for row in grid :
-            if row[line] == 1 or row[line] == 2 :
+            if row[line] == 2 :
                 s += 1
     return s
 
@@ -267,7 +267,7 @@ def reloading_all_data(path):
         # recuperating the data (written on the last line of the file)
         for x in range(2):
             length += line[x]
-        for x in range(1, len(line) - 1):
+        for x in range(2, len(line)):
             score += line[x]
         # deleting the data to be able to use the grid to play
         for line in lines[:len(lines)-1]:
