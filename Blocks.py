@@ -154,7 +154,7 @@ def select_blocks(list_blocks, policy):
                 not ('0' <= chosen_index[0] <= '9' and '0' <= chosen_index[-1] <= '9')) and (
                            0 <= int(chosen_index) <= (len(blocks) - 1))):
             chosen_index = input(chr(8658) +
-                " Enter the next block to place on the grid (you have to enter the number of next block) : \n")
+                                 " Enter the next block to place on the grid (Enter the number of next block) : \n")
         return blocks[int(chosen_index)]
     # => we randomly choose 3 elements in blocks (put in the_random_three) and print them for the user
     # => we ask the user for the index of the matrix (chosen_index) in the_random_three that they want to place
@@ -164,9 +164,9 @@ def select_blocks(list_blocks, policy):
         the_random_three = sample(blocks, 3)
         print_blocks(the_random_three)
         chosen_index = input(chr(8658) + " Enter the next block to place on the grid: \n")
-        while not (0 <= int(chosen_index) <= 2):
-            chosen_index = input(chr(8658) + 
-                                 " Enter the next block to place on the grid (you have to enter the number of next block) : \n")
+        while not ('0' <= chosen_index <= '2'):
+            chosen_index = input(chr(8658) +
+                                 " Enter the next block to place on the grid (Enter the number of next block) : \n")
         return the_random_three[int(chosen_index)]
 
 
@@ -185,7 +185,7 @@ def coordinates(grid, size):
     col = str(input(chr(8658) + " Enter the y coordinates of the column: "))
     while col < chr(97) or col > (chr(97 + size - 1)) or len(col) != 1:
         col = str(input(chr(8658) +
-            " This column doesn't exist ! You must enter the letter (in lowercase) of the column you want: "))
+                        " This column doesn't exist ! Enter the letter (in lowercase) of the column you want: "))
 
     # particular case for the triangle => y-axis = half of x-axis
     if grid == "T":
@@ -197,10 +197,11 @@ def coordinates(grid, size):
     row = str(input(chr(8658) + " Enter the x coordinates of the row: "))
     while row < chr(65) or row > (chr(65 + size - 1)) or len(row) != 1:
         row = str(input(chr(8658) +
-            " This row does not exist ! You must enter the letter (in uppercase) of the row you want: "))
+                        " This row does not exist ! Enter the letter (in uppercase) of the row you want: "))
 
     # transforming the coordinates from letters to numbers
     return (ord(row) - 65), (ord(col) - 97)
+
 
 # function valid_position which checks whether a block can be placed such that the lower left square of it is its center
 def valid_position(grid, block, i, j):
@@ -232,7 +233,7 @@ def valid_position(grid, block, i, j):
                 elif (grid[grid_row][grid_col] == '0') or (grid[grid_row][grid_col] == '2'):
                     return False
             grid_col += 1
-    # ==> after reaching the last column, we move to row above
+        # ==> after reaching the last column, we move to row above
         grid_row -= 1
     # After checking all the columns of all rows, then we return True
     return True
