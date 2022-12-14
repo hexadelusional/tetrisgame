@@ -1,9 +1,6 @@
-# function save_grid(path, grid)that save a grid in a file specified by path
-def save_grid(path, grid):
-    with open(path + ".txt", "w") as G:
-        for i in range(len(grid)-1):
-            string = ''
-            for j in range(len(grid[i])-1):
-                string += grid[i][j] + ' '
-            string += "\n"
-            G.write(string)
+    if current_grid == 'circle':
+        current_blocks = common_blocks + circle_list
+    elif current_grid == 'diamond':
+        current_blocks = common_blocks + diamond_list
+    else:
+        current_blocks = common_blocks + triangle_list
