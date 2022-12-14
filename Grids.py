@@ -1,264 +1,331 @@
-from random import *
-from main import *
-
-# BLOCKS
-
-# COMMON BLOCKS
-
-common_blocks = [[] for i in range(20)]
-common_blocks[0] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0]]
-common_blocks[1] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 0, 0], [1, 1, 0, 0]]
-common_blocks[2] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 1, 0]]
-common_blocks[3] = [[0, 0, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0]]
-common_blocks[4] = [[0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0], [1, 0, 0, 0]]
-common_blocks[5] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 0, 0], [1, 1, 1, 0]]
-common_blocks[6] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 0, 0], [0, 1, 1, 0]]
-common_blocks[7] = [[0, 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0]]
-common_blocks[8] = [[1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
-common_blocks[9] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 0, 0], [1, 1, 0, 0]]
-common_blocks[10] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0]]
-common_blocks[11] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 0, 0], [1, 0, 0, 0]]
-common_blocks[12] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 1, 0], [1, 1, 1, 0]]
-common_blocks[13] = [[0, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 1, 0, 0]]
-common_blocks[14] = [[0, 0, 0, 0], [0, 1, 0, 0], [1, 1, 0, 0], [0, 1, 0, 0]]
-common_blocks[15] = [[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 0], [0, 1, 0, 0]]
-common_blocks[16] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 0], [1, 1, 0, 0]]
-common_blocks[17] = [[0, 0, 0, 0], [0, 1, 0, 0], [1, 1, 0, 0], [1, 0, 0, 0]]
-common_blocks[18] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0]]
-common_blocks[19] = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 1]]
-
-# CIRCLE BLOCKS
-
-circle_list = [[] for i in range(12)]
-circle_list[0] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0]]
-circle_list[1] = [[0, 0, 0, 0, 0], [0, 1, 1, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [0, 1, 1, 0, 0]]
-circle_list[2] = [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [1, 0, 0, 1, 0], [1, 0, 0, 1, 0], [1, 1, 1, 1, 0]]
-circle_list[3] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 0]]
-circle_list[4] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 0, 0]]
-circle_list[5] = [[0, 0, 0, 0, 0], [1, 1, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [1, 1, 1, 0, 0]]
-circle_list[6] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 0, 0, 0]]
-circle_list[7] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0]]
-circle_list[8] = [[1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0]]
-circle_list[9] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1], [1, 0, 0, 0, 1]]
-circle_list[10] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
-circle_list[11] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 1, 0], [1, 1, 1, 1, 0]]
-
-# DIAMOND BLOCKS
-
-diamond_list = [[] for i in range(14)]
-diamond_list[0] = [[0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0], [1, 0, 0, 0, 0]]
-diamond_list[1] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 1, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 1, 0]]
-diamond_list[2] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0]]
-diamond_list[3] = [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [1, 0, 0, 1, 0]]
-diamond_list[4] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0], [0, 0, 1, 0, 0]]
-diamond_list[5] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0]]
-diamond_list[6] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 1, 0, 0], [0, 0, 1, 1, 0]]
-diamond_list[7] = [[0, 0, 0, 0, 0], [0, 0, 0, 1, 0], [0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0]]
-diamond_list[8] = [[1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0]]
-diamond_list[9] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 1, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0]]
-diamond_list[10] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
-diamond_list[11] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0]]
-diamond_list[12] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 0, 0, 0], [0, 1, 0, 0, 0], [0, 1, 0, 0, 0]]
-diamond_list[13] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 1, 0, 0, 0]]
-
-# TRIANGLE BLOCKS
-
-triangle_list = [[] for i in range(11)]
-triangle_list[0] = [[1, 0, 0], [1, 1, 1], [0, 0, 1]]
-triangle_list[1] = [[1, 1, 0], [0, 1, 0], [0, 1, 1]]
-triangle_list[2] = [[0, 0, 1], [1, 1, 1], [1, 0, 0]]
-triangle_list[3] = [[0, 1, 1], [0, 1, 0], [1, 1, 0]]
-triangle_list[4] = [[0, 0, 1], [0, 1, 0], [1, 0, 0]]
-triangle_list[5] = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-triangle_list[6] = [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
-triangle_list[7] = [[0, 0, 0], [1, 1, 1], [1, 1, 1]]
-triangle_list[8] = [[0, 0, 0], [1, 0, 0], [1, 0, 0]]
-triangle_list[9] = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
-triangle_list[10] = [[0, 0, 0], [0, 0, 0], [1, 1, 0]]
+# GRIDS
 
 
-def print_blocks(list_blocks):
-    """
-    :param list_blocks: list of matrices
-    :return: None
-    :role: printing the blocks in list_blocks
-    """
-    # blocks : list of all the blocks to print
-    # cpt : index of the last block we're currently printing
-    blocks = list_blocks
-    cpt = 0
-    print("\n".strip())
-    while blocks:
-        # if there are less than 8 blocks in blocks :
-        # => row_blocks takes all elements in blocks, and we empty blocks to get out of while loop
-        # => length = number of remaining elements in blocks
-        if len(blocks) < 8:
-            row_blocks = blocks
-            blocks = []
-            nb = len(row_blocks)
-        # if there are at least 8 blocks in blocks :
-        # => row_blocks takes the first 8 elements from blocks
-        # => we remove those 8 blocks from blocks
-        # => length = 8
-        else:
-            row_blocks = blocks[0:8]
-            blocks = blocks[8:]
-            nb = 8
-        # we add the given length to cpt to know at which index we are in terms of list_blocks
-        cpt += nb
-        # then we print the names "block n" from (cpt - length) to cpt
-        for block in range(cpt - nb, cpt):
-            print('| {:^10} |'.format("Block " + str(block)), end="")
-        print("\n".strip())
-        # max_ rows : number of rows of the biggest block
-        max_rows = max(len(row_blocks[0]), len(row_blocks[-1]))
-        # we go through row_blocks, row by row (row1 of all blocks, then row2 of all blocks ...)
-        # for each block in row_blocks :
-        # => if row exists in the block then we print | characters |
-        # => if row doesn't exist then we print empty spaces between the | |
-        for row in range(max_rows):
-            for block in range(len(row_blocks)):
-                if row < len(row_blocks[block]):
-                    substring = ""
-                    for elt in row_blocks[block][row]:
-                        if elt == 0:
-                            substring += chr(10240) + " "
-                        else:
-                            substring += chr(9632) + " "
-                    print('| {:^10} |'.format(substring), end="")
+# DIAMOND GRID
+
+# creation + filling up the diamond.txt according to the size chosen by the user
+def grid_diamond(size):
+    with open("D.txt", "w") as D:
+        if size == "L":
+            length = 25
+            space = 11
+            j = 25
+            for i in range(length):
+                j = j - 1
+                if i <= 12:
+                    D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
+                            (space - i + 1) + "\n")
+                if i > 12:
+                    D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " *
+                            (space - j + 1) + "\n")
+
+        if size == "M":
+            length = 23
+            space = 10
+            j = 23
+            for i in range(length):
+                j = j - 1
+                if i <= 11:
+                    D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
+                            (space - i + 1) + "\n")
+                if i > 11:
+                    D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " *
+                            (space - j + 1) + "\n")
+
+        if size == "S":
+            length = 21
+            space = 9
+            j = 21
+            for i in range(length):
+                j = j - 1
+                if i <= 10:
+                    D.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
+                            (space - i + 1) + "\n")
+                if i > 10:
+                    D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " *
+                            (space - j + 1) + "\n")
+
+
+# TRIANGLE GRID
+
+# creation + filling up the triangle.txt doc according to the size chosen by the user
+def grid_triangle(size):
+    with open("T.txt", "w") as T:
+
+        if size == "L":
+            length = 25
+            space = 11
+            for i in range(length):
+                if i <= 12:
+                    T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
+                            (space - i + 1) + "\n")
+
+        if size == "M":
+            length = 23
+            space = 10
+            for i in range(length):
+                if i <= 11:
+                    T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
+                            (space - i + 1) + "\n")
+
+        if size == "S":
+            length = 21
+            space = 9
+            for i in range(length):
+                if i <= 10:
+                    T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
+                            (space - i + 1) + "\n")
+
+
+# CIRCLE GRID
+
+# creation + filling up the circle.txt doc according to the size chosen by the user
+def grid_circle(size):
+    with open("C.txt", "w") as C:
+        if size == "L":
+            length = 25
+            space = 5
+            for i in range(1, length + 1):
+                if i <= 5:
+                    C.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (
+                                space - i + 1) + "\n")
+                elif i >= 21:
+                    C.write("0  " * (i - (length - space)) + "1  " * (length - (i - (length - space)) * 2) + "0  " * (
+                                i - (length - space)) + "\n")
                 else:
-                    print('| {:^10} |'.format(" "), end="")
-            print("\n".strip())
-        print('_' * 112)
+                    C.write("1  " * length + "\n")
+
+        if size == "M":
+            length = 23
+            space = 5
+            for i in range(1, length + 1):
+                if i <= 5:
+                    C.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (
+                            space - i + 1) + "\n")
+                elif i >= 19:
+                    C.write("0  " * (i - (length - space)) + "1  " * (length - (i - (length - space)) * 2) + "0  " * (
+                            i - (length - space)) + "\n")
+                else:
+                    C.write("1  " * length + "\n")
+
+        if size == "S":
+            length = 21
+            space = 5
+            for i in range(1, length + 1):
+                if i <= 5:
+                    C.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " * (
+                            space - i + 1) + "\n")
+                elif i >= 17:
+                    C.write("0  " * (i - (length - space)) + "1  " * (length - (i - (length - space)) * 2) + "0  " * (
+                            i - (length - space)) + "\n")
+                else:
+                    C.write("1  " * length + "\n")
 
 
-def select_blocks(list_blocks, policy):
+# function read_grid that returns a valid grid read from the contents of the file specified by path
+def read_grid(path):
+    with open(path + ".txt", "r") as file:
+        # opening the path (in reading mode) corresponding to the grid chosen by the user (which is current_grid)
+        matrix = []
+        # going through each element of each line of the file and appending it to a big matrix : our grid
+        for line in file:
+            sub_list = []
+            line = line.strip()
+            columns = line.split()
+            for elt in columns:
+                sub_list.append(elt)
+            matrix.append(sub_list)
+        return matrix
+
+
+# function save_grid(path, grid) that save a grid in a file specified by path
+def save_grid(path, grid):
     """
-    :param: list_blocks : given list of matrices (blocks)
-    :param: policy: character that is either '1' or '2'
-    :return: the matrix of the selected block
+    :param path: name of the grid chosen by the user
+    :param grid: the matrix M of the grid
+    :return: none
     """
-    # we copy in blocks the elements in list_blocks
-    blocks = list_blocks
-    # if policy is '1' :
-    # => we print all elements of blocks for the user
-    # => we ask the user for the index of the matrix (chosen_index) in list_blocks that they want to place
-    # => we repeat the previous task as long as chosen_index doesn't exist
-    # => we return the matrix of the selected block
-    if policy == '1':
-        print_blocks(blocks)
-        chosen_index = input(chr(8658) + " Enter the next block to place on the grid: \n")
-        while not (not (not (1 <= len(chosen_index) <= 2)) and not (
-                not ('0' <= chosen_index[0] <= '9' and '0' <= chosen_index[-1] <= '9')) and (
-                           0 <= int(chosen_index) <= (len(blocks) - 1))):
-            chosen_index = input(chr(8658) +
-                " Enter the next block to place on the grid (you have to enter the number of next block) : \n")
-        return blocks[int(chosen_index)]
-    # => we randomly choose 3 elements in blocks (put in the_random_three) and print them for the user
-    # => we ask the user for the index of the matrix (chosen_index) in the_random_three that they want to place
-    # => we repeat the previous task as long as chosen_index doesn't exist
-    # => we return the matrix of the selected block
+    with open(path + ".txt", "w") as G:  # opening the file current_grid and updating the changing matrix into the file
+        for i in range(len(grid)):
+            string = ""
+            for j in range(len(grid[i])):
+                string += grid[i][j] + "  "
+            string += "\n"
+            G.write(string)
+
+
+# function print_grid(grid) which displays the status of the grid in ascii symbols
+def print_grid(grid):
+    # creating two strings minu and maju : the coordinates the user will enter to place the blocks
+    minu = "abcdefghijklmnopqrstuvwxy"
+    maju = "ABCDEFGHIJKLMNOPQRSTUVWXY"
+
+    # writing the lowercase coordinates on the top of the grid & the ascii symbols
+    line = ""
+    print(format(line, '>37s'), end=" ")  # adjusting aesthetic line (with 37 spaces before the first element)
+    for i in range(len(grid[0])):
+        line += " " + minu[i] + " "
+    print(line)  # displaying the line of letters corresponding to the columns of the grid
+    line = ""
+    print(format(line, '>36s'), end="")  # adjusting aesthetics line (with 36 spaces before the first ascii character)
+    print((chr(9556) + "  " + (chr(9552)+"  ") * (len(grid[0]))+chr(9559)))  # top frame display
+    for i in range(len(grid)):
+        line = maju[i] + chr(9553)  # displaying the line of letters corresponding to the row + frame display
+        print(format(line, '>37s'), end="  ")
+        for j in range(len(grid[i])):
+            if grid[i][j] == "0":
+                print(chr(10240), end="  ")  # replacing every 0 of the list with a blank ascii code symbol
+            elif grid[i][j] == '1':
+                print(chr(9643), end="  ")  # replacing every 1 of the list with a little cube
+            elif grid[i][j] == '2':
+                print(chr(9632), end="  ")  # replacing every 2 of the list with a big cube
+        print(chr(9553) + maju[i]+"\n".strip())  # frame display + line of letters corresponding to the row
+    line = ""
+    print(format(line, '>36s'), end="")  # adjusting aesthetics line (with 36 spaces before the first ascii character)
+    print((chr(9562) + "  " + (chr(9552) + "  ") * (len(grid[0])) + chr(9565)))  # bottom frame display
+    line = ""
+    print(format(line, '>37s'), end=" ")  # adjusting aesthetic line (with 37 spaces before the first element)
+    for i in range(len(grid[0])):
+        line += " " + minu[i] + " "
+    print(line)  # displaying the line of letters corresponding to the columns of the grid
+
+
+# function row_state that verifies if line i in grid is full
+def row_state(grid, i):
+    """
+    :param grid: the matrix M of the grid
+    :param i: the coordinates x of the row state to be checked
+    :return: a boolean that states if the row i is full or not
+    """
+    row_is_full = True  # assuming the row is full
+    for x in grid[i]:
+        if x == '1':  # if an element in the row is not a 2, here a 1, the row is not full
+            row_is_full = False
+    return row_is_full
+
+
+# function col_state that verifies if column j in grid is full
+def col_state(grid, j):
+    """
+    :param grid: the matrix M of the grid
+    :param j: the coordinates y of the column state to be checked
+    :return: a boolean that states if the column j is full or not
+    """
+    col_is_full = True  # assuming the column is full
+    for row in range(len(grid)):
+        if grid[row][j] == '1':  # if an element in the column is not a 2, here a 1, the column is not full
+            col_is_full = False
+    return col_is_full
+
+
+# function row_clear(grid, i) that cancels the row i in the grid and shifts all lines from the top to the bottom
+def row_clear(grid, i):
+    """
+    :param grid: the matrix M of the grid
+    :param i: the coordinates x of the row to be cleared
+    :return: the new matrix with i cleared
+    """
+    # replacing the full line of 2s by 1s (which means: a full line of blocks by empty spaces)
+    for two in range(len(grid[i])):
+        while grid[i][two] == '2':
+            grid[i][two] = '1'
+    # doing the "shift" so that the 2s go beneath (which means: the blocks go to the line right underneath them)
+    x = i
+    while x != 0:
+        index = 0
+        while index < len(grid[i]):
+            if grid[x-1][index] == '2':  # if the element above is a 2
+                if x+1 != len(grid[i]):  # if the element below is not in the last line of the grid
+                    if grid[x+1][index] == '0':  # the element of the line below becomes a 0
+                        pass
+                    else:
+                        grid[x][index] = '2'  # the element on the current line becomes a 2
+                        grid[x - 1][index] = '1'  # the element on the above line becomes a 1
+            index += 1  # increasing index to go through every element of each line
+        x -= 1  # decreasing x to go from the full line, up to the first line of the grid
+    return grid
+
+
+# function col_clear that cancels the column j in a grid
+def col_clear(grid, j):
+    """
+    :param grid: the matrix M of the grid
+    :param j: the coordinates y of the column to be cleared
+    :return: the new matrix with j cleared
+    """
+    for row in range(len(grid)):
+        while grid[row][j] == '2':
+            grid[row][j] = '1'
+    for i in range(len(grid)):
+        print(grid[i], end=" \n")
+    return grid
+
+
+# function update_score() which updates the score each time a row is cancelled
+def update_score(grid, mode, line):
+    """
+    :param grid: the matrix M of the grid
+    :param mode: a string, either 'row' or 'column'
+    :param line: the coordinates x or y of the full line
+    :return: s, the score
+    """
+    # make col_clear / row_clear return the line that was cancelled and saved in a variable line
+    s = 0
+    if mode == "row":
+        for elt in grid[line]:
+            if elt == '2':
+                s += 1
     else:
-        the_random_three = sample(blocks, 3)
-        print_blocks(the_random_three)
-        chosen_index = input(chr(8658) + " Enter the next block to place on the grid: \n")
-        while not (0 <= int(chosen_index) <= 2):
-            chosen_index = input(chr(8658) +
-                " Enter the next block to place on the grid (you have to enter the number of next block) : \n")
-        return the_random_three[int(chosen_index)]
+        for row in grid:
+            if row[line] == '2':
+                s += 1
+    return s
 
 
-def coordinates(grid, size):
+# LOADING FEATURE TO RESUME A SAVED GAME
+
+# function backup_save which saves all data in a new file
+def backup_save(path, grid, size, shape, score):
     """
-    :param grid: matrix of lists of characters ('0', '1' or '2')
-    :param size: length of the grid (number of elements in each row)
-    :return:
-            row : integer, index of the row of the position
-            col : integer, index of the column of the position
+    :param path: the name (given by the user) of the new file to be created to save the data of his game performance
+    :param grid: the matrix of the game to be saved into the path specified above
+    :param size: recuperating the size of the game grid for later re-use
+    :param shape: recuperating the shape of the grid to be played on for later re-use
+    :param score: recuperating the score of the game for later re-use
+    :return: none
     """
-    # asking for the y coordinates
-    # we ask the user for col (a letter of the alphabet in lowercase)
-    # we repeat the previous task as long as col doesn't exist
-    col = str(input(chr(8658) + " Enter the y coordinates of the column: "))
-    while col < chr(97) or col > (chr(97 + size - 1)) or len(col) != 1:
-        col = str(input(chr(8658) +
-            " This column doesn't exist ! You must enter the letter (in lowercase) of the column you want: "))
-
-    # particular case for the triangle => y-axis = half of x-axis
-    if grid == "T":
-        size = (size + 1) // 2
-
-    # asking for the x coordinates
-    # we ask the user for row (a letter of the alphabet in uppercase)
-    # we repeat the previous task as long as row doesn't exist
-    row = str(input(chr(8658) + " Enter the x coordinates of the row: "))
-    while row < chr(65) or row > (chr(65 + size - 1)) or len(row) != 1:
-        row = str(input(chr(8658) +
-            " This row does not exist ! You must enter the letter (in uppercase) of the row you want: "))
-
-    # transforming the coordinates from letters to numbers
-    return (ord(row) - 65), (ord(col) - 97)
+    with open(path + ".txt", "w") as G:
+        for i in range(len(grid)):
+            string = ''
+            for j in range(len(grid[i])):
+                string += grid[i][j] + '  '
+            string += "\n"
+            G.write(string)
+        G.write(str(size) + str(shape) + str(score))
+        # writing the size and score of the grid on the last line of the matrix
 
 
-def valid_position(grid, block, i, j):
+# function reloading_all_data that recuperates all data (the size and the score) to start from where the user left off
+def reloading_all_data(path):
     """
-    :param grid : matrix of lists of characters ('0', '1' or '2')
-    :param block : matrix of lists of integers (0 or 1)
-    :param i : integer of the index of the row
-    :param j: integer of the index of the column
-    :return: boolean, True if the block can be placed, else False
+    :param path: the name of the file the user chose to reload
+    :return: the grid size, the score of the game the user chose to reload, the new name of current file he will play in
     """
-    # copying i in grid_row
-    grid_row = i
-    # we go through the rows of the block, from bottom to top
-    for block_row in range(len(block) - 1, -1, -1):
-        # => if there is a 1 in the row, but we already exceeded the rows of grid at the top then return False
-        if (1 in block[block_row]) and (grid_row < 0):
-            return False
-        # => else :
-        # ==> copying j in grid_col
-        # ==> for each row, we go through the columns from left to right
-        # ==> if block at index [block_row][block_col] is 1, but the block exceeds grid at the right then return False
-        # ==> if block at [block_row][block_col] is 1, but grid at [grid_row][grid_col] is '0' or '2' then return False
-        # ==> then we move to the next column in the grid
-        grid_col = j
-        for block_col in range(len(block)):
-            if block[block_row][block_col] == 1:
-                if grid_col >= len(grid[grid_row]):
-                    return False
-                elif (grid[grid_row][grid_col] == '0') or (grid[grid_row][grid_col] == '2'):
-                    return False
-            grid_col += 1
-    # ==> after reaching the last column, we move to row above
-        grid_row -= 1
-    # After checking all the columns of all rows, then we return True
-    return True
-
-
-# placing the block in the file
-def emplace_block(grid, block, i, j):
-    """
-    :param grid : matrix of lists of characters ('0', '1' or '2')
-    :param block : matrix of lists of integers (0 or 1)
-    :param i : integer = index of the row of the position
-    :param j: integer = index of the column of the position
-    :return: temp_grid : modified matrix of lists of characters ('0', '1' or '2')
-    """
-    # copying grid in temp_grid
-    temp_grid = grid
-    # block_row : index of the last row in the block
-    block_row = len(block) - 1
-    # we go through the grid from index i to (i-len(block)) || going up
-    # => block_col : index of the first column in the sublist block_row of block
-    for grid_row in range(i, i - len(block), -1):
-        block_col = 0
-        # => we go through the grid's sublist from j to (j+len(block)) || left to right
-        # => if block at index [block_row][block_col] is 1, we change the temp_grid at index [grid_row][grid_col] to '2'
-        # => then we move to the next column of the block
-        # => after reaching the last column we move to the row of the block above
-        for grid_col in range(j, j + (len(block))):
-            if block[block_row][block_col] == 1:
-                temp_grid[grid_row][grid_col] = '2'
-            block_col += 1
-        block_row -= 1
-    return temp_grid
+    with open(path + ".txt", "r+") as path:
+        lines = path.readlines()
+        for line in lines:  # going to the last line of the file
+            pass
+        length = ""
+        score = ""
+        current_grid = ""
+        # recuperating the data (written on the last line of the file)
+        for x in range(2):
+            length += line[x]
+        current_grid += line[2]
+        for x in range(3, len(line)):
+            score += line[x]
+        with open(current_grid + ".txt", "w") as gg:
+            # deleting the data to be able to use the grid to play
+            for line in lines[:len(lines)-1]:
+                gg.write(line)
+    return int(length), int(score), current_grid
