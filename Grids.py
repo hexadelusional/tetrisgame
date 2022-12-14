@@ -5,8 +5,8 @@
 
 # creation + filling up the diamond.txt according to the size chosen by the user
 def grid_diamond(size):
-    if size == "L":
-        with open("diamond.txt", "w") as D:
+    with open("D.txt", "w") as D:
+        if size == "L":
             length = 25
             space = 11
             j = 25
@@ -19,8 +19,7 @@ def grid_diamond(size):
                     D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " *
                             (space - j + 1) + "\n")
 
-    if size == "M":
-        with open("diamond.txt", "w") as D:
+        if size == "M":
             length = 23
             space = 10
             j = 23
@@ -33,8 +32,7 @@ def grid_diamond(size):
                     D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " *
                             (space - j + 1) + "\n")
 
-    if size == "S":
-        with open("diamond.txt", "w") as D:
+        if size == "S":
             length = 21
             space = 9
             j = 21
@@ -52,7 +50,7 @@ def grid_diamond(size):
 
 # creation + filling up the triangle.txt doc according to the size chosen by the user
 def grid_triangle(size):
-    with open("triangle.txt", "w") as T:
+    with open("T.txt", "w") as T:
 
         if size == "L":
             length = 25
@@ -83,8 +81,8 @@ def grid_triangle(size):
 
 # creation + filling up the circle.txt doc according to the size chosen by the user
 def grid_circle(size):
-    if size == "L":
-        with open("circle.txt", "w") as C:
+    with open("C.txt", "w") as C:
+        if size == "L":
             length = 25
             space = 5
             for i in range(1, length + 1):
@@ -97,8 +95,7 @@ def grid_circle(size):
                 else:
                     C.write("1  " * length + "\n")
 
-    if size == "M":
-        with open("circle.txt", "w") as C:
+        if size == "M":
             length = 23
             space = 5
             for i in range(1, length + 1):
@@ -111,8 +108,7 @@ def grid_circle(size):
                 else:
                     C.write("1  " * length + "\n")
 
-    if size == "S":
-        with open("circle.txt", "w") as C:
+        if size == "S":
             length = 21
             space = 5
             for i in range(1, length + 1):
@@ -277,11 +273,11 @@ def update_score(grid, mode, line):
     s = 0
     if mode == "row":
         for elt in grid[line]:
-            if elt == 2:
+            if elt == '2':
                 s += 1
     else:
         for row in grid:
-            if row[line] == 2:
+            if row[line] == '2':
                 s += 1
     return s
 
@@ -289,11 +285,12 @@ def update_score(grid, mode, line):
 # LOADING FEATURE TO RESUME A SAVED GAME
 
 # function backup_save which saves all data in a new file
-def backup_save(path, grid, size, score):
+def backup_save(path, grid, size, shape, score):
     """
     :param path: the name (given by the user) of the new file to be created to save the data of his game performance
     :param grid: the matrix of the game to be saved into the path specified above
     :param size: recuperating the size of the game grid for later re-use
+    :param shape: recuperating the shape of the grid to be played on for later re-use
     :param score: recuperating the score of the game for later re-use
     :return: none
     """
@@ -304,7 +301,8 @@ def backup_save(path, grid, size, score):
                 string += grid[i][j] + '  '
             string += "\n"
             G.write(string)
-        G.write(str(size) + str(score))  # writing the size and score of the grid on the last line of the matrix
+        G.write(str(size) + str(shape) + str(score))
+        # writing the size and score of the grid on the last line of the matrix
 
 
 # function reloading_all_data that recuperates all data (the size and the score) to start from where the user left off
@@ -313,20 +311,21 @@ def reloading_all_data(path):
     :param path: the name of the file the user chose to reload
     :return: the grid size, the score of the game the user chose to reload, the new name of current file he will play in
     """
-    with open(path + ".txt", "r+") as path, open("game_grid" + ".txt", "w") as current_grid:
+    with open(path + ".txt", "r+") as path:
         lines = path.readlines()
-        path.close()
         for line in lines:  # going to the last line of the file
             pass
         length = ""
         score = ""
+        current_grid = ""
         # recuperating the data (written on the last line of the file)
         for x in range(2):
             length += line[x]
-        for x in range(2, len(line)):
+        current_grid += line[2]
+        for x in range(3, len(line)):
             score += line[x]
-        # deleting the data to be able to use the grid to play
-        for line in lines[:len(lines)-1]:
-            current_grid.write(line)
-        current_grid.close()
-    return int(length), int(score), "game_grid"
+        with open(current_grid + ".txt", "w") as gg:
+            # deleting the data to be able to use the grid to play
+            for line in lines[:len(lines)-1]:
+                gg.write(line)
+    return int(length), int(score), current_grid
