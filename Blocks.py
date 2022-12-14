@@ -77,6 +77,7 @@ triangle_list[9] = [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
 triangle_list[10] = [[0, 0, 0], [0, 0, 0], [1, 1, 0]]
 
 
+# function print_blocs which displays the list of all the blocks associated with it
 def print_blocks(list_blocks):
     """
     :param list_blocks: list of matrices
@@ -132,6 +133,7 @@ def print_blocks(list_blocks):
         print('_' * 112)
 
 
+# function select_blocks that displays the blocks proposed to the user according to the policy and type of tray chosen
 def select_blocks(list_blocks, policy):
     """
     :param: list_blocks : given list of matrices (blocks)
@@ -163,11 +165,12 @@ def select_blocks(list_blocks, policy):
         print_blocks(the_random_three)
         chosen_index = input(chr(8658) + " Enter the next block to place on the grid: \n")
         while not (0 <= int(chosen_index) <= 2):
-            chosen_index = input(chr(8658) +
-                " Enter the next block to place on the grid (you have to enter the number of next block) : \n")
+            chosen_index = input(chr(8658) + 
+                                 " Enter the next block to place on the grid (you have to enter the number of next block) : \n")
         return the_random_three[int(chosen_index)]
 
 
+# function coordinates that transforms the letter coordinates given by the user to integers
 def coordinates(grid, size):
     """
     :param grid: matrix of lists of characters ('0', '1' or '2')
@@ -199,7 +202,7 @@ def coordinates(grid, size):
     # transforming the coordinates from letters to numbers
     return (ord(row) - 65), (ord(col) - 97)
 
-
+# function valid_position which checks whether a block can be placed such that the lower left square of it is its center
 def valid_position(grid, block, i, j):
     """
     :param grid : matrix of lists of characters ('0', '1' or '2')
@@ -235,7 +238,7 @@ def valid_position(grid, block, i, j):
     return True
 
 
-# placing the block in the file
+# function emplace_block that positions the block chosen by the user on the grid if and only if it's position is valid
 def emplace_block(grid, block, i, j):
     """
     :param grid : matrix of lists of characters ('0', '1' or '2')
