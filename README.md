@@ -1,4 +1,4 @@
-### TETRIS PUZZLE ###
+#TETRIS PUZZLE #
 
 
 A file README.txt listing the programs and how to use them in practice. This file must contain all
@@ -15,7 +15,8 @@ Make sure you have at least python 3.10 installed to start playing (although hav
 
 
 ## Configuration 
-To start playing the game, go to the main.py file and execute it. The game will then appear in the python console/terminal. From there, no need to do anything else, simply follow what the display tells you to on the screen.
+In the folder, you will find 3 files/ main.py, Grid.py and Blocks.py . Grid.py and Blocks.py are two files containing the functions needed to execute main.py . 
+So to start playing the game, just go to the main.py file and execute it. The game will then appear in the python console/terminal. From there, no need to do anything else, simply follow what the display tells you to on the screen.
 
 
 ## Coders
