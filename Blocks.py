@@ -46,7 +46,7 @@ circle_list[11] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 
 # DIAMOND BLOCKS
 
 diamond_list = [[] for i in range(14)]
-diamond_list[0] = [[0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0], [1, 0, 0, 0, 0]]
+diamond_list[0] = [[0, 0, 0, 0, 0],[0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0], [1, 0, 0, 0, 0]]
 diamond_list[1] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 1, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 1, 0]]
 diamond_list[2] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0]]
 diamond_list[3] = [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [1, 0, 0, 1, 0]]
@@ -82,7 +82,6 @@ def print_blocks(list_blocks):
     """
     :param list_blocks: list of matrices
     :return: None
-    :role: printing the blocks in list_blocks
     """
     # blocks : list of all the blocks to print
     # cpt : index of the last block we're currently printing
@@ -147,14 +146,14 @@ def select_blocks(list_blocks, policy):
     # => we ask the user for the index of the matrix (chosen_index) in list_blocks that they want to place
     # => we repeat the previous task as long as chosen_index doesn't exist
     # => we return the matrix of the selected block
-    if policy == '1':
+    if policy == "1":
         print_blocks(blocks)
-        chosen_index = input(chr(8658) + " Enter the next block to place on the grid: \n")
+        chosen_index = input("⇒ Enter the number of the next block to place on the grid: \n")
         while not (not (not (1 <= len(chosen_index) <= 2)) and not (
                 not ('0' <= chosen_index[0] <= '9' and '0' <= chosen_index[-1] <= '9')) and (
                            0 <= int(chosen_index) <= (len(blocks) - 1))):
-            chosen_index = input(chr(8658) +
-                                 " Enter the next block to place on the grid (Enter the number of next block) : \n")
+            chosen_index = input("⇒ Error, this block does not exist. Enter the number of the next block to place "
+                                 "on the grid : \n")
         return blocks[int(chosen_index)]
     # => we randomly choose 3 elements in blocks (put in the_random_three) and print them for the user
     # => we ask the user for the index of the matrix (chosen_index) in the_random_three that they want to place
@@ -163,10 +162,10 @@ def select_blocks(list_blocks, policy):
     else:
         the_random_three = sample(blocks, 3)
         print_blocks(the_random_three)
-        chosen_index = input(chr(8658) + " Enter the next block to place on the grid: \n")
-        while not ('0' <= chosen_index <= '2'):
-            chosen_index = input(chr(8658) +
-                                 " Enter the next block to place on the grid (Enter the number of next block) : \n")
+        chosen_index = input("⇒ Enter the number of the next block to place on the grid: \n")
+        while not (0 <= int(chosen_index) <= 2):
+            chosen_index = input("⇒ Error, this block does not exist. Enter the number of the  next block to place "
+                                 "on the grid \n")
         return the_random_three[int(chosen_index)]
 
 
@@ -182,10 +181,10 @@ def coordinates(grid, size):
     # asking for the y coordinates
     # we ask the user for col (a letter of the alphabet in lowercase)
     # we repeat the previous task as long as col doesn't exist
-    col = str(input(chr(8658) + " Enter the y coordinates of the column: "))
+    col = str(input("\n⇒ Enter the y coordinates (in lowercase) of the column: "))
     while col < chr(97) or col > (chr(97 + size - 1)) or len(col) != 1:
-        col = str(input(chr(8658) +
-                        " This column doesn't exist ! Enter the letter (in lowercase) of the column you want: "))
+        col = str(input("⇒ This column doesn't exist ! You must enter the letter in lowercase of the column"
+                        " you want: "))
 
     # particular case for the triangle => y-axis = half of x-axis
     if grid == "T":
@@ -194,14 +193,12 @@ def coordinates(grid, size):
     # asking for the x coordinates
     # we ask the user for row (a letter of the alphabet in uppercase)
     # we repeat the previous task as long as row doesn't exist
-    row = str(input(chr(8658) + " Enter the x coordinates of the row: "))
+    row = str(input("⇒ Enter the x coordinates (in uppercase) of the row: "))
     while row < chr(65) or row > (chr(65 + size - 1)) or len(row) != 1:
-        row = str(input(chr(8658) +
-                        " This row does not exist ! Enter the letter (in uppercase) of the row you want: "))
+        row = str(input("⇒ This row does not exist ! You must enter the letter in uppercase of the row you want: "))
 
     # transforming the coordinates from letters to numbers
     return (ord(row) - 65), (ord(col) - 97)
-
 
 # function valid_position which checks whether a block can be placed such that the lower left square of it is its center
 def valid_position(grid, block, i, j):
@@ -233,13 +230,13 @@ def valid_position(grid, block, i, j):
                 elif (grid[grid_row][grid_col] == '0') or (grid[grid_row][grid_col] == '2'):
                     return False
             grid_col += 1
-        # ==> after reaching the last column, we move to row above
+    # ==> after reaching the last column, we move to row above
         grid_row -= 1
     # After checking all the columns of all rows, then we return True
     return True
 
 
-# function emplace_block that positions the block chosen by the user on the grid if and only if it's position is valid
+# function emplace_block that positions the block chosen by the user on the grid if and only if its position is valid
 def emplace_block(grid, block, i, j):
     """
     :param grid : matrix of lists of characters ('0', '1' or '2')
