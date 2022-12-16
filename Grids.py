@@ -168,9 +168,9 @@ def print_grid(grid):
     print(line)  # displaying the line of letters corresponding to the columns of the grid
     line = ""
     print(format(line, '>36s'), end="")  # adjusting aesthetics line (with 36 spaces before the first ascii character)
-    print((chr(9556) + "  " + (chr(9552)+"  ") * (len(grid[0]))+chr(9559)))  # top frame display
+    print("╔" + "  " + ("═" + "  ") * (len(grid[0])) + "╗")  # top frame display
     for i in range(len(grid)):
-        line = maju[i] + chr(9553)  # displaying the line of letters corresponding to the row + frame display
+        line = maju[i] + "║"  # displaying the line of letters corresponding to the row + frame display
         print(format(line, '>37s'), end="  ")
         for j in range(len(grid[i])):
             if grid[i][j] == "0":
@@ -182,19 +182,20 @@ def print_grid(grid):
         print(chr(9553) + maju[i]+"\n".strip())  # frame display + line of letters corresponding to the row
     line = ""
     print(format(line, '>36s'), end="")  # adjusting aesthetics line (with 36 spaces before the first ascii character)
-    print((chr(9562) + "  " + (chr(9552) + "  ") * (len(grid[0])) + chr(9565)))  # bottom frame display
+    print("╚" + "  " + ("═" + "  ") * (len(grid[0])) + "╝")  # bottom frame display
     line = ""
     print(format(line, '>37s'), end=" ")  # adjusting aesthetic line (with 37 spaces before the first element)
     for i in range(len(grid[0])):
         line += " " + minu[i] + " "
-    print(line)  # displaying the line of letters corresponding to the columns of the grid
+    print(line + "\n")  # displaying the line of letters corresponding to the columns of the grid
 
 
-# function row_state that verifies if line i in grid is full
+
+    # function row_state that verifies if line i in grid is full
 def row_state(grid, i):
     """
     :param grid: the matrix M of the grid
-    :param i: the coordinates x of the row state to be checked
+    :param i: the coordinates y of the row state to be checked
     :return: a boolean that states if the row i is full or not
     """
     row_is_full = True  # assuming the row is full
@@ -208,7 +209,7 @@ def row_state(grid, i):
 def col_state(grid, j):
     """
     :param grid: the matrix M of the grid
-    :param j: the coordinates y of the column state to be checked
+    :param j: the coordinates x of the column state to be checked
     :return: a boolean that states if the column j is full or not
     """
     col_is_full = True  # assuming the column is full
@@ -222,7 +223,7 @@ def col_state(grid, j):
 def row_clear(grid, i):
     """
     :param grid: the matrix M of the grid
-    :param i: the coordinates x of the row to be cleared
+    :param i: the coordinates y of the row to be cleared
     :return: the new matrix with i cleared
     """
     # replacing the full line of 2s by 1s (which means: a full line of blocks by empty spaces)
@@ -250,7 +251,7 @@ def row_clear(grid, i):
 def col_clear(grid, j):
     """
     :param grid: the matrix M of the grid
-    :param j: the coordinates y of the column to be cleared
+    :param j: the coordinates x of the column to be cleared
     :return: the new matrix with j cleared
     """
     for row in range(len(grid)):
@@ -261,7 +262,7 @@ def col_clear(grid, j):
     return grid
 
 
-# function update_score() which updates the score each time a row is cancelled
+# function update_score() which updates the score each time a row or a column is cancelled
 def update_score(grid, mode, line):
     """
     :param grid: the matrix M of the grid
@@ -305,7 +306,7 @@ def backup_save(path, grid, size, shape, score):
         # writing the size and score of the grid on the last line of the matrix
 
 
-# function reloading_all_data that recuperates all data (the size and the score) to start from where the user left off
+# function reloading_all_data that recuperates all data (size, score, shape ) to start from where the user left off
 def reloading_all_data(path):
     """
     :param path: the name of the file the user chose to reload
