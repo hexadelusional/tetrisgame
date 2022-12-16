@@ -1,6 +1,6 @@
 # Tetris Puzzle
 
-## How to play: THE RULES OF THE GAME
+## How to play : THE RULES OF THE GAME
 In this game, you have a set of blocks that you have to place in turns on a board (the board has 3 shapes possible and blocks vary from one board shape to another). 
 To place a block, simply enter the coordinates of the spot you want to put the block on. Keep in mind that the block you are placing is centered by its bottom left square ! 
 The idea is to place each block in the location that eliminates as many rows and/or columns as possible. These are automatically deleted when they are full. For every deleted square, your score goes up by 1 point. Good luck !
