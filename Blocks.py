@@ -191,7 +191,7 @@ def coordinates(grid, size):
     # we ask the user for col (a letter of the alphabet in lowercase)
     # we repeat the previous task as long as col doesn't exist
     col = str(input("\n⇒ Enter the y coordinates (in lowercase) of the column: "))
-    while col < chr(97) or col > (chr(97 + size - 1)) or len(col) != 1:
+    while len(col) != 1 or col < chr(97) or col > (chr(97 + size - 1)):
         col = str(input("⇒ This column doesn't exist ! You must enter the letter in lowercase of the column"
                         " you want: "))
 
@@ -203,7 +203,7 @@ def coordinates(grid, size):
     # we ask the user for row (a letter of the alphabet in uppercase)
     # we repeat the previous task as long as row doesn't exist
     row = str(input("⇒ Enter the x coordinates (in uppercase) of the row: "))
-    while row < chr(65) or row > (chr(65 + size - 1)) or len(row) != 1:
+    while len(row) != 1 or row < chr(65) or row > (chr(65 + size - 1)):
         row = str(input("⇒ This row does not exist ! You must enter the letter in uppercase of the row you want: "))
 
     # transforming the coordinates from letters to numbers
