@@ -114,11 +114,20 @@ def print_blocks(list_blocks):
         max_rows = max(len(row_blocks[0]), len(row_blocks[-1]))
         # we go through row_blocks, row by row (row1 of all blocks, then row2 of all blocks ...)
         # for each block in row_blocks :
-        # => if row exists in the block then we print | characters |
+        # => if block is smaller than max_rows, we wait for the (max_rows-size_block)th row before printing block
+        # => if block is the size of max_rows & row exists in the block then we print | characters |
         # => if row doesn't exist then we print empty spaces between the | |
         for row in range(max_rows):
             for block in range(len(row_blocks)):
-                if row < len(row_blocks[block]):
+                if (len(row_blocks[block]) < max_rows) and (row >=(max_rows-len(row_blocks[block]))):
+                    substring = ""
+                    for elt in row_blocks[block][row-(max_rows-len(row_blocks[block]))]:
+                        if elt == 0:
+                            substring += chr(10240) + " "
+                        else:
+                            substring += chr(9632) + " "
+                    print('| {:^10} |'.format(substring), end="")
+                elif (len(row_blocks[block]) == max_rows) and (row < len(row_blocks[block])):
                     substring = ""
                     for elt in row_blocks[block][row]:
                         if elt == 0:
