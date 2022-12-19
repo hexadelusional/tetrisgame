@@ -42,7 +42,7 @@ if __name__ == "__main__":
                 " you want 'C' for [Circle], 'T' for [Triangle], 'D' for [Diamond] : \n")
 
         # asking what board shape the user wants,
-        current_size = input("⇒  What board size do you want to play on ? Enter 'S' for [Small], 'M' for [Medium],"
+        current_size = input("⇒  What board size do you want to play on ? Enter 'S' for [Small], 'M' for [Medium], "
                              "or 'L' for [Large] : \n")
         while current_size != "S" and current_size != "M" and current_size != "L":
             current_size = input("⇒ Error, this board size does not exist. Write the uppercase letter of "
@@ -111,6 +111,8 @@ if __name__ == "__main__":
         # printing the block the user just chose
         print_blocks([chosen_block])
 
+        rotate(chosen_block)
+        print_blocks([chosen_block])
         # asking the coordinates of where the user wants to put the block
         x, y = coordinates(current_grid, length)
 
@@ -145,21 +147,20 @@ if __name__ == "__main__":
                 y += 1
 
             # asking the player if they want to pursue the game or quit
-            answer = input(chr(8658) + " Do you wish to continue ? Y or N : \n")
+            answer = input("⇒  Do you wish to continue ? Y or N : \n")
             while answer != "Y" and answer != "N":
-                answer = input(chr(8658) + " Do you wish to continue ? Please type 'Y' or 'N' : \n")
+                answer = input("⇒  Do you wish to continue ? Please type 'Y' or 'N' : \n")
 
     # asking the user if he wants to save his game in a file
-    wanna_save = input(chr(8658) + " Do you want to save your game to resume another time ? Y or N : \n")
+    wanna_save = input("⇒  Do you want to save your game to resume another time ? Y or N : \n")
     while wanna_save != "Y" and wanna_save != "N":
-        wanna_save = input(chr(8658) + " Do you want to save your game to resume another time ? Please type 'Y' or 'N' : \n")
+        wanna_save = input(" ⇒ Do you want to save your game to resume another time ? Please type 'Y' or 'N' : \n")
 
     if wanna_save == "Y":
         # saving the current grid in a file named by the user
-        name = input(chr(8658) + " Give the name of the file you want to save your grid in : \n")
+        name = input("⇒  Give the name of the file you want to save your grid in : \n")
         while len(name) >= 10:
-            name = input(chr(8658) +
-                " Give the name of the file you want to save your grid in, it cannot exceed 10 characters : \n")
+            name = input("⇒  Give the name of the file you want to save your grid in, it cannot exceed 10 characters : \n")
         backup_save(name, M, length, current_grid, score)
 
-    print(chr(8658) + " Your total score was : ", score)
+    print("⇒  Your total score was : ", score)
