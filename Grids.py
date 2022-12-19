@@ -261,9 +261,8 @@ def col_clear(grid, j):
         print(grid[i], end=" \n")
     return grid
 
-
 # function update_score() which updates the score each time a row or a column is cancelled
-def update_score(grid, mode, line):
+def update_score(grid, mode, index):
     """
     :param grid: the matrix M of the grid
     :param mode: a string, either 'row' or 'column'
@@ -273,15 +272,14 @@ def update_score(grid, mode, line):
     # make col_clear / row_clear return the line that was cancelled and saved in a variable line
     s = 0
     if mode == "row":
-        for elt in grid[line]:
+        for elt in grid[index]:
             if elt == '2':
                 s += 1
     else:
         for row in grid:
-            if row[line] == '2':
+            if row[index] == '2':
                 s += 1
     return s
-
 
 # LOADING FEATURE TO RESUME A SAVED GAME
 
