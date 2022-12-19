@@ -272,3 +272,25 @@ def emplace_block(grid, block, i, j):
             block_col += 1
         block_row -= 1
     return temp_grid
+
+
+def rotate(matrix):
+    rotation = input("⇒ Do you want to rotate the block before placing it ? 'Y' or 'N'\n")
+    while rotation != "Y" and rotation != "N":
+        rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
+    if rotation == "Y":
+        number = input("The block will turn right. But how many times ? Give a number between 1 and 3: ")
+        while number != "1" and number != "2" and number != "3":
+            number = input("Give a number between 1 and 3, for the number of times the block will turn right: ")
+        for x in range(int(number)):
+            Block = []
+            for column in range(len(matrix)):
+                temp = []
+                for row in range(len(matrix) - 1, -1, -1):
+                    temp.append(matrix[row][column])
+                Block.append(temp)
+            for i in range(len(matrix)):
+                for j in range(len(matrix)):
+                    matrix[i][j] = Block[i][j]
+    else:
+        pass
