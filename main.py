@@ -32,7 +32,7 @@ if __name__ == "__main__":
         length, score, current_grid = reloading_all_data(new_name)
 
     else:
-        print('\n╘{:═^150}╛\n'.format(" BEWARE... THE GAME HAS STARTED ! "))
+        print('\n╞{:═^150}╡\n'.format(" BEWARE... THE GAME HAS STARTED ! "))
         # asking what board shape the user wants
         current_grid = input("⇒ What board shape do you want to play on ? "
                                           " Enter 'C' for [Circle], 'T' for [Triangle], or 'D' [Diamond] : \n")
@@ -111,8 +111,8 @@ if __name__ == "__main__":
         # printing the block the user just chose
         print_blocks([chosen_block])
 
-        rotate(chosen_block)
-        print_blocks([chosen_block])
+        print_blocks([rotate(chosen_block)])
+
         # asking the coordinates of where the user wants to put the block
         x, y = coordinates(current_grid, length)
 
@@ -130,6 +130,7 @@ if __name__ == "__main__":
             # placing the block chosen by the user onto the grid and displaying it
             M = emplace_block(M, chosen_block, x, y)
             print_grid(M)
+            print('{: ^140}\n'.format(" SCORE = " + str(score)))
 
             # checking if the rows and columns are full
             while x >= 0:
@@ -137,6 +138,7 @@ if __name__ == "__main__":
                     score += update_score(M, 'row', x)
                     M = row_clear(M, x)
                     print_grid(M)
+                    print('{: ^140}\n'.format(" SCORE = " + str(score)))
                 x -= 1
 
             while y < len(M):
@@ -144,6 +146,7 @@ if __name__ == "__main__":
                     score += update_score(M, 'line', y)
                     M = col_clear(M, y)
                     print_grid(M)
+                    print('{: ^140}\n'.format(" SCORE = " + str(score)))
                 y += 1
 
             # asking the player if they want to pursue the game or quit
@@ -163,4 +166,14 @@ if __name__ == "__main__":
             name = input("⇒  Give the name of the file you want to save your grid in, it cannot exceed 10 characters : \n")
         backup_save(name, M, length, current_grid, score)
 
-    print("⇒  Your total score was : ", score)
+    print('╞{:═^150}╡'.format(""))
+    print('\n{:^150}'.format("Your total score was : " + str(score)))
+    print('\n{:^150}'.format("See you soon ! ;)"))
+    print('\n╘{:═^150}╛\n'.format(""))
+
+    print('\n\n\n{:^150}'.format("╒═════════════════════════════════════════════╕"))
+    print('{:^150}'.format("╎                   CREDITS                   ╎"))
+    print('{:^150}'.format("╎                                             ╎"))
+    print('{:^150}'.format("╎  Adèle Chamoux & Iriantsoa Rasoloarivalona  ╎"))
+    print('{:^150}'.format("╎                                             ╎"))
+    print('{:^150}'.format("╘═════════════════════════════════════════════╛"))
