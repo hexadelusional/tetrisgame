@@ -1,5 +1,6 @@
-# GRIDS
+# GRIDS  -  Tetris Puzzle  -  Adele Chamoux and Iriantsoa Rasoloarivalona
 
+# This file regroups all the functions related to the grid of the game
 
 # DIAMOND GRID
 
