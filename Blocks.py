@@ -274,18 +274,24 @@ def emplace_block(grid, block, i, j):
     return temp_grid
 
 
-def rotate(block):
+def rotate(block, dir):
     """
-    :param block: list of sublists of integers that are 1 or 0
+    :param dir: if True => rotate to the right | else to the left
+    :param block: list of sublist of integers that are 1 or 0
     :return: modified block
     """
     # rotating the entire block
     new_block = []
     for column in range(len(block)):
         temp = []
-        for row in range(len(block) - 1, -1, -1):
-            temp.append(block[row][column])
-        new_block.append(temp)
+        if dir:
+            for row in range(len(block) - 1, -1, -1):
+                temp.append(block[row][column])
+            new_block.append(temp)
+        else:
+            for row in range(len(block)):
+                temp.append(block[row][column])
+            new_block.insert(0, temp)
     block = new_block
 
     # making sure the block is on the bottom left
@@ -299,7 +305,7 @@ def rotate(block):
     column_list = [block[row][0] for row in range(len(block))]
     # while that first column is only void, for each row we put the 1st element at the back
     # we have to update column list with the new 1st elements and check the condition again
-    while 1 not in column_list :
+    while 1 not in column_list:
         for row in range(len(block)):
             block[row].append(block[row].pop(0))
         column_list = [block[row][0] for row in range(len(block))]
