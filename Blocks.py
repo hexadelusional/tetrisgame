@@ -279,19 +279,14 @@ def rotate(block):
     :param block: list of sublists of integers that are 1 or 0
     :return: modified block
     """
-    number = input("The block will turn right. But how many times ? Give a number between 1 and 3: ")
-    while number != "1" and number != "2" and number != "3":
-        number = input("Give a number between 1 and 3, for the number of times the block will turn right: ")
-
     # rotating the entire block
-    for step in range(int(number)):
-        new_block = []
-        for column in range(len(block)):
-            temp = []
-            for row in range(len(block) - 1, -1, -1):
-                temp.append(block[row][column])
-            new_block.append(temp)
-        block = new_block
+    new_block = []
+    for column in range(len(block)):
+        temp = []
+        for row in range(len(block) - 1, -1, -1):
+            temp.append(block[row][column])
+        new_block.append(temp)
+    block = new_block
 
     # making sure the block is on the bottom left
     # => removing space from above
