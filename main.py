@@ -111,18 +111,25 @@ if __name__ == "__main__":
         # printing the block the user just chose
         print_blocks([chosen_block])
 
+       
         # asking if the user wants to rotate the block
-        rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? 'Y' or 'N'\n")
+        rotation = input("⇒ Do you want to rotate the block before placing it ? 'Y' or 'N'\n")
         while rotation != "Y" and rotation != "N":
-            rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? Enter 'Y' or 'N'\n")
+            rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
 
         while rotation == 'Y':
-            chosen_block = rotate(chosen_block)
+            direction = input("⇒ 'L' [left] or 'R' [right] ? : ")
+            while direction != 'L' and direction != 'R':
+                direction = input("⇒ 'L' [left] or 'R' [right] ? : ")
+            if direction == 'L'\
+                    :
+                chosen_block = rotate(chosen_block, False)
+            else:
+                chosen_block = rotate(chosen_block, True)
             print_blocks([chosen_block])
-            rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? 'Y' or 'N'\n")
+            rotation = input("⇒ Do you want to rotate the block again before placing it ? 'Y' or 'N'\n")
             while rotation != "Y" and rotation != "N":
-                rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? Enter 'Y' or 'N'\n")
-
+                rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
         # asking the coordinates of where the user wants to put the block
         x, y = coordinates(current_grid, length)
 
