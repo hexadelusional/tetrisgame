@@ -274,35 +274,38 @@ def emplace_block(grid, block, i, j):
     return temp_grid
 
 
-def rotate(chosen_block):
-    rotation = input("⇒ Do you want to rotate the block before placing it ? 'Y' or 'N'\n")
-    while rotation != "Y" and rotation != "N":
-        rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
-    if rotation == "Y":
-        number = input("The block will turn right. But how many times ? Give a number between 1 and 3: ")
-        while number != "1" and number != "2" and number != "3":
-            number = input("Give a number between 1 and 3, for the number of times the block will turn right: ")
+def rotate(block):
+    """
+    :param block: list of sublists of integers that are 1 or 0
+    :return: modified block
+    """
+    number = input("The block will turn right. But how many times ? Give a number between 1 and 3: ")
+    while number != "1" and number != "2" and number != "3":
+        number = input("Give a number between 1 and 3, for the number of times the block will turn right: ")
 
-        for x in range(int(number)):
-            Block = []
-            for column in range(len(chosen_block)):
-                temp = []
-                for row in range(len(chosen_block) - 1, -1, -1):
-                    temp.append(chosen_block[row][column])
-                Block.append(temp)
-            for i in range(len(chosen_block)):
-                for j in range(len(chosen_block)):
-                    chosen_block[i][j] = Block[i][j]
-        m = []
-        for i in range(len(chosen_block)):
-            is_not_null = False
-            j = 0
-            while j < len(chosen_block) and is_not_null == False:
-                if chosen_block[i][j] == 1:
-                    is_not_null = True
-                j += 1
-            if is_not_null == True:
-                m.append(chosen_block[i])
-        chosen_block = m
-        print(chosen_block)
-    return chosen_block
+    # rotating the entire block
+    for step in range(int(number)):
+        new_block = []
+        for column in range(len(block)):
+            temp = []
+            for row in range(len(block) - 1, -1, -1):
+                temp.append(block[row][column])
+            new_block.append(temp)
+        block = new_block
+
+    # making sure the block is on the bottom left
+    # => removing space from above
+    last_row = len(block)-1
+    # while there is space at the bottom, you pop the last row and insert it at the top
+    while 1 not in block[last_row]:
+        block.insert(0, block.pop(last_row))
+    # => removing space from the left ONLY IF THERE AREN'T ANY 1 BELOW
+    # in column list is a list of all the first elements of each row
+    column_list = [block[row][0] for row in range(len(block))]
+    # while that first column is only void, for each row we put the 1st element at the back
+    # we have to update column list with the new 1st elements and check the condition again
+    while 1 not in column_list :
+        for row in range(len(block)):
+            block[row].append(block[row].pop(0))
+        column_list = [block[row][0] for row in range(len(block))]
+    return block
