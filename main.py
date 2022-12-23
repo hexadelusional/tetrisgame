@@ -1,3 +1,7 @@
+# MAIN   -  Tetris Puzzle  -  Adele Chamoux and Iriantsoa Rasoloarivalona
+
+# The role of this file is to interrogate the user and call all the functions present in the other files
+
 from Grid import *
 from Blocks import *
 
@@ -111,7 +115,6 @@ if __name__ == "__main__":
         # printing the block the user just chose
         print_blocks([chosen_block])
 
-       
         # asking if the user wants to rotate the block
         rotation = input("⇒ Do you want to rotate the block before placing it ? 'Y' or 'N'\n")
         while rotation != "Y" and rotation != "N":
@@ -121,7 +124,7 @@ if __name__ == "__main__":
             direction = input("⇒ 'L' [left] or 'R' [right] ? : ")
             while direction != 'L' and direction != 'R':
                 direction = input("⇒ 'L' [left] or 'R' [right] ? : ")
-            if direction == 'L'\
+            if direction == 'L' \
                     :
                 chosen_block = rotate(chosen_block, False)
             else:
