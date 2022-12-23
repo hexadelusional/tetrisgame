@@ -35,7 +35,7 @@ if __name__ == "__main__":
         print('\n╞{:═^150}╡\n'.format(" BEWARE... THE GAME HAS STARTED ! "))
         # asking what board shape the user wants
         current_grid = input("⇒ What board shape do you want to play on ? "
-                                          " Enter 'C' for [Circle], 'T' for [Triangle], or 'D' [Diamond] : \n")
+                             " Enter 'C' for [Circle], 'T' for [Triangle], or 'D' [Diamond] : \n")
         while current_grid != "D" and current_grid != "T" and current_grid != "C":
             current_grid = input(
                 "⇒ Error, this board shape does not exist. Write the uppercase letter of the board shape"
@@ -112,17 +112,17 @@ if __name__ == "__main__":
         print_blocks([chosen_block])
 
         # asking if the user wants to rotate the block
-        rotation = input("⇒ Do you want to rotate the block before placing it ? 'Y' or 'N'\n")
+        rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? 'Y' or 'N'\n")
         while rotation != "Y" and rotation != "N":
-            rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
+            rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? Enter 'Y' or 'N'\n")
 
         while rotation == 'Y':
             chosen_block = rotate(chosen_block)
             print_blocks([chosen_block])
-            rotation = input("⇒ Do you want to rotate the block before placing it ? 'Y' or 'N'\n")
+            rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? 'Y' or 'N'\n")
             while rotation != "Y" and rotation != "N":
-                rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
-                
+                rotation = input("⇒ Do you want to rotate the block before placing it (to the right) ? Enter 'Y' or 'N'\n")
+
         # asking the coordinates of where the user wants to put the block
         x, y = coordinates(current_grid, length)
 
@@ -141,7 +141,6 @@ if __name__ == "__main__":
             M = emplace_block(M, chosen_block, x, y)
             print_grid(M)
             print('{: ^140}\n'.format(" SCORE = " + str(score)))
-
             # checking if the rows and columns are full
             while x >= 0:
                 while row_state(M, x):
@@ -173,7 +172,8 @@ if __name__ == "__main__":
         # saving the current grid in a file named by the user
         name = input("⇒  Give the name of the file you want to save your grid in : \n")
         while len(name) >= 10:
-            name = input("⇒  Give the name of the file you want to save your grid in, it cannot exceed 10 characters : \n")
+            name = input(
+                "⇒  Give the name of the file you want to save your grid in, it cannot exceed 10 characters : \n")
         backup_save(name, M, length, current_grid, score)
 
     print('╞{:═^150}╡'.format(""))
