@@ -257,8 +257,6 @@ def col_clear(grid, j):
     for row in range(len(grid)):
         while grid[row][j] == '2':
             grid[row][j] = '1'
-    for i in range(len(grid)):
-        print(grid[i], end=" \n")
     return grid
 
 
