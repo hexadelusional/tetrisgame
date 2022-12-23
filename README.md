@@ -20,6 +20,13 @@ The two files Grid.py (13 functions) & Blocks.py (5 functions) contain all that 
 To start playing the game, just go to the main.py file and execute it. The game will then appear in the python console/terminal. From there, no need to do anything else, simply follow what the display tells you to on the screen.
 To every wrong input you give, the program will have an adapted response and WILL NOT CRASH. Therefore, read properly the instructions given on the screen and everything will be fine.
 
+## First go
+If this is your first time playing, note that you will have a choice at the beginning: 
+                      - to resume a previously saved game
+                                       or
+                              - start a new game
+For the first option, you will have to enter the name of the txt file you want to reload. So if it's your first time, chose the second option!
+
 ## Last piece of advice
 You must not forget a VERY IMPORTANT ELEMENT. Necessary to reach the goal of this game; imperative to exploit it to its maximum; obligatory to really fullfil the purpose of its entertainment; and definitely mandatory to attain the grail of the game: 
                                                               -->  DO NOT FORGET TO HAVE FUN !!!
