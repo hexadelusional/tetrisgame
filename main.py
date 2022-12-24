@@ -1,6 +1,7 @@
 # MAIN   -  Tetris Puzzle  -  Adele Chamoux and Iriantsoa Rasoloarivalona
 
 # The role of this file is to interrogate the user and call all the functions present in the other files
+
 from Grid import *
 from Blocks import *
 
@@ -39,7 +40,7 @@ if __name__ == "__main__":
         # asking what board shape the user wants
         current_grid = input("⇒ What board shape do you want to play on ? "
                              " Enter 'C' for [Circle], 'T' for [Triangle], or 'D' [Diamond] : \n")
-        while current_grid not in ['D', 'd', 'C', 'c', 'T', 't']:
+        while current_grid != "D" and current_grid != "T" and current_grid != "C" and current_grid != "d" and current_grid != "t" and current_grid != "c":
             current_grid = input(
                 "⇒ Error, this board shape does not exist. Write the letter of the board shape"
                 " you want 'C' for [Circle], 'T' for [Triangle], 'D' for [Diamond] : \n")
@@ -47,7 +48,7 @@ if __name__ == "__main__":
         # asking what board shape the user wants,
         current_size = input("⇒  What board size do you want to play on ? Enter 'S' for [Small], 'M' for [Medium], "
                              "or 'L' for [Large] : \n")
-        while current_size not in ['S', 's', 'M', 'm', 'L', 'l']:
+        while current_size != "S" and current_size != "M" and current_size != "L" and current_size != "s" and current_size != "m" and current_size != "l":
             current_size = input("⇒ Error, this board size does not exist. Write the letter of "
                                  "the board size you want 'S' for [Small], 'M' for [Medium], 'L' for [Large] : \n")
 
@@ -75,6 +76,7 @@ if __name__ == "__main__":
 
     # printing the current grid in the console
     print_grid(M)
+    print('{: ^140}\n'.format(" SCORE = " + str(score)))
 
     if current_grid == 'C' or current_grid == 'c':
         current_blocks = common_blocks + circle_list
@@ -177,7 +179,7 @@ if __name__ == "__main__":
     while wanna_save != "Y" and wanna_save != "N" and wanna_save != 'y' and wanna_save != 'n':
         wanna_save = input(" ⇒ Do you want to save your game to resume another time ? Please type 'Y' or 'N' : \n")
 
-    if wanna_save == "Y" or wanna_save != 'y':
+    if wanna_save == "Y" or wanna_save == 'y':
         # saving the current grid in a file named by the user
         name = input("⇒  Give the name of the file you want to save your grid in : \n")
         while len(name) >= 10:
