@@ -1,5 +1,8 @@
+# BLOCKS  -  Tetris Puzzle  -  Adele Chamoux and Iriantsoa Rasoloarivalona
+
+# This file regroups all the functions related to the blocks of the game
+
 from random import *
-from main import *
 
 # BLOCKS
 
