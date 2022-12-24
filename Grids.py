@@ -7,7 +7,7 @@
 # creation + filling up the diamond.txt according to the size chosen by the user
 def grid_diamond(size):
     with open("D.txt", "w") as D:
-        if size == "L":
+        if size == "L" or size == 'l':
             length = 25
             space = 11
             j = 25
@@ -20,7 +20,7 @@ def grid_diamond(size):
                     D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " *
                             (space - j + 1) + "\n")
 
-        if size == "M":
+        if size == "M" or size == 'm':
             length = 23
             space = 10
             j = 23
@@ -33,7 +33,7 @@ def grid_diamond(size):
                     D.write("0  " * (space - j + 1) + "1  " * (length - (space - j + 1) * 2) + "0  " *
                             (space - j + 1) + "\n")
 
-        if size == "S":
+        if size == "S" or size == 's':
             length = 21
             space = 9
             j = 21
@@ -53,7 +53,7 @@ def grid_diamond(size):
 def grid_triangle(size):
     with open("T.txt", "w") as T:
 
-        if size == "L":
+        if size == "L" or size == 'l':
             length = 25
             space = 11
             for i in range(length):
@@ -61,7 +61,7 @@ def grid_triangle(size):
                     T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
                             (space - i + 1) + "\n")
 
-        if size == "M":
+        if size == "M" or size == 'm':
             length = 23
             space = 10
             for i in range(length):
@@ -69,7 +69,7 @@ def grid_triangle(size):
                     T.write("0  " * (space - i + 1) + "1  " * (length - (space - i + 1) * 2) + "0  " *
                             (space - i + 1) + "\n")
 
-        if size == "S":
+        if size == "S" or size == 's':
             length = 21
             space = 9
             for i in range(length):
@@ -83,7 +83,7 @@ def grid_triangle(size):
 # creation + filling up the circle.txt doc according to the size chosen by the user
 def grid_circle(size):
     with open("C.txt", "w") as C:
-        if size == "L":
+        if size == "L" or size == 'l':
             length = 25
             space = 5
             for i in range(1, length + 1):
@@ -96,7 +96,7 @@ def grid_circle(size):
                 else:
                     C.write("1  " * length + "\n")
 
-        if size == "M":
+        if size == "M" or size == 'm':
             length = 23
             space = 5
             for i in range(1, length + 1):
@@ -109,7 +109,7 @@ def grid_circle(size):
                 else:
                     C.write("1  " * length + "\n")
 
-        if size == "S":
+        if size == "S" or size == 's':
             length = 21
             space = 5
             for i in range(1, length + 1):
@@ -232,12 +232,9 @@ def row_clear(grid, i):
         index = 0
         while index < len(grid[i]):
             if grid[x-1][index] == '2':  # if the element above is a 2
-                if x+1 != len(grid[i]):  # if the element below is not in the last line of the grid
-                    if grid[x+1][index] == '0':  # the element of the line below becomes a 0
-                        pass
-                    else:
-                        grid[x][index] = '2'  # the element on the current line becomes a 2
-                        grid[x - 1][index] = '1'  # the element on the above line becomes a 1
+                if not (grid[x][index] == '0'):  # if the element of the current line is not a 0
+                    grid[x][index] = '2'  # the element on the current line becomes a 2
+                    grid[x - 1][index] = '1'  # the element on the above line becomes a 1
             index += 1  # increasing index to go through every element of each line
         x -= 1  # decreasing x to go from the full line, up to the first line of the grid
     return grid
@@ -257,15 +254,16 @@ def col_clear(grid, j):
 
 
 # function update_score() which updates the score each time a row or a column is cancelled
-def update_score(grid, mode, line):
+def update_score(grid, mode, actual_score, line):
     """
-    :param grid: the matrix M of the grid
-    :param mode: a string, either 'row' or 'column'
-    :param line: the coordinates x or y of the full line
-    :return: s, the score
+    :param grid: the matrix M of the grid (list)
+    :param mode: either 'row' or 'column' (string)
+    :param actual_score: score before the modifications (int)
+    :param line: the coordinates x or y of the full line (int)
+    :return: s, the new score (int)
     """
     # make col_clear / row_clear return the line that was cancelled and saved in a variable line
-    s = 0
+    s = actual_score
     if mode == "row":
         for elt in grid[line]:
             if elt == '2':
@@ -284,9 +282,9 @@ def backup_save(path, grid, size, shape, score):
     """
     :param path: the name (given by the user) of the new file to be created to save the data of his game performance
     :param grid: the matrix of the game to be saved into the path specified above
-    :param size: recuperating the size of the game grid for later re-use
-    :param shape: recuperating the shape of the grid to be played on for later re-use
-    :param score: recuperating the score of the game for later re-use
+    :param size: recovering the size of the game grid for later re-use
+    :param shape: recovering the shape of the grid to be played on for later re-use
+    :param score: recovering the score of the game for later re-use
     :return: none
     """
     with open(path + ".txt", "w") as G:
@@ -313,7 +311,7 @@ def reloading_all_data(path):
         length = ""
         score = ""
         current_grid = ""
-        # recuperating the data (written on the last line of the file)
+        # recovering the data (written on the last line of the file)
         for x in range(2):
             length += line[x]
         current_grid += line[2]
