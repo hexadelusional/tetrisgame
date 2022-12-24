@@ -1,8 +1,7 @@
-# BLOCKS  -  Tetris Puzzle  -  Adele Chamoux and Iriantsoa Rasoloarivalona
-
-# This file regroups all the functions related to the blocks of the game
-
 from random import *
+from main import *
+
+# BLOCKS
 
 # COMMON BLOCKS
 
@@ -47,7 +46,7 @@ circle_list[11] = [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 
 # DIAMOND BLOCKS
 
 diamond_list = [[] for i in range(14)]
-diamond_list[0] = [[0, 0, 0, 0, 0],[0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0], [1, 0, 0, 0, 0]]
+diamond_list[0] = [[0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 1, 1, 0, 0], [1, 1, 0, 0, 0], [1, 0, 0, 0, 0]]
 diamond_list[1] = [[0, 0, 0, 0, 0], [1, 1, 0, 0, 0], [0, 1, 1, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 1, 0]]
 diamond_list[2] = [[0, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0]]
 diamond_list[3] = [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [0, 1, 1, 0, 0], [0, 1, 1, 0, 0], [1, 0, 0, 1, 0]]
@@ -120,9 +119,9 @@ def print_blocks(list_blocks):
         # => if row doesn't exist then we print empty spaces between the | |
         for row in range(max_rows):
             for block in range(len(row_blocks)):
-                if (len(row_blocks[block]) < max_rows) and (row >= (max_rows-len(row_blocks[block]))):
+                if (len(row_blocks[block]) < max_rows) and (row >= (max_rows - len(row_blocks[block]))):
                     substring = ""
-                    for elt in row_blocks[block][row-(max_rows-len(row_blocks[block]))]:
+                    for elt in row_blocks[block][row - (max_rows - len(row_blocks[block]))]:
                         if elt == 0:
                             substring += chr(10240) + " "
                         else:
@@ -179,7 +178,6 @@ def select_blocks(list_blocks, policy):
         return the_random_three[int(chosen_index)]
 
 
-
 # function coordinates that transforms the letter coordinates given by the user to integers
 def coordinates(grid, size):
     """
@@ -211,6 +209,7 @@ def coordinates(grid, size):
     # transforming the coordinates from letters to numbers
     return (ord(row) - 65), (ord(col) - 97)
 
+
 # function valid_position which checks whether a block can be placed such that the lower left square of it is its center
 def valid_position(grid, block, i, j):
     """
@@ -241,7 +240,7 @@ def valid_position(grid, block, i, j):
                 elif (grid[grid_row][grid_col] == '0') or (grid[grid_row][grid_col] == '2'):
                     return False
             grid_col += 1
-    # ==> after reaching the last column, we move to row above
+        # ==> after reaching the last column, we move to row above
         grid_row -= 1
     # After checking all the columns of all rows, then we return True
     return True
