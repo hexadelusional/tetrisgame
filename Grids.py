@@ -157,21 +157,17 @@ def save_grid(path, grid):
 
 # function print_grid(grid) which displays the status of the grid in ascii symbols
 def print_grid(grid):
-    # creating two strings minu and maju : the coordinates the user will enter to place the blocks
-    minu = "abcdefghijklmnopqrstuvwxy"
-    maju = "ABCDEFGHIJKLMNOPQRSTUVWXY"
-
     # writing the lowercase coordinates on the top of the grid & the ascii symbols
     line = ""
     print(format(line, '>37s'), end=" ")  # adjusting aesthetic line (with 37 spaces before the first element)
     for i in range(len(grid[0])):
-        line += " " + minu[i] + " "
+        line += " " + chr(97+i) + " "
     print(line)  # displaying the line of letters corresponding to the columns of the grid
     line = ""
     print(format(line, '>36s'), end="")  # adjusting aesthetics line (with 36 spaces before the first ascii character)
     print("╔" + "  " + ("═" + "  ") * (len(grid[0])) + "╗")  # top frame display
     for i in range(len(grid)):
-        line = maju[i] + "║"  # displaying the line of letters corresponding to the row + frame display
+        line = chr(65+i) + "║"  # displaying the line of letters corresponding to the row + frame display
         print(format(line, '>37s'), end="  ")
         for j in range(len(grid[i])):
             if grid[i][j] == "0":
@@ -180,16 +176,15 @@ def print_grid(grid):
                 print(chr(9643), end="  ")  # replacing every 1 of the list with a little cube
             elif grid[i][j] == '2':
                 print(chr(9632), end="  ")  # replacing every 2 of the list with a big cube
-        print(chr(9553) + maju[i]+"\n".strip())  # frame display + line of letters corresponding to the row
+        print(chr(9553) + chr(65+i) + "\n".strip())  # frame display + line of letters corresponding to the row
     line = ""
     print(format(line, '>36s'), end="")  # adjusting aesthetics line (with 36 spaces before the first ascii character)
     print("╚" + "  " + ("═" + "  ") * (len(grid[0])) + "╝")  # bottom frame display
     line = ""
     print(format(line, '>37s'), end=" ")  # adjusting aesthetic line (with 37 spaces before the first element)
     for i in range(len(grid[0])):
-        line += " " + minu[i] + " "
+        line += " " + chr(97+i) + " "
     print(line + "\n")  # displaying the line of letters corresponding to the columns of the grid
-
 
 
     # function row_state that verifies if line i in grid is full
