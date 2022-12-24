@@ -1,7 +1,3 @@
-# MAIN   -  Tetris Puzzle  -  Adele Chamoux and Iriantsoa Rasoloarivalona
-
-# The role of this file is to interrogate the user and call all the functions present in the other files
-
 from Grid import *
 from Blocks import *
 
@@ -40,30 +36,30 @@ if __name__ == "__main__":
         # asking what board shape the user wants
         current_grid = input("⇒ What board shape do you want to play on ? "
                              " Enter 'C' for [Circle], 'T' for [Triangle], or 'D' [Diamond] : \n")
-        while current_grid != "D" and current_grid != "T" and current_grid != "C":
+        while current_grid != "D" and current_grid != "T" and current_grid != "C" and current_grid != "d" and current_grid != "t" and current_grid != "c":
             current_grid = input(
-                "⇒ Error, this board shape does not exist. Write the uppercase letter of the board shape"
+                "⇒ Error, this board shape does not exist. Write the letter of the board shape"
                 " you want 'C' for [Circle], 'T' for [Triangle], 'D' for [Diamond] : \n")
 
         # asking what board shape the user wants,
         current_size = input("⇒  What board size do you want to play on ? Enter 'S' for [Small], 'M' for [Medium], "
                              "or 'L' for [Large] : \n")
-        while current_size != "S" and current_size != "M" and current_size != "L":
-            current_size = input("⇒ Error, this board size does not exist. Write the uppercase letter of "
+        while current_size != "S" and current_size != "M" and current_size != "L" and current_size != "s" and current_size != "m" and current_size != "l":
+            current_size = input("⇒ Error, this board size does not exist. Write the letter of "
                                  "the board size you want 'S' for [Small], 'M' for [Medium], 'L' for [Large] : \n")
 
-        if current_grid == "C":
+        if current_grid == "C" or current_grid == 'c':
             grid_circle(current_size)
-        elif current_grid == "D":
+        elif current_grid == "D" or current_grid == 'd':
             grid_diamond(current_size)
         else:
             grid_triangle(current_size)
 
         # initializing the variable length
         length = 0
-        if current_size == "L":
+        if current_size == "L" or current_size == 'l':
             length = 25
-        elif current_size == "M":
+        elif current_size == "M" or current_size == 'm':
             length = 23
         else:
             length = 21
@@ -77,9 +73,9 @@ if __name__ == "__main__":
     # printing the current grid in the console
     print_grid(M)
 
-    if current_grid == 'C':
+    if current_grid == 'C' or current_grid == 'c':
         current_blocks = common_blocks + circle_list
-    elif current_grid == 'D':
+    elif current_grid == 'D' or current_grid == 'd':
         current_blocks = common_blocks + diamond_list
     else:
         current_blocks = common_blocks + triangle_list
@@ -99,7 +95,7 @@ if __name__ == "__main__":
     # print the current score
     # ask the user if he wants to continue playing (rep = input("Y" = yes, "N" = No)
     answer = "Y"
-    while answer == "Y":
+    while answer == "Y" or answer == 'y':
         # showing the user the blocks he can use
         print('\n{:^113}'.format(" THE AVAILABLE BLOCKS ARE: "))
         chosen_block = select_blocks(current_blocks, question)
@@ -117,22 +113,22 @@ if __name__ == "__main__":
 
         # asking if the user wants to rotate the block
         rotation = input("⇒ Do you want to rotate the block before placing it ? 'Y' or 'N'\n")
-        while rotation != "Y" and rotation != "N":
+        while rotation != "Y" and rotation != "N" and rotation != 'y' and rotation != 'n':
             rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
 
-        while rotation == 'Y':
+        while rotation == 'Y' or rotation == 'y':
             direction = input("⇒ 'L' [left] or 'R' [right] ? : ")
-            while direction != 'L' and direction != 'R':
+            while direction != 'L' and direction != 'R' and direction != 'l' and direction != 'r':
                 direction = input("⇒ 'L' [left] or 'R' [right] ? : ")
-            if direction == 'L' \
-                    :
+            if direction == 'L' or direction == 'l':
                 chosen_block = rotate(chosen_block, False)
             else:
                 chosen_block = rotate(chosen_block, True)
             print_blocks([chosen_block])
             rotation = input("⇒ Do you want to rotate the block again before placing it ? 'Y' or 'N'\n")
-            while rotation != "Y" and rotation != "N":
+            while rotation != "Y" and rotation != "N" and direction != 'y' and direction != 'n':
                 rotation = input("⇒ Do you want to rotate the block before placing it ? Enter 'Y' or 'N'\n")
+
         # asking the coordinates of where the user wants to put the block
         x, y = coordinates(current_grid, length)
 
@@ -151,18 +147,18 @@ if __name__ == "__main__":
             M = emplace_block(M, chosen_block, x, y)
             print_grid(M)
             print('{: ^140}\n'.format(" SCORE = " + str(score)))
+
             # checking if the rows and columns are full
             while x >= 0:
                 while row_state(M, x):
-                    score += update_score(M, 'row', x)
+                    score = update_score(M, 'row', score, x)
                     M = row_clear(M, x)
                     print_grid(M)
                     print('{: ^140}\n'.format(" SCORE = " + str(score)))
                 x -= 1
-
-            while y < len(M):
+            while y < len(M[0]):
                 while col_state(M, y):
-                    score += update_score(M, 'line', y)
+                    score += update_score(M, 'line', score, y)
                     M = col_clear(M, y)
                     print_grid(M)
                     print('{: ^140}\n'.format(" SCORE = " + str(score)))
@@ -170,15 +166,15 @@ if __name__ == "__main__":
 
             # asking the player if they want to pursue the game or quit
             answer = input("⇒  Do you wish to continue ? Y or N : \n")
-            while answer != "Y" and answer != "N":
+            while answer != "Y" and answer != "N" and answer != 'y' and answer != 'n':
                 answer = input("⇒  Do you wish to continue ? Please type 'Y' or 'N' : \n")
 
     # asking the user if he wants to save his game in a file
     wanna_save = input("⇒  Do you want to save your game to resume another time ? Y or N : \n")
-    while wanna_save != "Y" and wanna_save != "N":
+    while wanna_save != "Y" and wanna_save != "N" and wanna_save != 'y' and wanna_save != 'n':
         wanna_save = input(" ⇒ Do you want to save your game to resume another time ? Please type 'Y' or 'N' : \n")
 
-    if wanna_save == "Y":
+    if wanna_save == "Y" or wanna_save != 'y':
         # saving the current grid in a file named by the user
         name = input("⇒  Give the name of the file you want to save your grid in : \n")
         while len(name) >= 10:
