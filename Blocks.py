@@ -173,10 +173,11 @@ def select_blocks(list_blocks, policy):
         the_random_three = sample(blocks, 3)
         print_blocks(the_random_three)
         chosen_index = input("⇒ Enter the number of the next block to place on the grid: \n")
-        while not (0 <= int(chosen_index) <= 2):
+        while not ('0' <= chosen_index <= '2'):
             chosen_index = input("⇒ Error, this block does not exist. Enter the number of the  next block to place "
                                  "on the grid \n")
         return the_random_three[int(chosen_index)]
+
 
 
 # function coordinates that transforms the letter coordinates given by the user to integers
