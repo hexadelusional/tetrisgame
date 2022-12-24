@@ -1,3 +1,7 @@
+# MAIN   -  Tetris Puzzle  -  Adele Chamoux and Iriantsoa Rasoloarivalona
+
+# The role of this file is to interrogate the user and call all the functions present in the other files
+
 from Grid import *
 from Blocks import *
 
